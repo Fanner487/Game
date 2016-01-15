@@ -1,7 +1,9 @@
 class Paddle extends Sprite
 {
-  int paddleWidth = 40;
-  int paddleHeight = 10;
+  float paddleWidth = 40;
+  float paddleHeight = 10;
+  float halfPWidth = paddleWidth / 2;
+  float halfPHieght = paddleHeight / 2;
   
   Paddle(float x, float y, color colour)
   {
@@ -17,6 +19,14 @@ class Paddle extends Sprite
   }
   
   void update(){
+    if(pos.x >= width - paddleWidth)
+    {
+      pos.x = width - paddleWidth;
+    }
+    else if(pos.x <= paddleWidth){
+    pos.x = paddleWidth;
+    }
+    
     pos.x = mouseX;
   }
 }
