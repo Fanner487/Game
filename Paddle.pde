@@ -1,6 +1,6 @@
 class Paddle extends Sprite
 {
-  float paddleWidth = 40;
+  float paddleWidth = 60;
   float paddleHeight = 10;
   float halfPWidth = paddleWidth / 2;
   float halfPHieght = paddleHeight / 2;
