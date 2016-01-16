@@ -2,13 +2,21 @@ class Paddle extends Sprite
 {
   float paddleWidth = 60;
   float paddleHeight = 10;
-  float halfPWidth = paddleWidth / 2;
-  float halfPHieght = paddleHeight / 2;
+  //these can be in abstract class
+  float halfPWidth;
+  float halfPHieght;
   
   Paddle(float x, float y, color colour)
   {
-    pos = new PVector(x, y);
+    this.pos = new PVector(x, y);
     this.colour = colour;
+    this.halfPWidth = paddleWidth / 2;
+    this.halfPHieght = paddleHeight / 2;
+    
+    this.left = pos.x - paddleWidth;
+    this.right = pos.x + paddleWidth;
+    this.top = pos.y - paddleHeight;
+    this.bottom = pos.y + paddleHeight;
   }
  
   void render(){

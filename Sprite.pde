@@ -1,5 +1,10 @@
 abstract class Sprite
 {
+  float left;
+  float right;
+  float top;
+  float bottom;
+  
   PVector pos;
   color colour;
   

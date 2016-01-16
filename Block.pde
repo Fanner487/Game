@@ -2,15 +2,24 @@ class Block extends Sprite
 {
   float blockWidth;
   float blockHeight;
+  float halfBlockWidth;
+  float halfBlockHeight;
   boolean hit;
   
   Block(int x, int y, color colour)
   {
-    pos = new PVector(x, y);
+    this.pos = new PVector(x, y);
     this.colour = colour;
-    blockWidth = 40;
-    blockHeight = 20;
-    hit = false;
+    this.blockWidth = 60;
+    this.blockHeight = 20;
+    this.halfBlockWidth = blockWidth / 2;
+    this.halfBlockHeight = blockHeight / 2;
+    this.left = pos.x - halfBlockWidth;
+    this.right = pos.x + halfBlockWidth;
+    this.top = pos.y - halfBlockHeight;
+    this.bottom = pos.y + halfBlockHeight;
+    
+    this.hit = false;
   }
   
   void render(){
