@@ -14,10 +14,10 @@ class Ball extends Sprite
     this.ballWidth = 15;
     this.ballHeight = ballWidth;
     this.halfB = ballWidth * 0.5f;
-    this.left = this.pos.x - halfB;
-    this.right = this.pos.x + halfB;
-    this.top = this.pos.y - halfB;
-    this.bottom = this.pos.y + halfB;
+    this.left = pos.x - halfB;
+    this.right = pos.x + halfB;
+    this.top = pos.y - halfB;
+    this.bottom = pos.y + halfB;
     this.speed = 5;
     this.xspeed = speed;
     this.yspeed = speed;
@@ -31,7 +31,7 @@ class Ball extends Sprite
 
   void update()
   {
-    this.pos.x -= xspeed;
+    //this.pos.x -= xspeed;
     this.pos.y -= yspeed;
 
     if (pos.x > width - halfB)
