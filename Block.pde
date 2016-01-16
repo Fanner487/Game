@@ -12,8 +12,8 @@ class Block extends Sprite
     this.colour = colour;
     this.blockWidth = 60;
     this.blockHeight = 20;
-    this.halfBlockWidth = blockWidth / 2;
-    this.halfBlockHeight = blockHeight / 2;
+    this.halfBlockWidth = blockWidth * 0.5f;
+    this.halfBlockHeight = blockHeight * 0.5f;
     this.left = pos.x - halfBlockWidth;
     this.right = pos.x + halfBlockWidth;
     this.top = pos.y - halfBlockHeight;

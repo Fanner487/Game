@@ -13,11 +13,11 @@ class Ball extends Sprite
     this.colour = colour;
     this.ballWidth = 15;
     this.ballHeight = ballWidth;
-    this.halfB = ballWidth / 2;
-    this.left = pos.x - halfB;
-    this.right = pos.x + halfB;
-    this.top = pos.y - halfB;
-    this.bottom = pos.y + halfB;
+    this.halfB = ballWidth * 0.5f;
+    this.left = this.pos.x - halfB;
+    this.right = this.pos.x + halfB;
+    this.top = this.pos.y - halfB;
+    this.bottom = this.pos.y + halfB;
     this.speed = 5;
     this.xspeed = speed;
     this.yspeed = speed;

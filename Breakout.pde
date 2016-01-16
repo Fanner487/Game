@@ -16,11 +16,15 @@ void setup()
     }
     blocks.add(row);
   }
+  
+  //rows = row.size();
 }
 
 Paddle paddle;
 Ball ball;
 ArrayList<ArrayList<Block>> blocks = new ArrayList<ArrayList<Block>>();
+int rows;
+int cols;
 
 void draw() {
   background(0);
@@ -28,8 +32,8 @@ void draw() {
   paddle.update();
   paddle.render();
 
-  ball.update();
-  ball.render();
+  //ball.update();
+  //ball.render();
 
   for (int i = 0; i < 5; i++)
   {
@@ -46,7 +50,7 @@ void draw() {
     
   }
 
-  if (ball.pos.x > (paddle.pos.x - paddle.halfPWidth) && ball.pos.x < (paddle.pos.x + paddle.halfPWidth) && (ball.pos.y + ball.halfB) > (paddle.pos.y - paddle.halfPHieght))
+  if ((ball.pos.x >= paddle.pos.x - paddle.halfPWidth) && (ball.pos.x <= paddle.pos.x + paddle.halfPWidth) && (ball.pos.y + ball.halfB >= paddle.pos.y - paddle.halfPHeight))
   {
     ball.yspeed = -(ball.yspeed);
   }
@@ -57,9 +61,32 @@ void draw() {
     {
      Block block = blocks.get(i).get(j);
      //bottom side of block
-     if((ball.right) >= (block.left) && (ball.left) <= (block.right) && (ball.top) <= (block.pos.y + block.halfBlockHeight))
+     if((ball.pos.x) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.y - ball.halfB) <= (block.pos.y + block.halfBlockHeight))
      {
        ball.yspeed = -(ball.yspeed);
+       block.hit = true;
+       blocks.remove(block);
+     }
+     //top side of block
+     if((ball.pos.x) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB) >= (block.pos.y - block.halfBlockHeight) )
+     {
+      ball.yspeed = -(ball.yspeed);  
+      //block.hit = true;
+      blocks.remove(block);
+     }
+     //left side of block
+     if((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.x + block.halfBlockHeight) && (ball.pos.x + ball.halfB) >= (block.pos.x - block.halfBlockWidth))
+     {
+      ball.xspeed = -(ball.xspeed);   
+      //block.hit = true;
+      blocks.remove(block);
+     }
+     //right side
+     if((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.x + block.halfBlockHeight) && (ball.pos.x - ball.halfB) <= (block.pos.x + block.halfBlockWidth))
+     {
+      ball.xspeed = -(ball.xspeed); 
+      //block.hit = true;
+      blocks.remove(block);
      }
     }
   }
