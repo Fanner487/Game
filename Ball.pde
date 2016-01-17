@@ -30,8 +30,8 @@ class Ball extends Sprite
 
   void update()
   {
-    //this.pos.x -= xspeed;
-    this.pos.y -= yspeed;
+    this.pos.x -= xspeed;
+    this.pos.y += yspeed;
 
     if (pos.x > width - halfB)
     {

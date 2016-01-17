@@ -30,9 +30,9 @@ class Block extends Sprite
     rect(pos.x, pos.y, blockWidth, blockHeight);
   }
   void update(){
-    pos.x += xspeed;
+    //pos.x += xspeed;
     
-    if(right >= width || pos.x - halfBlockWidth <= 0)
+    if(pos.x + halfBlockWidth >= width || pos.x - halfBlockWidth <= 0)
     {
       xspeed = -(xspeed);
     }

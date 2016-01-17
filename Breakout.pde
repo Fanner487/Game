@@ -1,15 +1,15 @@
 void setup()
 {
-  size(800, 500);
+  size(1366, 700);
   background(0);
   rectMode(CENTER);
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 250, color(random(255), random(255), random(255)));
 
   blocks = new ArrayList<Block>();
-  for (int i = 0; i < 3; i++)
+  for (int i = 0; i < 7; i++)
   {
-    Block b = new Block(250, 100 + (30 * i), color(random(255), random(255), random(255)));
+    Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
     blocks.add(b);
   }
   println(ball.left);
@@ -48,14 +48,14 @@ void draw() {
   {
     Block block = blocks.get(i);
     //bottom
-    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
+    if ((ball.pos.x >= (block.pos.x - block.halfBlockWidth)) && (ball.pos.x <= (block.pos.x + block.halfBlockWidth)) && ((ball.pos.y - ball.halfB) <= (block.pos.y + block.halfBlockHeight)) && (ball.pos.y > block.pos.y))
     {
       ball.yspeed = -(ball.yspeed);
 
       blocks.remove(block);
     }
     //top side of block
-    if ((ball.pos.x) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y < block.pos.y))
+    if ((ball.pos.x >= block.pos.x - block.halfBlockWidth) && (ball.pos.x <= block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB >= block.pos.y - block.halfBlockHeight) && (ball.pos.y < block.pos.y))
     {
       ball.yspeed = -(ball.yspeed);  
 

@@ -10,7 +10,7 @@ class Paddle extends Sprite
   {
     this.pos = new PVector(x, y);
     this.colour = colour;
-    paddleWidth = 60;
+    paddleWidth = 100;
     paddleHeight = 10;
     halfPWidth = paddleWidth * 0.5f;
     halfPHeight = paddleHeight * 0.5f;
