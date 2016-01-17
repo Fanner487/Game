@@ -4,14 +4,13 @@ class Ball extends Sprite
   float ballHeight;
   float halfB;
   float speed;
-  float xspeed;
-  float yspeed;
+  
 
   Ball(float x, float y, color colour)
   {
     this.pos = new PVector(x, y);
     this.colour = colour;
-    this.ballWidth = 15;
+    this.ballWidth = 20;
     this.ballHeight = ballWidth;
     this.halfB = ballWidth * 0.5f;
     this.left = pos.x - halfB;

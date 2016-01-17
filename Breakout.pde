@@ -1,10 +1,10 @@
 void setup()
 {
-  size(500, 500);
+  size(800, 500);
   background(0);
   rectMode(CENTER);
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
-  ball = new Ball(250, 400, color(random(255), random(255), random(255)));
+  ball = new Ball(250, 250, color(random(255), random(255), random(255)));
 
   blocks = new ArrayList<Block>();
   for (int i = 0; i < 3; i++)
@@ -12,6 +12,7 @@ void setup()
     Block b = new Block(250, 100 + (30 * i), color(random(255), random(255), random(255)));
     blocks.add(b);
   }
+  println(ball.left);
 }
 
 ArrayList<Block> blocks;
@@ -21,19 +22,21 @@ Ball ball;
 
 void draw() {
   background(0);
-
+  
+  fill(paddle.colour);
   paddle.update();
   paddle.render();
-
+  
+  fill(ball.colour);
   ball.update();
   ball.render();
-  println(blocks.size());
+  //println(blocks.size());
 
   for (int i = 0; i < blocks.size(); i++)
   {
 
     Block block = blocks.get(i);
-
+    fill(block.colour);
     block.render();
     block.update();
   }
@@ -45,7 +48,7 @@ void draw() {
   {
     Block block = blocks.get(i);
     //bottom
-    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.pos.y - ball.halfB <= block.bottom) && (ball.pos.y > block.pos.y))
+    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
     {
       ball.yspeed = -(ball.yspeed);
 

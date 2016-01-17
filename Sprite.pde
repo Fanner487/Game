@@ -4,6 +4,8 @@ abstract class Sprite
   float right;
   float top;
   float bottom;
+  float xspeed;
+  float yspeed;
   
   PVector pos;
   color colour;
