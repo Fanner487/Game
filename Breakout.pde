@@ -15,22 +15,43 @@ void setup()
     Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
     blocks.add(b);
   }
-  
-  rocket = new Rocket(1300, 600, color(0,255,0));
-  rockets.add(rocket);
-  
+
 }
 
 ArrayList<Block> blocks;
 ArrayList<Rocket> rockets;
 Paddle paddle;
 Ball ball;
-Rocket rocket;
+
 
 
 void draw() {
   background(0);
   
+  drawBallPaddle();
+  drawBlocks();
+  drawRockets();
+  checkPaddle();
+  rocketCollisions();
+  ballCollisions();
+
+  println("Size: " + rockets.size() + " Ammo: " + paddle.ammo);
+  
+  
+}//end draw
+
+
+
+void checkPaddle() {
+  //paddle collision
+  if ((ball.pos.x >= paddle.pos.x - paddle.halfPWidth) && (ball.pos.x <= paddle.pos.x + paddle.halfPWidth) && (ball.pos.y + ball.halfB >= paddle.pos.y - paddle.halfPHeight))
+  {
+    ball.yspeed = -(ball.yspeed);
+  }
+}
+
+void drawBallPaddle()
+{
   fill(paddle.colour);
   paddle.update();
   paddle.render();
@@ -38,8 +59,10 @@ void draw() {
   fill(ball.colour);
   ball.update();
   ball.render();
-  
+}
 
+void drawBlocks()
+{
   for (int i = 0; i < blocks.size(); i++)
   {
 
@@ -48,7 +71,10 @@ void draw() {
     block.render();
     block.update();
   }
-  
+}
+
+void drawRockets()
+{
   for(int i = 0; i < rockets.size(); i++)
   {
     Rocket rocket = rockets.get(i);
@@ -56,10 +82,10 @@ void draw() {
     rocket.render();
     rocket.update();
   }
-  println("Size: " + rockets.size() + " Ammo: " + paddle.ammo);
-  checkPaddle();
+}
 
-
+void ballCollisions()
+{
   for (int i = 0; i < blocks.size(); i++)
   {
     Block block = blocks.get(i);
@@ -91,7 +117,10 @@ void draw() {
       blocks.remove(block);
     }
   }
-  
+}
+
+void rocketCollisions()
+{
   for(int i = 0; i < rockets.size(); i++)
   {
     Rocket rocket = rockets.get(i);
@@ -111,16 +140,5 @@ void draw() {
         }
       }
     }
-  }
-}
-
-void checkCollisions() {
-}
-
-void checkPaddle() {
-  //paddle collision
-  if ((ball.pos.x >= paddle.pos.x - paddle.halfPWidth) && (ball.pos.x <= paddle.pos.x + paddle.halfPWidth) && (ball.pos.y + ball.halfB >= paddle.pos.y - paddle.halfPHeight))
-  {
-    ball.yspeed = -(ball.yspeed);
   }
 }

@@ -54,6 +54,10 @@ class Paddle extends Sprite
       Rocket rocket = new Rocket(this.pos.x, this.pos.y, this.colour);
       //null pointer exception runs on point following line
       
+      rocket.pos.x = pos.x;
+      rocket.pos.y = pos.y;
+      rocket.colour = colour;
+      
       rockets.add(rocket);
       ammo--;
       
