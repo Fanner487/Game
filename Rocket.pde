@@ -1,23 +1,29 @@
 class Rocket extends Sprite
 {
-  
-  Rocket()
+  float speed;
+  Rocket(float x, float y, color colour)
   {
-    yspeed = -5;
+    this.pos = new PVector(x, y);
+    this.colour = colour;
+    speed = 10;
+    yspeed = speed;
+  }
+  Rocket(){
   }
   
   void render()
   {
     stroke(colour);
+    fill(colour);
     
-    pushMatrix();
-    translate(pos.x, pos.y);
-    line(0, -5, 0, 5);
-    popMatrix();
+    //pushMatrix();
+    //translate(pos.x, pos.y);
+    line(pos.x, pos.y, pos.x, pos.y - 10);
+    //popMatrix();
   }
   void update()
   {
-    pos.y += yspeed;
+    this.pos.y -= yspeed;
     
     if(pos.x < 0 || pos.y < 0 || pos.x > width || pos.y > height)
     {

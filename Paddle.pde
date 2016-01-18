@@ -49,12 +49,11 @@ class Paddle extends Sprite
     }
     
     pos.x = mouseX;
-    
-    if (mousePressed && (mouseButton == LEFT) && elapsed > 60 && ammo > 0) {
-      Rocket rocket = new Rocket();
-      rocket.pos.x = this.pos.x;
-      rocket.pos.y = this.pos.y;
-      rocket.colour = colour;
+    //problem is here
+    if (mousePressed && (mouseButton == LEFT) && elapsed > 30 && ammo > 0) {
+      Rocket rocket = new Rocket(this.pos.x, this.pos.y, this.colour);
+      //null pointer exception runs on point following line
+      
       rockets.add(rocket);
       ammo--;
       
