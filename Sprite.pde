@@ -4,6 +4,7 @@ abstract class Sprite
   float right;
   float top;
   float bottom;
+  float speed;
   float xspeed;
   float yspeed;
  
