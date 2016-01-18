@@ -7,6 +7,7 @@ void setup()
   ball = new Ball(250, 250, color(random(255), random(255), random(255)));
 
   blocks = new ArrayList<Block>();
+  rockets = new ArrayList<Rocket>();
   for (int i = 0; i < 7; i++)
   {
     Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
@@ -16,6 +17,7 @@ void setup()
 }
 
 ArrayList<Block> blocks;
+ArrayList<Rocket> rockets;
 Paddle paddle;
 Ball ball;
 
@@ -39,6 +41,14 @@ void draw() {
     fill(block.colour);
     block.render();
     block.update();
+  }
+  
+  for(int j = 0; j < rockets.size(); j++)
+  {
+    Rocket rocket = rockets.get(j);
+    fill(rocket.colour);
+    rocket.render();
+    rocket.update();
   }
 
   checkPaddle();

@@ -3,6 +3,7 @@ class Ball extends Sprite
   float ballWidth;
   float ballHeight;
   float halfB;
+  //put in abstract
   float speed;
   
 

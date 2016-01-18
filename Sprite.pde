@@ -6,8 +6,11 @@ abstract class Sprite
   float bottom;
   float xspeed;
   float yspeed;
+  float theta = 0.0f;
+  
   
   PVector pos;
+  PVector forward;
   color colour;
   
   Sprite()
