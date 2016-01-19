@@ -7,6 +7,7 @@ abstract class Sprite
   float speed;
   float xspeed;
   float yspeed;
+  int size;
  
   float theta = 0.0f;
   

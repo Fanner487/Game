@@ -7,6 +7,7 @@ void setup()
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 250, color(random(255), random(255), random(255)));
   pow = new ScorePower(1300);
+  score = new AmmoPower(1200);
   
 
   blocks = new ArrayList<Block>();
@@ -24,6 +25,7 @@ ArrayList<Rocket> rockets;
 Paddle paddle;
 Ball ball;
 ScorePower pow;
+AmmoPower score;
 
 
 
@@ -40,6 +42,10 @@ void draw() {
   fill(pow.colour);
   pow.render();
   pow.update();
+  
+  fill(score.colour);
+  score.render();
+  score.update();
   println("Size: " + rockets.size() + " Ammo: " + paddle.ammo);
   
   

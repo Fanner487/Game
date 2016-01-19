@@ -1,18 +1,18 @@
-class ScorePower extends Sprite
+class AmmoPower extends Sprite
 {
   
-  ScorePower(int x)
+  AmmoPower(int x)
   {
     this.pos = new PVector(x, 20);
-    this.colour = color(255,255,255);
+    this.colour = color(0,255,0);
     size = 10;
     speed = 5;
   }
   
   void update()
   {
-    theta += 0.1f;
-    pos.y += speed;
+    //theta += 0.1f;
+    //pos.y += speed;
     
     
     if(theta > TWO_PI)
@@ -31,8 +31,7 @@ class ScorePower extends Sprite
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
-    rect(0, 0, size, size);
+    triangle(0, 10, 10, 10, 5, 0);
     popMatrix();
-    
   }
 }
