@@ -6,7 +6,7 @@ class AmmoPower extends Sprite
     this.pos = new PVector(x, 20);
     this.colour = color(0,255,0);
     size = 10;
-    speed = 1;
+    speed = 5;
   }
   
   void update()
