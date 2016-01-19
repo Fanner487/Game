@@ -7,25 +7,33 @@ void setup()
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 250, color(random(255), random(255), random(255)));
   pow = new ScorePower(1300);
-  score = new AmmoPower(1200);
+  //score = new AmmoPower(1200);
   
 
   blocks = new ArrayList<Block>();
   rockets = new ArrayList<Rocket>();
-  for (int i = 0; i < 7; i++)
+  scores = new ArrayList<ScorePower>();
+  //for (int i = 0; i < 7; i++)
+  //{
+  //  Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
+  //  blocks.add(b);
+  //}
+  for (int i = 0; i < 1; i++)
   {
-    Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
+    Block b = new Block(250, 100 + (30 * i), color(random(255), random(255), random(255)));
     blocks.add(b);
   }
+  
+  scores.add(pow);
 
 }
 
 ArrayList<Block> blocks;
 ArrayList<Rocket> rockets;
+ArrayList<ScorePower> scores;
 Paddle paddle;
 Ball ball;
 ScorePower pow;
-AmmoPower score;
 
 
 
@@ -39,13 +47,18 @@ void draw() {
   rocketCollisions();
   ballCollisions();
   
-  fill(pow.colour);
-  pow.render();
-  pow.update();
+  for(int i = 0; i < scores.size(); i++)
+  {
+    ScorePower score = scores.get(i);
+    fill(score.colour);
+    score.render();
+    score.update();
+    score.paddleCollision();
+  }
   
-  fill(score.colour);
-  score.render();
-  score.update();
+  //fill(score.colour);
+  //score.render();
+  //score.update();
   println("Size: " + rockets.size() + " Ammo: " + paddle.ammo);
   
   
@@ -95,40 +108,88 @@ void drawRockets()
   }
 }
 
+
+/*
+
+COMMENTED OUT FUNCTION WORKS. TESTING FUNCTION BELOW THIS ONE
+
+*/
+
 void ballCollisions()
 {
-  for (int i = 0; i < blocks.size(); i++)
-  {
-    Block block = blocks.get(i);
-    //bottom
-    if ((ball.pos.x >= (block.pos.x - block.halfBlockWidth)) && (ball.pos.x <= (block.pos.x + block.halfBlockWidth)) && ((ball.pos.y - ball.halfB) <= (block.pos.y + block.halfBlockHeight)) && (ball.pos.y > block.pos.y))
-    {
-      ball.yspeed = -(ball.yspeed);
+ for (int i = 0; i < blocks.size(); i++)
+ {
+   Block block = blocks.get(i);
+   //bottom
+   if ((ball.pos.x >= (block.pos.x - block.halfBlockWidth)) && (ball.pos.x <= (block.pos.x + block.halfBlockWidth)) && ((ball.pos.y - ball.halfB) <= (block.pos.y + block.halfBlockHeight)) && (ball.pos.y > block.pos.y))
+   {
+     ball.yspeed = -(ball.yspeed);
 
-      blocks.remove(block);
-    }
-    //top side of block
-    if ((ball.pos.x >= block.pos.x - block.halfBlockWidth) && (ball.pos.x <= block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB >= block.pos.y - block.halfBlockHeight) && (ball.pos.y < block.pos.y))
-    {
-      ball.yspeed = -(ball.yspeed);  
+     blocks.remove(block);
+   }
+   //top side of block
+   if ((ball.pos.x >= block.pos.x - block.halfBlockWidth) && (ball.pos.x <= block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB >= block.pos.y - block.halfBlockHeight) && (ball.pos.y < block.pos.y))
+   {
+     ball.yspeed = -(ball.yspeed);  
 
-      blocks.remove(block);
-    }
-    //left side of block
-    if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x + ball.halfB) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x < block.pos.x))
-    {
-      ball.xspeed = -(ball.xspeed);   
+     blocks.remove(block);
+   }
+   //left side of block
+   if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x + ball.halfB) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x < block.pos.x))
+   {
+     ball.xspeed = -(ball.xspeed);   
 
-      blocks.remove(block);
-    }
-    //right side
-    if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x - ball.halfB) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.x > block.pos.x))
-    {
-      ball.xspeed = -(ball.xspeed); 
-      blocks.remove(block);
-    }
-  }
+     blocks.remove(block);
+   }
+   //right side
+   if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x - ball.halfB) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.x > block.pos.x))
+   {
+     ball.xspeed = -(ball.xspeed); 
+     blocks.remove(block);
+   }
+ }
 }
+
+/*
+
+  THIS ONE IS THE PROBLEM. 
+  REFER TO BALL AND BLOCK CLASSES. PROBLEM MIGHT LIE THERE BUT CAN'T FIND IT
+
+*/
+//void ballCollisions()
+//{
+//  for (int i = 0; i < blocks.size(); i++)
+//  {
+//    Block block = blocks.get(i);
+//    //bottom of block
+//    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
+//    {
+//      ball.yspeed = -(ball.yspeed);
+
+//      blocks.remove(block);
+//    }
+//    //top side of block
+//    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
+//    {
+//      ball.yspeed = -(ball.yspeed);  
+
+//      blocks.remove(block);
+//    }
+//    //left side of block
+//    if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
+//    {
+//      ball.xspeed = -(ball.xspeed);   
+
+//      blocks.remove(block);
+//    }
+//    //right side
+//    if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
+//    {
+//      ball.xspeed = -(ball.xspeed); 
+//      blocks.remove(block);
+//    }
+//  }
+//}
 
 void rocketCollisions()
 {

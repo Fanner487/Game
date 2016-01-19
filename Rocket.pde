@@ -16,10 +16,10 @@ class Rocket extends Sprite
     stroke(colour);
     fill(colour);
     
-    //pushMatrix();
-    //translate(pos.x, pos.y);
-    line(pos.x, pos.y, pos.x, pos.y - 10);
-    //popMatrix();
+    pushMatrix();
+    translate(pos.x, pos.y);
+    line(0, 0, 0, -10);
+    popMatrix();
   }
   void update()
   {

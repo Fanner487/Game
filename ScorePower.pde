@@ -35,4 +35,12 @@ class ScorePower extends Sprite
     popMatrix();
     
   }
+  
+  void paddleCollision()
+  {
+    if(pos.y >=paddle.pos.y - paddle.halfPHeight)
+    {
+      scores.remove(this);
+    }
+  }
 }

@@ -16,10 +16,12 @@ class Block extends Sprite
     blockHeight = 20;
     halfBlockWidth = blockWidth * 0.5f;
     halfBlockHeight = blockHeight * 0.5f;
+    
     left = pos.x - halfBlockWidth;
     right = pos.x + halfBlockWidth;
     top = pos.y - halfBlockHeight;
     bottom = pos.y + halfBlockHeight;
+    
     speed = 3;
     xspeed = speed;
     
@@ -30,7 +32,7 @@ class Block extends Sprite
     rect(pos.x, pos.y, blockWidth, blockHeight);
   }
   void update(){
-    pos.x += xspeed;
+    //pos.x += xspeed;
     
     if(pos.x + halfBlockWidth >= width || pos.x - halfBlockWidth <= 0)
     {

@@ -11,16 +11,18 @@ class Ball extends Sprite
   {
     this.pos = new PVector(x, y);
     this.colour = colour;
-    this.ballWidth = 20;
-    this.ballHeight = ballWidth;
-    this.halfB = ballWidth * 0.5f;
-    this.left = pos.x - halfB;
-    this.right = pos.x + halfB;
-    this.top = pos.y - halfB;
-    this.bottom = pos.y + halfB;
-    this.speed = 5;
-    this.xspeed = speed;
-    this.yspeed = speed;
+    ballWidth = 20;
+    ballHeight = ballWidth;
+    halfB = ballWidth *0.5f;
+    
+    left = pos.x - halfB;
+    right = pos.x + halfB;
+    top = pos.y - halfB;
+    bottom = pos.y + halfB;
+    
+    speed = 1;
+    xspeed = speed;
+    yspeed = speed;
     
   }
 
@@ -31,8 +33,8 @@ class Ball extends Sprite
 
   void update()
   {
-    this.pos.x -= xspeed;
-    this.pos.y += yspeed;
+    //this.pos.x -= xspeed;
+    this.pos.y -= yspeed;
 
     if (pos.x > width - halfB)
     {
