@@ -6,13 +6,13 @@ class AmmoPower extends Sprite
     this.pos = new PVector(x, 20);
     this.colour = color(0,255,0);
     size = 10;
-    speed = 5;
+    speed = 1;
   }
   
   void update()
   {
     //theta += 0.1f;
-    //pos.y += speed;
+    pos.y += speed;
     
     
     if(theta > TWO_PI)
@@ -33,5 +33,13 @@ class AmmoPower extends Sprite
     rotate(theta);
     triangle(0, 10, 10, 10, 5, 0);
     popMatrix();
+  }
+  
+  void paddleCollision()
+  {
+    if((pos.y + 5 >= paddle.pos.y - paddle.halfPHeight) && (pos.x >= paddle.pos.x - paddle.halfPWidth) && (pos.x <= paddle.pos.x + paddle.halfPWidth))
+    {
+      ammos.remove(this);
+    }
   }
 }

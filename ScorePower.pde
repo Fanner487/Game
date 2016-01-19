@@ -38,7 +38,7 @@ class ScorePower extends Sprite
   
   void paddleCollision()
   {
-    if(pos.y >=paddle.pos.y - paddle.halfPHeight)
+    if((pos.y >= paddle.pos.y - paddle.halfPHeight) && (pos.x >= paddle.pos.x - paddle.halfPWidth) && (pos.x <= paddle.pos.x + paddle.halfPWidth))
     {
       scores.remove(this);
     }
