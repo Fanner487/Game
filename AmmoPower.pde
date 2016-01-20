@@ -35,11 +35,20 @@ class AmmoPower extends Sprite
     popMatrix();
   }
   
+  void applyTo(Game game){}
+  
+  void app(Paddle paddle)
+  {
+    paddle.ammo++;
+  }
+  
   void paddleCollision()
   {
     if((pos.y + 5 >= paddle.pos.y - paddle.halfPHeight) && (pos.x >= paddle.pos.x - paddle.halfPWidth) && (pos.x <= paddle.pos.x + paddle.halfPWidth))
     {
+      
       ammos.remove(this);
+      
     }
   }
 }
