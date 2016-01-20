@@ -76,8 +76,7 @@ void draw() {
   //score.render();
   //score.update();
   println("Size: " + rockets.size() + " Ammo: " + paddle.ammo);
-  fill(255);
-  
+  text(game.score +  "\n" + paddle.ammo, 1200, 50);
   
   
 }//end draw

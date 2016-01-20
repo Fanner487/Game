@@ -1,4 +1,4 @@
-class AmmoPower extends Sprite
+class AmmoPower extends Sprite implements Power
 {
   
   AmmoPower(int x)
@@ -35,9 +35,11 @@ class AmmoPower extends Sprite
     popMatrix();
   }
   
-  void applyTo(Game game){}
   
-  void app(Paddle paddle)
+  void scoreAdd(Game game){}
+  
+  
+  void ammoAdd(Paddle paddle)
   {
     paddle.ammo++;
   }
@@ -46,7 +48,7 @@ class AmmoPower extends Sprite
   {
     if((pos.y + 5 >= paddle.pos.y - paddle.halfPHeight) && (pos.x >= paddle.pos.x - paddle.halfPWidth) && (pos.x <= paddle.pos.x + paddle.halfPWidth))
     {
-      
+      ((Power) this).ammoAdd((Paddle) paddle);
       ammos.remove(this);
       
     }

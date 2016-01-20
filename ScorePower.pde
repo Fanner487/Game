@@ -1,4 +1,4 @@
-class ScorePower extends Sprite
+class ScorePower extends Sprite implements Power
 {
   
   ScorePower(int x)
@@ -35,8 +35,11 @@ class ScorePower extends Sprite
     popMatrix();
     
   }
-  void app(Paddle paddle){}
-  void applyTo(Game game)
+  
+  
+  void ammoAdd(Paddle paddle){}
+  
+  void scoreAdd(Game game)
   {
     game.score += 5;
   }
@@ -46,7 +49,7 @@ class ScorePower extends Sprite
     if((pos.y >= paddle.pos.y - paddle.halfPHeight) && (pos.x >= paddle.pos.x - paddle.halfPWidth) && (pos.x <= paddle.pos.x + paddle.halfPWidth))
     {
       
-      
+      ((Power) this).scoreAdd((Game) game);
       scores.remove(this);
     }
   }
