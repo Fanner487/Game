@@ -1,4 +1,4 @@
-class Block extends Sprite
+class Block extends Sprite implements Power
 {
   float blockWidth;
   float blockHeight;
@@ -27,6 +27,12 @@ class Block extends Sprite
     
     hit = false;
   }
+  void scoreAdd(Game game)
+  {
+    game.score += 5;
+  }
+  
+  void ammoAdd(Paddle paddle){}
   
   void render(){
     rect(pos.x, pos.y, blockWidth, blockHeight);

@@ -20,7 +20,7 @@ class Ball extends Sprite
     top = pos.y - halfB;
     bottom = pos.y + halfB;
     
-    speed = 5;
+    speed = 0;
     xspeed = speed;
     yspeed = speed;
     

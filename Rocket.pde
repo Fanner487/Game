@@ -11,6 +11,13 @@ class Rocket extends Sprite
   Rocket(){
   }
   
+  //void scoreAdd(Game game)
+  //{
+  //  game.score += 5;
+  //}
+  
+  //void ammoAdd(Paddle paddle){}
+  
   void render()
   {
     stroke(colour);
