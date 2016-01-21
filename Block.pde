@@ -17,10 +17,7 @@ class Block extends Sprite implements Power
     halfBlockWidth = blockWidth * 0.5f;
     halfBlockHeight = blockHeight * 0.5f;
     
-    left = pos.x - halfBlockWidth;
-    right = pos.x + halfBlockWidth;
-    top = pos.y - halfBlockHeight;
-    bottom = pos.y + halfBlockHeight;
+    
     
     speed = 3;
     xspeed = speed;
@@ -39,6 +36,11 @@ class Block extends Sprite implements Power
   }
   void update(){
     pos.x += xspeed;
+    
+    left = pos.x - halfBlockWidth;
+    right = pos.x + halfBlockWidth;
+    top = pos.y - halfBlockHeight;
+    bottom = pos.y + halfBlockHeight;
     
     if(pos.x + halfBlockWidth >= width || pos.x - halfBlockWidth <= 0)
     {

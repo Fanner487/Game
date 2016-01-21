@@ -15,10 +15,7 @@ class Ball extends Sprite implements Power
     ballHeight = ballWidth;
     halfB = ballWidth *0.5f;
     
-    left = pos.x - halfB;
-    right = pos.x + halfB;
-    top = pos.y - halfB;
-    bottom = pos.y + halfB;
+    
     
     speed = 5;
     xspeed = speed;
@@ -35,6 +32,11 @@ class Ball extends Sprite implements Power
   {
     this.pos.x -= xspeed;
     this.pos.y -= yspeed;
+    
+    left = pos.x - halfB;
+    right = pos.x + halfB;
+    top = pos.y - halfB;
+    bottom = pos.y + halfB;
 
     if (pos.x > width - halfB)
     {
