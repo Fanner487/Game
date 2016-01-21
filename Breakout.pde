@@ -69,9 +69,14 @@ void draw() {
   //fill(score.colour);
   //score.render();
   //score.update();
-  println("Size: " + rockets.size() + " Ammo: " + paddle.ammo);
+  println("rockets size: " + rockets.size() + 
+          " Ammo: " + paddle.ammo);
   fill(255);
-  text(game.score +  "\n" + paddle.ammo, 1200, 50);
+  text("Score: " + game.score +  "\n" + 
+       "rocket ammo: " + paddle.ammo  + "\n" + 
+       "blocks: " + blocks.size() + "\n" + 
+       "Score powerups: " + scores.size() + "\n" + 
+       "Ammo powerups: " + ammos.size(), 1200, 50);
 }//end draw
 
 
