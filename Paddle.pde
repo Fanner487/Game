@@ -21,7 +21,7 @@ class Paddle extends Sprite
     this.top = pos.y - halfPHeight;
     this.bottom = pos.y + halfPHeight;
     
-    ammo = 50;
+    ammo = 10;
   }
  
   void render(){

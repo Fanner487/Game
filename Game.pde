@@ -107,6 +107,48 @@ class Game
     }
   }
 
+  /*
+
+   THIS ONE IS THE PROBLEM. 
+   REFER TO BALL AND BLOCK CLASSES. PROBLEM MIGHT LIE THERE BUT CAN'T FIND IT
+   
+   */
+  //void ballCollisions()
+  //{
+  //  for (int i = 0; i < blocks.size(); i++)
+  //  {
+  //    Block block = blocks.get(i);
+  //    //bottom of block
+  //    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
+  //    {
+  //      ball.yspeed = -(ball.yspeed);
+
+  //      blocks.remove(block);
+  //    }
+  //    //top side of block
+  //    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
+  //    {
+  //      ball.yspeed = -(ball.yspeed);  
+
+  //      blocks.remove(block);
+  //    }
+  //    //left side of block
+  //    if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
+  //    {
+  //      ball.xspeed = -(ball.xspeed);   
+
+  //      blocks.remove(block);
+  //    }
+  //    //right side
+  //    if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
+  //    {
+  //      ball.xspeed = -(ball.xspeed); 
+  //      blocks.remove(block);
+  //    }
+  //  }
+  //}
+
+
   void rocketCollisions()
   {
     for (int i = 0; i < rockets.size(); i++)
