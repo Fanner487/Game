@@ -6,7 +6,7 @@ void setup()
 
   game = new Game();
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
-  ball = new Ball(250, 250, color(random(255), random(255), random(255)));
+  ball = new Ball(250, 400, color(random(255), random(255), random(255)));
   pow = new ScorePower(1300);
   //score = new AmmoPower(1200);
 
@@ -20,12 +20,12 @@ void setup()
   //  Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
   //  blocks.add(b);
   //}
-  for (int i = 0; i < 1; i++)
+  for (int i = 0; i < 7; i++)
   {
     Block b = new Block(250, 100 + (30 * i), color(random(255), random(255), random(255)));
-    AmmoPower a = new AmmoPower(1200);
+    //AmmoPower a = new AmmoPower(1200);
     blocks.add(b);
-    ammos.add(a);
+    //ammos.add(a);
   }
 
   scores.add(pow);
@@ -66,11 +66,7 @@ void draw() {
     ammo.paddleCollision();
   }
 
-  //fill(score.colour);
-  //score.render();
-  //score.update();
-  println("rockets size: " + rockets.size() + 
-          " Ammo: " + paddle.ammo);
+ 
   fill(255);
   text("Score: " + game.score +  "\n" + 
        "rocket ammo: " + paddle.ammo  + "\n" + 

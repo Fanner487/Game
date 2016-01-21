@@ -62,6 +62,7 @@ class Game
     if ((ball.pos.x >= paddle.pos.x - paddle.halfPWidth) && (ball.pos.x <= paddle.pos.x + paddle.halfPWidth) && (ball.pos.y + ball.halfB >= paddle.pos.y - paddle.halfPHeight))
     {
       ball.yspeed = -(ball.yspeed);
+      ((Power) ball).scoreAdd((Game) game);
     }
   }
 
@@ -73,38 +74,38 @@ class Game
 
   void ballCollisions()
   {
-    for (int i = 0; i < blocks.size(); i++)
-    {
-      Block block = blocks.get(i);
-      //bottom
-      if ((ball.pos.x >= (block.pos.x - block.halfBlockWidth)) && (ball.pos.x <= (block.pos.x + block.halfBlockWidth)) && ((ball.pos.y - ball.halfB) <= (block.pos.y + block.halfBlockHeight)) && (ball.pos.y > block.pos.y))
-      {
-        ball.yspeed = -(ball.yspeed);
-        ((Power) block).scoreAdd((Game) game);
-        blocks.remove(block);
-      }
-      //top side of block
-      if ((ball.pos.x >= block.pos.x - block.halfBlockWidth) && (ball.pos.x <= block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB >= block.pos.y - block.halfBlockHeight) && (ball.pos.y < block.pos.y))
-      {
-        ball.yspeed = -(ball.yspeed);  
-        ((Power) block).scoreAdd((Game) game);
-        blocks.remove(block);
-      }
-      //left side of block
-      if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x + ball.halfB) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x < block.pos.x))
-      {
-        ball.xspeed = -(ball.xspeed);   
-        ((Power) block).scoreAdd((Game) game);
-        blocks.remove(block);
-      }
-      //right side
-      if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x - ball.halfB) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.x > block.pos.x))
-      {
-        ball.xspeed = -(ball.xspeed); 
-        ((Power) block).scoreAdd((Game) game);
-        blocks.remove(block);
-      }
-    }
+   for (int i = 0; i < blocks.size(); i++)
+   {
+     Block block = blocks.get(i);
+     //bottom
+     if ((ball.pos.x >= (block.pos.x - block.halfBlockWidth)) && (ball.pos.x <= (block.pos.x + block.halfBlockWidth)) && ((ball.pos.y - ball.halfB) <= (block.pos.y + block.halfBlockHeight)) && (ball.pos.y > block.pos.y))
+     {
+       ball.yspeed = -(ball.yspeed);
+       ((Power) block).scoreAdd((Game) game);
+       blocks.remove(block);
+     }
+     //top side of block
+     if ((ball.pos.x >= block.pos.x - block.halfBlockWidth) && (ball.pos.x <= block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB >= block.pos.y - block.halfBlockHeight) && (ball.pos.y < block.pos.y))
+     {
+       ball.yspeed = -(ball.yspeed);  
+       ((Power) block).scoreAdd((Game) game);
+       blocks.remove(block);
+     }
+     //left side of block
+     if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x + ball.halfB) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x < block.pos.x))
+     {
+       ball.xspeed = -(ball.xspeed);   
+       ((Power) block).scoreAdd((Game) game);
+       blocks.remove(block);
+     }
+     //right side
+     if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x - ball.halfB) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.x > block.pos.x))
+     {
+       ball.xspeed = -(ball.xspeed); 
+       ((Power) block).scoreAdd((Game) game);
+       blocks.remove(block);
+     }
+   }
   }
 
   /*
@@ -115,37 +116,37 @@ class Game
    */
   //void ballCollisions()
   //{
-  //  for (int i = 0; i < blocks.size(); i++)
-  //  {
-  //    Block block = blocks.get(i);
-  //    //bottom of block
-  //    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
-  //    {
-  //      ball.yspeed = -(ball.yspeed);
+  // for (int i = 0; i < blocks.size(); i++)
+  // {
+  //   Block block = blocks.get(i);
+  //   //bottom of block
+  //   if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
+  //   {
+  //     ball.yspeed = -(ball.yspeed);
 
-  //      blocks.remove(block);
-  //    }
-  //    //top side of block
-  //    if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
-  //    {
-  //      ball.yspeed = -(ball.yspeed);  
+  //     blocks.remove(block);
+  //   }
+  //   //top side of block
+  //   if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
+  //   {
+  //     ball.yspeed = -(ball.yspeed);  
 
-  //      blocks.remove(block);
-  //    }
-  //    //left side of block
-  //    if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
-  //    {
-  //      ball.xspeed = -(ball.xspeed);   
+  //     blocks.remove(block);
+  //   }
+  //   //left side of block
+  //   if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
+  //   {
+  //     ball.xspeed = -(ball.xspeed);   
 
-  //      blocks.remove(block);
-  //    }
-  //    //right side
-  //    if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
-  //    {
-  //      ball.xspeed = -(ball.xspeed); 
-  //      blocks.remove(block);
-  //    }
-  //  }
+  //     blocks.remove(block);
+  //   }
+  //   //right side
+  //   if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
+  //   {
+  //     ball.xspeed = -(ball.xspeed); 
+  //     blocks.remove(block);
+  //   }
+  // }
   //}
 
 

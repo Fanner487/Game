@@ -1,4 +1,4 @@
-class Ball extends Sprite
+class Ball extends Sprite implements Power
 {
   float ballWidth;
   float ballHeight;
@@ -56,4 +56,11 @@ class Ball extends Sprite
       this.yspeed = -(yspeed);
     }
   }
+  
+  void scoreAdd(Game game)
+  {
+    game.score += 1;
+  }
+  
+  void ammoAdd(Paddle paddle){}
 }
