@@ -20,7 +20,7 @@ class Ball extends Sprite implements Power
     top = pos.y - halfB;
     bottom = pos.y + halfB;
     
-    speed = 3;
+    speed = 5;
     xspeed = speed;
     yspeed = speed;
     
@@ -33,7 +33,7 @@ class Ball extends Sprite implements Power
 
   void update()
   {
-    //this.pos.x -= xspeed;
+    this.pos.x -= xspeed;
     this.pos.y -= yspeed;
 
     if (pos.x > width - halfB)

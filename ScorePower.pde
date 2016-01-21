@@ -44,6 +44,7 @@ class ScorePower extends Sprite implements Power
     game.score += 5;
   }
   
+  //interface?
   void paddleCollision()
   {
     if((pos.y >= paddle.pos.y - paddle.halfPHeight) && (pos.x >= paddle.pos.x - paddle.halfPWidth) && (pos.x <= paddle.pos.x + paddle.halfPWidth))

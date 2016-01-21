@@ -44,6 +44,7 @@ class AmmoPower extends Sprite implements Power
     paddle.ammo++;
   }
   
+  //interface?
   void paddleCollision()
   {
     if((pos.y + 5 >= paddle.pos.y - paddle.halfPHeight) && (pos.x >= paddle.pos.x - paddle.halfPWidth) && (pos.x <= paddle.pos.x + paddle.halfPWidth))

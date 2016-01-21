@@ -15,20 +15,29 @@ void setup()
   rockets = new ArrayList<Rocket>();
   scores = new ArrayList<ScorePower>();
   ammos = new ArrayList<AmmoPower>();
-  //for (int i = 0; i < 7; i++)
-  //{
-  //  Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
-  //  blocks.add(b);
-  //}
+
   for (int i = 0; i < 7; i++)
   {
-    Block b = new Block(250, 100 + (30 * i), color(random(255), random(255), random(255)));
-    //AmmoPower a = new AmmoPower(1200);
+    Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
     blocks.add(b);
-    //ammos.add(a);
+  }
+  
+  for (int i = 0; i < 3; i++)
+  {
+    AmmoPower a = new AmmoPower((int)random(0, 1366));
+    ammos.add(a);
   }
 
-  scores.add(pow);
+
+  //for (int i = 0; i < 7; i++)
+  //{
+  //  Block b = new Block(250, 100 + (30 * i), color(random(255), random(255), random(255)));
+  //  //AmmoPower a = new AmmoPower(1200);
+  //  blocks.add(b);
+  //  //ammos.add(a);
+  //}
+
+  //scores.add(pow);
 }
 
 ArrayList<Block> blocks;
@@ -48,29 +57,10 @@ void draw() {
   game.drawSprites();
   game.checkCollisions();
 
-  for (int i = 0; i < scores.size(); i++)
-  {
-    ScorePower score = scores.get(i);
-    fill(score.colour);
-    score.render();
-    score.update();
-    score.paddleCollision();
-  }
-
-  for (int i = 0; i < ammos.size(); i++)
-  {
-    AmmoPower ammo = ammos.get(i);
-    fill(ammo.colour);
-    ammo.render();
-    ammo.update();
-    ammo.paddleCollision();
-  }
-
- 
   fill(255);
   text("Score: " + game.score +  "\n" + 
-       "rocket ammo: " + paddle.ammo  + "\n" + 
-       "blocks: " + blocks.size() + "\n" + 
-       "Score powerups: " + scores.size() + "\n" + 
-       "Ammo powerups: " + ammos.size(), 1200, 50);
+    "rocket ammo: " + paddle.ammo  + "\n" + 
+    "blocks: " + blocks.size() + "\n" + 
+    "Score powerups: " + scores.size() + "\n" + 
+    "Ammo powerups: " + ammos.size(), 1200, 50);
 }//end draw

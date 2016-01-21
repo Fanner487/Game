@@ -21,7 +21,12 @@ class Game
     drawBallPaddle();
     drawBlocks();
     drawRockets();
+    drawScorePowerUp();
+    drawAmmoPowerUp();
   } 
+  
+  
+  
   void drawBallPaddle()
   {
     fill(paddle.colour);
@@ -32,7 +37,31 @@ class Game
     ball.update();
     ball.render();
   }
-
+  
+  void drawAmmoPowerUp()
+  {
+    for (int i = 0; i < ammos.size(); i++)
+    {
+      AmmoPower pow = ammos.get(i);
+      fill(pow.colour);
+      pow.render();
+      pow.update();
+      pow.paddleCollision();
+    }
+  }
+  
+  void drawScorePowerUp()
+  {
+    for (int i = 0; i < scores.size(); i++)
+    {
+      ScorePower score = scores.get(i);
+      fill(score.colour);
+      score.render();
+      score.update();
+      score.paddleCollision();
+    }
+  }
+  
   void drawBlocks()
   {
     for (int i = 0; i < blocks.size(); i++)
@@ -74,38 +103,38 @@ class Game
 
   void ballCollisions()
   {
-   for (int i = 0; i < blocks.size(); i++)
-   {
-     Block block = blocks.get(i);
-     //bottom
-     if ((ball.pos.x >= (block.pos.x - block.halfBlockWidth)) && (ball.pos.x <= (block.pos.x + block.halfBlockWidth)) && ((ball.pos.y - ball.halfB) <= (block.pos.y + block.halfBlockHeight)) && (ball.pos.y > block.pos.y))
-     {
-       ball.yspeed = -(ball.yspeed);
-       ((Power) block).scoreAdd((Game) game);
-       blocks.remove(block);
-     }
-     //top side of block
-     if ((ball.pos.x >= block.pos.x - block.halfBlockWidth) && (ball.pos.x <= block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB >= block.pos.y - block.halfBlockHeight) && (ball.pos.y < block.pos.y))
-     {
-       ball.yspeed = -(ball.yspeed);  
-       ((Power) block).scoreAdd((Game) game);
-       blocks.remove(block);
-     }
-     //left side of block
-     if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x + ball.halfB) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x < block.pos.x))
-     {
-       ball.xspeed = -(ball.xspeed);   
-       ((Power) block).scoreAdd((Game) game);
-       blocks.remove(block);
-     }
-     //right side
-     if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x - ball.halfB) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.x > block.pos.x))
-     {
-       ball.xspeed = -(ball.xspeed); 
-       ((Power) block).scoreAdd((Game) game);
-       blocks.remove(block);
-     }
-   }
+    for (int i = 0; i < blocks.size(); i++)
+    {
+      Block block = blocks.get(i);
+      //bottom
+      if ((ball.pos.x >= (block.pos.x - block.halfBlockWidth)) && (ball.pos.x <= (block.pos.x + block.halfBlockWidth)) && ((ball.pos.y - ball.halfB) <= (block.pos.y + block.halfBlockHeight)) && (ball.pos.y > block.pos.y))
+      {
+        ball.yspeed = -(ball.yspeed);
+        ((Power) block).scoreAdd((Game) game);
+        blocks.remove(block);
+      }
+      //top side of block
+      if ((ball.pos.x >= block.pos.x - block.halfBlockWidth) && (ball.pos.x <= block.pos.x + block.halfBlockWidth) && (ball.pos.y + ball.halfB >= block.pos.y - block.halfBlockHeight) && (ball.pos.y < block.pos.y))
+      {
+        ball.yspeed = -(ball.yspeed);  
+        ((Power) block).scoreAdd((Game) game);
+        blocks.remove(block);
+      }
+      //left side of block
+      if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x + ball.halfB) >= (block.pos.x - block.halfBlockWidth) && (ball.pos.x < block.pos.x))
+      {
+        ball.xspeed = -(ball.xspeed);   
+        ((Power) block).scoreAdd((Game) game);
+        blocks.remove(block);
+      }
+      //right side
+      if ((ball.pos.y) >= (block.pos.y - block.halfBlockHeight) && (ball.pos.y) <= (block.pos.y + block.halfBlockHeight) && (ball.pos.x - ball.halfB) <= (block.pos.x + block.halfBlockWidth) && (ball.pos.x > block.pos.x))
+      {
+        ball.xspeed = -(ball.xspeed); 
+        ((Power) block).scoreAdd((Game) game);
+        blocks.remove(block);
+      }
+    }
   }
 
   /*
@@ -172,6 +201,6 @@ class Game
           }
         }
       }
-    }
-  }
+    }//end for
+  }//end rocketCol
 }//end class

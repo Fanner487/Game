@@ -38,7 +38,7 @@ class Block extends Sprite implements Power
     rect(pos.x, pos.y, blockWidth, blockHeight);
   }
   void update(){
-    //pos.x += xspeed;
+    pos.x += xspeed;
     
     if(pos.x + halfBlockWidth >= width || pos.x - halfBlockWidth <= 0)
     {
