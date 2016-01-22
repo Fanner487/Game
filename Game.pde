@@ -154,6 +154,7 @@ class Game
       ball.yspeed = -(ball.yspeed);
 
       blocks.remove(block);
+      println("bottom");
     }
     //top side of block
     if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
@@ -161,6 +162,7 @@ class Game
       ball.yspeed = -(ball.yspeed);  
 
       blocks.remove(block);
+      println("top");
     }
     //left side of block
     if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
@@ -168,12 +170,14 @@ class Game
       ball.xspeed = -(ball.xspeed);   
 
       blocks.remove(block);
+      println("left");
     }
     //right side
     if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
     {
       ball.xspeed = -(ball.xspeed); 
       blocks.remove(block);
+      println("right");
     }
   }
   }
