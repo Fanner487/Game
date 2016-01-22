@@ -45,57 +45,10 @@ class Game
     ball.render();
   }
 
-  void drawAmmoPowerUp()
-  {
-    for (int i = 0; i < ammos.size(); i++)
-    {
-      AmmoPower pow = ammos.get(i);
-      fill(pow.colour);
-      pow.render();
-      pow.update();
-      pow.paddleCollision();
-    }
-  }
-
-  void drawScorePowerUp()
-  {
-    for (int i = 0; i < scores.size(); i++)
-    {
-      ScorePower score = scores.get(i);
-      fill(score.colour);
-      score.render();
-      score.update();
-      score.paddleCollision();
-    }
-  }
-
-  void drawBlocks()
-  {
-    for (int i = 0; i < blocks.size(); i++)
-    {
-
-      Block block = blocks.get(i);
-      fill(block.colour);
-      block.render();
-      block.update();
-    }
-  }
-
-  void drawRockets()
-  {
-    for (int i = 0; i < rockets.size(); i++)
-    {
-      Rocket rocket = rockets.get(i);
-
-      rocket.render();
-      rocket.update();
-    }
-  }
-
   //paddle collision
   void checkPaddle() 
   {
-    if ((ball.pos.x >= paddle.pos.x - paddle.halfPWidth) && (ball.pos.x <= paddle.pos.x + paddle.halfPWidth) && (ball.pos.y + ball.halfB >= paddle.pos.y - paddle.halfPHeight))
+    if ((ball.pos.x >= paddle.left) && (ball.pos.x <= paddle.right) && (ball.pos.y + ball.halfB >= paddle.top))
     {
       ball.yspeed = -(ball.yspeed);
       ((Power) ball).scoreAdd((Game) game);
@@ -236,22 +189,22 @@ class Game
 
   void rocketCollisions()
   {
-    for (int i = 0; i < rockets.size(); i++)
+    for (int i = 0; i < sprites.size(); i++)
     {
-      Rocket rocket = rockets.get(i);
+      Sprite rocket = sprites.get(i);
 
       if (rocket instanceof Rocket)
       {
-        for (int j = 0; j < blocks.size(); j++)
+        for (int j = 0; j < sprites.size(); j++)
         {
-          Block block = blocks.get(j);
+          Sprite block = sprites.get(j);
           if (block instanceof Block)
           {
-            if (rocket.pos.x <= block.pos.x + block.halfBlockWidth && rocket.pos.x >= block.pos.x - block.halfBlockWidth && rocket.pos.y <= block.pos.y + block.halfBlockHeight && rocket.pos.y >= block.pos.y - block.halfBlockHeight)
+            if (rocket.pos.x <= block.right && rocket.pos.x >= block.left && rocket.pos.y <= block.bottom && rocket.pos.y >= block.top)
             {
               ((Power) block).scoreAdd((Game) game);
-              rockets.remove(rocket);
-              blocks.remove(block);
+              sprites.remove(rocket);
+              sprites.remove(block);
             }
           }
         }

@@ -32,6 +32,8 @@ class Block extends Sprite implements Power
   void ammoAdd(Paddle paddle){}
   
   void render(){
+    stroke(255);
+    fill(this.colour);
     rect(pos.x, pos.y, blockWidth, blockHeight);
   }
   void update(){

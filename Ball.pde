@@ -25,6 +25,8 @@ class Ball extends Sprite implements Power
 
   void render()
   {
+    stroke(255);
+    fill(this.colour);
     ellipse(pos.x, pos.y, ballWidth, ballHeight);
   }
 

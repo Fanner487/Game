@@ -31,6 +31,8 @@ class AmmoPower extends Sprite implements Power
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
+    stroke(255);
+    fill(this.colour);
     triangle(0, 10, 10, 10, 5, 0);
     popMatrix();
   }

@@ -31,6 +31,8 @@ class ScorePower extends Sprite implements Power
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
+    stroke(255);
+    fill(this.colour);
     rect(0, 0, size, size);
     popMatrix();
     

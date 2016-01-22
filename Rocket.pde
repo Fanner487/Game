@@ -25,6 +25,8 @@ class Rocket extends Sprite
     
     pushMatrix();
     translate(pos.x, pos.y);
+    stroke(255);
+    fill(this.colour);
     line(0, 0, 0, -10);
     popMatrix();
   }

@@ -16,10 +16,7 @@ class Paddle extends Sprite
     halfPWidth = paddleWidth * 0.5f;
     halfPHeight = paddleHeight * 0.5f;
     
-    this.left = pos.x - halfPWidth;
-    this.right = pos.x + halfPWidth;
-    this.top = pos.y - halfPHeight;
-    this.bottom = pos.y + halfPHeight;
+    
     
     ammo = 10;
   }
@@ -38,6 +35,11 @@ class Paddle extends Sprite
   
   
   void update(){
+    
+    left = pos.x - halfPWidth;
+    right = pos.x + halfPWidth;
+    top = pos.y - halfPHeight;
+    bottom = pos.y + halfPHeight;
     
     //maybe change this
     if(pos.x + halfPWidth >= width )
