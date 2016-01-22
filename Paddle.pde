@@ -35,7 +35,7 @@ class Paddle extends Sprite
   
   
   void update(){
-    
+    pos.x = mouseX;
     left = pos.x - halfPWidth;
     right = pos.x + halfPWidth;
     top = pos.y - halfPHeight;
@@ -50,7 +50,7 @@ class Paddle extends Sprite
       pos.x = paddleWidth;
     }
     
-    pos.x = mouseX;
+    
     //problem is here
     if (mousePressed && (mouseButton == LEFT) && elapsed > 30 && ammo > 0) {
       Rocket rocket = new Rocket(this.pos.x, this.pos.y, this.colour);
