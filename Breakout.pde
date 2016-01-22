@@ -3,7 +3,7 @@ void setup()
   size(1366, 700);
   background(0);
   rectMode(CENTER);
-
+  sprites = new ArrayList<Sprite>();
   game = new Game();
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 400, color(random(255), random(255), random(255)));
@@ -19,13 +19,13 @@ void setup()
   for (int i = 0; i < 7; i++)
   {
     Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
-    blocks.add(b);
+    sprites.add(b);
   }
   
   for (int i = 0; i < 3; i++)
   {
     AmmoPower a = new AmmoPower((int)random(0, 1366));
-    ammos.add(a);
+    sprites.add(a);
   }
 
 
@@ -44,6 +44,7 @@ ArrayList<Block> blocks;
 ArrayList<Rocket> rockets;
 ArrayList<ScorePower> scores;
 ArrayList<AmmoPower> ammos;
+ArrayList<Sprite> sprites;
 Paddle paddle;
 Ball ball;
 ScorePower pow;

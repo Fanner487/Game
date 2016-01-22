@@ -58,7 +58,7 @@ class Paddle extends Sprite
       rocket.pos.y = pos.y;
       rocket.colour = colour;
       
-      rockets.add(rocket);
+      sprites.add(rocket);
       ammo--;
       
       println("r");

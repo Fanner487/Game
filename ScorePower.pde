@@ -51,7 +51,7 @@ class ScorePower extends Sprite implements Power
     {
       
       ((Power) this).scoreAdd((Game) game);
-      scores.remove(this);
+      sprites.remove(this);
     }
   }
 }

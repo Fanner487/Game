@@ -34,7 +34,7 @@ class Rocket extends Sprite
     
     if(pos.x < 0 || pos.y < 0 || pos.x > width || pos.y > height)
     {
-      rockets.remove(this);
+      sprites.remove(this);
     }
   }
 }
