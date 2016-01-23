@@ -48,6 +48,4 @@ class AmmoPower extends Sprite implements Power
     paddle.ammo++;
   }
 
-  
-  
 }

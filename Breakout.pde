@@ -1,9 +1,14 @@
 /*
 IDEAS: explosion with the rockets. Have a new class for that
         Power ups can be random. E.g. 2 bullets or 10 score power
-        Maybe change collisions?
+        Maybe change collisions? Paddle collisions. Don't let ball bounce from bottom
         Merging blocks that make more. Make blocks bounce off each other too
         Create the borders. Info displaying on left/right/both
+        Background changes during moments?
+        Ball speed ups.
+        Stick border to one side
+        
+        
 */
 
 
@@ -58,6 +63,8 @@ void draw() {
     "blocks: " + noBlocks() + "\n" + 
     "Score powerups: " + noScorePowers() + "\n" + 
     "Ammo powerups: " + noAmmoPowers(), 1200, 50);
+    line(game.leftBorder, 0, game.leftBorder, height);
+    line(game.rightBorder, 0, game.rightBorder, height);
     
 }//end draw
 

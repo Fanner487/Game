@@ -14,8 +14,8 @@ class Block extends Sprite implements Power
     this.colour = colour;
     blockWidth = 60;
     blockHeight = 20;
-    halfBlockWidth = blockWidth * 0.5f;
-    halfBlockHeight = blockHeight * 0.5f;
+    halfWidth = blockWidth * 0.5f;
+    halfHeight = blockHeight * 0.5f;
     
     
     
@@ -39,12 +39,13 @@ class Block extends Sprite implements Power
   void update(){
     pos.x += xspeed;
     
-    left = pos.x - halfBlockWidth;
-    right = pos.x + halfBlockWidth;
-    top = pos.y - halfBlockHeight;
-    bottom = pos.y + halfBlockHeight;
+    left = pos.x - halfWidth;
+    right = pos.x + halfWidth;
+    top = pos.y - halfHeight;
+    bottom = pos.y + halfHeight;
     
-    if(pos.x + halfBlockWidth >= width || pos.x - halfBlockWidth <= 0)
+    //change this
+    if(pos.x + halfWidth >= width || pos.x - halfWidth <= 0)
     {
       xspeed = -(xspeed);
     }

@@ -2,9 +2,7 @@ class Paddle extends Sprite
 {
   float paddleWidth;
   float paddleHeight;
-  //these can be in abstract class
-  float halfPWidth;
-  float halfPHeight;
+
   int ammo;
   
   Paddle(float x, float y, color colour)
@@ -13,10 +11,8 @@ class Paddle extends Sprite
     this.colour = colour;
     paddleWidth = 100;
     paddleHeight = 10;
-    halfPWidth = paddleWidth * 0.5f;
-    halfPHeight = paddleHeight * 0.5f;
-    
-    
+    halfWidth = paddleWidth * 0.5f;
+    halfHeight = paddleHeight * 0.5f;
     
     ammo = 10;
   }
@@ -36,18 +32,18 @@ class Paddle extends Sprite
   
   void update(){
     pos.x = mouseX;
-    left = pos.x - halfPWidth;
-    right = pos.x + halfPWidth;
-    top = pos.y - halfPHeight;
-    bottom = pos.y + halfPHeight;
+    left = pos.x - halfWidth;
+    right = pos.x + halfWidth;
+    top = pos.y - halfHeight;
+    bottom = pos.y + halfHeight;
     
     //maybe change this
-    if(pos.x + halfPWidth >= width )
+    if(pos.x + halfWidth >= width )
     {
-      pos.x = width - halfPWidth;
+      pos.x = width - halfWidth;
     }
-    else if(pos.x - this.halfPWidth <= 0){
-      pos.x = paddleWidth;
+    else if(pos.x - this.halfWidth <= 0){
+      pos.x = halfWidth;
     }
     
     

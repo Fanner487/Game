@@ -7,13 +7,15 @@ abstract class Sprite
   float speed;
   float xspeed;
   float yspeed;
-  int size;
+  int size;       // ????
+  float halfWidth;
+  float halfHeight;
  
   float theta = 0.0f;
   
   
   PVector pos;
-  PVector forward;
+  PVector forward; /// ?????
   color colour;
   
   Sprite()

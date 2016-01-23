@@ -2,10 +2,16 @@ class Game
 {
   //Have borders in here
   int score;
+  float border;
+  float leftBorder;
+  float rightBorder;
 
   Game()
   {
     score = 0;
+    border = width * 0.07f;
+    leftBorder = border;
+    rightBorder = width - border;
   }
 
   void checkCollisions()
