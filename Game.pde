@@ -14,6 +14,8 @@ class Game
     rightBorder = width - border;
   }
 
+  
+
   void checkCollisions()
   {
     checkPaddle();
@@ -21,6 +23,7 @@ class Game
     ballCollisions();
     ammoPowerCollision();
     scorePowerCollision();
+    blockCollision();
   }
 
   void drawSprites()
@@ -33,6 +36,45 @@ class Game
       s.render();
     }
   } 
+  
+  //work on this. This can be the merge between blocks
+  void blockCollision()
+  {
+    for (int i = 0; i < sprites.size(); i++)
+    {
+      Sprite block1 = sprites.get(i);
+
+      if (block1 instanceof Block)
+      {
+        for (int j = 0; j < sprites.size(); j++)
+        {
+          Sprite block2 = sprites.get(j);
+          if (i != j)
+          {
+            if (block2 instanceof Block)
+            {
+              //if(block1.right >= block2.left)
+              //{
+              //  block1.xspeed = -(block1.xspeed);
+              //  block2.xspeed = -(block2.xspeed);
+              //}
+              //if(block2.right >= block1.left)
+              //{
+              //  block1.xspeed = -(block1.xspeed);
+              //  block2.xspeed = -(block2.xspeed);
+              //}
+              if(block1.right == block2.right && block1.left == block2.left)
+              {
+                println("sdfsdfs");
+              }
+            }
+          }
+          
+          //j++; //somthing
+        }
+      }
+    }
+  }
 
   void ammoPowerCollision()
   {
@@ -44,17 +86,17 @@ class Game
         for (int j = 0; j < sprites.size(); j++)
         {
           Sprite ammo = sprites.get(j);
-          if(ammo instanceof AmmoPower)
-          if ((ammo.pos.y >= paddle.top) && (ammo.pos.x >= paddle.left) && (ammo.pos.x <= paddle.right))
-          {
-            ((Power) ammo).ammoAdd((Paddle) paddle);
-            sprites.remove(ammo);
-          }
+          if (ammo instanceof AmmoPower)
+            if ((ammo.pos.y >= paddle.top) && (ammo.pos.x >= paddle.left) && (ammo.pos.x <= paddle.right))
+            {
+              ((Power) ammo).ammoAdd((Paddle) paddle);
+              sprites.remove(ammo);
+            }
         }
       }
     }
   }
-  
+
   void scorePowerCollision()
   {
     for (int i = 0; i < sprites.size(); i++)
@@ -65,12 +107,12 @@ class Game
         for (int j = 0; j < sprites.size(); j++)
         {
           Sprite score = sprites.get(j);
-          if(score instanceof ScorePower)
-          if ((score.pos.y >= paddle.top) && (score.pos.x >= paddle.left) && (score.pos.x <= paddle.right))
-          {
-            ((Power) score).scoreAdd((Game) game);
-            sprites.remove(score);
-          }
+          if (score instanceof ScorePower)
+            if ((score.pos.y >= paddle.top) && (score.pos.x >= paddle.left) && (score.pos.x <= paddle.right))
+            {
+              ((Power) score).scoreAdd((Game) game);
+              sprites.remove(score);
+            }
         }
       }
     }
@@ -113,37 +155,46 @@ class Game
 
       if (block instanceof Block)
       {
-        //bottom of block
-        if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
+
+        for (int j = 0; j < sprites.size(); j++)
         {
-          ball.yspeed = -(ball.yspeed);
-          ((Power) block).scoreAdd((Game) game);
-          sprites.remove(block);
-          println("bottom");
-        }
-        //top side of block
-        if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
-        {
-          ball.yspeed = -(ball.yspeed);  
-          ((Power) block).scoreAdd((Game) game);
-          sprites.remove(block);
-          println("top");
-        }
-        //left side of block
-        if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
-        {
-          ball.xspeed = -(ball.xspeed);   
-          ((Power) block).scoreAdd((Game) game);
-          sprites.remove(block);
-          println("left");
-        }
-        //right side
-        if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
-        {
-          ball.xspeed = -(ball.xspeed); 
-          ((Power) block).scoreAdd((Game) game);
-          sprites.remove(block);
-          println("right");
+          Sprite ball = sprites.get(i);
+
+          if (ball instanceof Ball)
+          {
+            //bottom of block
+            if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
+            {
+              ball.yspeed = -(ball.yspeed);
+              ((Power) block).scoreAdd((Game) game);
+              sprites.remove(block);
+              println("bottom");
+            }
+            //top side of block
+            if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
+            {
+              ball.yspeed = -(ball.yspeed);  
+              ((Power) block).scoreAdd((Game) game);
+              sprites.remove(block);
+              println("top");
+            }
+            //left side of block
+            if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
+            {
+              ball.xspeed = -(ball.xspeed);   
+              ((Power) block).scoreAdd((Game) game);
+              sprites.remove(block);
+              println("left");
+            }
+            //right side
+            if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
+            {
+              ball.xspeed = -(ball.xspeed); 
+              ((Power) block).scoreAdd((Game) game);
+              sprites.remove(block);
+              println("right");
+            }
+          }//end if instance
         }
       }
     }

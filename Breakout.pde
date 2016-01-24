@@ -8,7 +8,10 @@ IDEAS: explosion with the rockets. Have a new class for that
         Ball speed ups.
         Stick border to one side
         
-        
+        variable in game class to see if complete. Then stop everything
+        Put collisions in separate class?
+        Move Collisions from sprite sub classes
+        Draw different power
 */
 
 
@@ -25,11 +28,15 @@ void setup()
   sprites.add(paddle);
   sprites.add(ball);
 
-  for (int i = 0; i < 7; i++)
-  {
-    Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
-    sprites.add(b);
-  }
+  //for (int i = 0; i < 7; i++)
+  //{
+  //  Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
+  //  sprites.add(b);
+  //}
+  Block block1 = new Block(100, 100, color(random(255), random(255), random(255)));
+  Block block2 = new Block(1000, 100, color(random(255), random(255), random(255)));
+  sprites.add(block1);
+  sprites.add(block2);
   
   for (int i = 0; i < 3; i++)
   {
