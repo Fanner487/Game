@@ -44,8 +44,8 @@ class Block extends Sprite implements Power
     top = pos.y - halfHeight;
     bottom = pos.y + halfHeight;
     
-    //change this
-    if(pos.x + halfWidth >= width || pos.x - halfWidth <= 0)
+    //change this. move to collisions class
+    if(this.right >= game.rightBorder || this.left <= game.leftBorder)
     {
       xspeed = -(xspeed);
     }

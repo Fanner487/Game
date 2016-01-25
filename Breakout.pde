@@ -20,6 +20,7 @@ void setup()
   rectMode(CENTER);
   sprites = new ArrayList<Sprite>();
   game = new Game();
+  collision = new Collision();
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 400, color(random(255), random(255), random(255)));
   sprites.add(paddle);
@@ -48,6 +49,7 @@ ArrayList<Sprite> sprites;
 Paddle paddle;
 Ball ball;
 Game game;
+Collision collision;
 
 
 
@@ -55,7 +57,7 @@ void draw() {
   background(0);
 
   game.drawSprites();
-  game.checkCollisions();
+  collision.check();
 
   fill(255);
   text("Score: " + game.score +  "\n" + 
