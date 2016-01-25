@@ -11,7 +11,7 @@ class Ball extends Sprite implements Power
   {
     this.pos = new PVector(x, y);
     this.colour = colour;
-    ballWidth = 10;
+    ballWidth = 20;
     ballHeight = ballWidth;
     halfWidth = ballWidth * 0.5f;
     
