@@ -1,11 +1,7 @@
 class Ball extends Sprite implements Power
 {
   float ballWidth;
-  float ballHeight;
-  
-  //put in abstract
-  float speed;
-  
+  float ballHeight; 
 
   Ball(float x, float y, color colour)
   {
@@ -14,9 +10,7 @@ class Ball extends Sprite implements Power
     ballWidth = 20;
     ballHeight = ballWidth;
     halfWidth = ballWidth * 0.5f;
-    
-    
-    
+      
     speed = 5;
     xspeed = speed;
     yspeed = speed;
@@ -40,21 +34,21 @@ class Ball extends Sprite implements Power
     top = pos.y - halfWidth;
     bottom = pos.y + halfWidth;
 
-    if (pos.x > width - halfWidth)
+    if (this.right > width)
     {
       //right
       this.xspeed = -(xspeed); 
     }
-    if (pos.x < halfWidth) {
+    if (this.left < game.border) {
       //left
       this.xspeed = -(xspeed);
     }
-    if(pos.y < halfWidth)
+    if(this.top < 0)
     {
       //top
       this.yspeed = -(yspeed);
     }
-    if(pos.y > height - halfWidth)
+    if(this.bottom > height)
     { 
       //bottom
       this.yspeed = -(yspeed);

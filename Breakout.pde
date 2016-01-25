@@ -8,7 +8,9 @@ IDEAS: explosion with the rockets. Have a new class for that
         Ball speed ups.
         Stick border to one side
         
-        d
+        Put border on left only. Put score and shit in there
+        
+        special block or spritemore points if hit
 */
 
 
@@ -16,11 +18,13 @@ IDEAS: explosion with the rockets. Have a new class for that
 void setup()
 {
   size(1366, 700);
-  background(0);
   rectMode(CENTER);
+  
   sprites = new ArrayList<Sprite>();
+  
   game = new Game();
   collision = new Collision();
+  
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 400, color(random(255), random(255), random(255)));
   sprites.add(paddle);
@@ -28,15 +32,15 @@ void setup()
 
   for (int i = 0; i < 7; i++)
   {
-    Block b = new Block((int)random(50, 600), 100 + (30 * i), color(random(255), random(255), random(255)));
+    Block b = new Block((int)random(game.border, 1000), 100 + (30 * i), color(random(255), random(255), random(255)));
     sprites.add(b);
   }
   
   for (int i = 0; i < 3; i++)
   {
-    AmmoPower a = new AmmoPower((int)random(0, 1366));
+    AmmoPower a = new AmmoPower((int)random(game.border, 1300));
     sprites.add(a);
-    ScorePower b = new ScorePower((int)random(0, 1366));
+    ScorePower b = new ScorePower((int)random(game.border, 1300));
     sprites.add(b);
   }
 }
@@ -62,59 +66,12 @@ void draw() {
   fill(255);
   text("Score: " + game.score +  "\n" + 
     "rocket ammo: " + paddle.ammo  + "\n" + 
-    "blocks: " + noBlocks() + "\n" + 
-    "Score powerups: " + noScorePowers() + "\n" + 
-    "Ammo powerups: " + noAmmoPowers(), 1200, 50);
+    "blocks: " + game.noBlocks() + "\n" + 
+    "Score powerups: " + game.noScorePowers() + "\n" + 
+    "Ammo powerups: " + game.noAmmoPowers(), 1200, 50);
     line(game.leftBorder, 0, game.leftBorder, height);
     line(game.rightBorder, 0, game.rightBorder, height);
     
 }//end draw
 
 //testing stuff
-int noBlocks()
-{
-  int n = 0;
-  for(int i = 0; i < sprites.size(); i++)
-  {
-    Sprite b = sprites.get(i);
-    
-    if(b instanceof Block)
-    {
-      n++;
-    }
-  }
-  
-  return n;
-}
-
-int noScorePowers()
-{
-  int n = 0;
-  for(int i = 0; i < sprites.size(); i++)
-  {
-    Sprite b = sprites.get(i);
-    
-    if(b instanceof ScorePower)
-    {
-      n++;
-    }
-  }
-  
-  return n;
-}
-
-int noAmmoPowers()
-{
-  int n = 0;
-  for(int i = 0; i < sprites.size(); i++)
-  {
-    Sprite b = sprites.get(i);
-    
-    if(b instanceof AmmoPower)
-    {
-      n++;
-    }
-  }
-  
-  return n;
-}

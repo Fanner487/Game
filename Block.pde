@@ -4,8 +4,6 @@ class Block extends Sprite implements Power
   float blockHeight;
   float halfBlockWidth;
   float halfBlockHeight;
-  //abstract
-  float speed;
   boolean hit;
   
   Block(int x, int y, color colour)
@@ -16,14 +14,14 @@ class Block extends Sprite implements Power
     blockHeight = 20;
     halfWidth = blockWidth * 0.5f;
     halfHeight = blockHeight * 0.5f;
-    
-    
-    
+       
     speed = 3;
     xspeed = speed;
     
+    //mybe take this out
     hit = false;
   }
+  
   void scoreAdd(Game game)
   {
     game.score += 5;
@@ -37,6 +35,7 @@ class Block extends Sprite implements Power
     rect(pos.x, pos.y, blockWidth, blockHeight);
   }
   void update(){
+    
     pos.x += xspeed;
     
     left = pos.x - halfWidth;
@@ -45,7 +44,7 @@ class Block extends Sprite implements Power
     bottom = pos.y + halfHeight;
     
     //change this. move to collisions class
-    if(this.right >= game.rightBorder || this.left <= game.leftBorder)
+    if(this.right >= width || this.left <= game.border)
     {
       xspeed = -(xspeed);
     }

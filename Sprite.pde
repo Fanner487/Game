@@ -4,12 +4,13 @@ abstract class Sprite
   float right;
   float top;
   float bottom;
-  float speed;
+  int speed;
   float xspeed;
   float yspeed;
   int size;       // ????
   float halfWidth;
   float halfHeight;
+  
  
   float theta = 0.0f;
   
