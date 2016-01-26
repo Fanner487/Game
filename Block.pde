@@ -50,4 +50,5 @@ class Block extends Sprite implements Power
     }
   }
   
+  
 }

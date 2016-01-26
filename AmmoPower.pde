@@ -22,7 +22,7 @@ class AmmoPower extends Sprite implements Power
 
     if (pos.y > height)
     {
-      pos.y = 0;
+      sprites.remove(this);
     }
     
   }

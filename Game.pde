@@ -10,7 +10,6 @@ class Game
   {
     score = 0;
     border = width * 0.1f;
-    
   }
 
   void drawSprites()
@@ -22,10 +21,30 @@ class Game
       s.update();
       s.render();
     }
-    
+
     //draw left border
     line(game.border, 0, game.border, height);
   } 
+
+  void randomPower()
+  {
+    if (frameCount % 120 == 0)
+    {
+      Sprite powerup = null;
+      int num = (int) random(0, 2);
+
+      switch(num)
+      {
+      case 0:
+        powerup = new ScorePower((int) random(game.border, 1300));
+        break;
+      case 1:
+        powerup = new AmmoPower((int) random(game.border, 1300));
+        break;
+      }
+      sprites.add(powerup);
+    }
+  }
 
   int noBlocks()
   {

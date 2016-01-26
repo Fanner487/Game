@@ -5,15 +5,15 @@ class ScorePower extends Sprite implements Power
   {
     this.pos = new PVector(x, 20);
     this.colour = color(255, 255, 255);
-    size = 10;
+    size = 7;
     speed = 5;
   }
 
   void update()
   {
+    
     theta += 0.1f;
     pos.y += speed;
-
 
     if (theta > TWO_PI)
     {
@@ -22,9 +22,9 @@ class ScorePower extends Sprite implements Power
 
     if (pos.y > height)
     {
-      pos.y = 0;
+      sprites.remove(this);
     }
-    
+
     for (int i = 0; i < sprites.size(); i++)
     {
       Sprite paddle = sprites.get(i);
@@ -46,9 +46,12 @@ class ScorePower extends Sprite implements Power
     pushMatrix();
     translate(pos.x, pos.y);
     rotate(theta);
-    stroke(255);
-    fill(this.colour);
+    noFill();
     rect(0, 0, size, size);
+    line(0 - size, 0, 0, 0 - size);
+    line(0, 0 - size, 0 + size, 0);
+    line(0, 0 + size, 0 + size, 0);
+    line(0 - size, 0, 0, 0 + size);
     popMatrix();
   }
 
