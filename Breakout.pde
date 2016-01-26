@@ -12,6 +12,10 @@ IDEAS: explosion with the rockets. Have a new class for that
  
  special block or spritemore points if hit
  Add levels. Level int add to speed of ball or ++
+ 
+ Do some casting. Change interface
+ 
+ Set random distance
  */
 
 void setup()
@@ -28,12 +32,9 @@ void setup()
   ball = new Ball(250, 400, color(random(255), random(255), random(255)));
   sprites.add(paddle);
   sprites.add(ball);
+  game.blockGen();
 
-  for (int i = 0; i < 7; i++)
-  {
-    Block b = new Block((int)random(game.border + 20, 1000), 100 + (50 * i), color(random(255), random(255), random(255)));
-    sprites.add(b);
-  }
+  
 }
 
 ArrayList<Block> blocks;
@@ -45,12 +46,26 @@ Paddle paddle;
 Ball ball;
 Game game;
 Collision collision;
+boolean allGone = false;
+
 
 void draw() {
   background(0);
-
   
-
+  if(game.noBlocks() == 0)
+  {
+    allGone = true;
+  }
+  else
+  {
+    allGone = false;
+  }
+  
+  if(allGone == true)
+  {
+    game.blockGen();
+    allGone = false;
+  }
   game.drawSprites();
   collision.check();
   game.randomPower();
@@ -61,6 +76,8 @@ void draw() {
     "blocks: " + game.noBlocks() + "\n" + 
     "Score powerups: " + game.noScorePowers() + "\n" + 
     "Ammo powerups: " + game.noAmmoPowers(), 1200, 50);
+    
+    //put this in game class
   line(game.border, 0, game.border, height);
 }//end draw
 

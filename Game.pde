@@ -26,6 +26,16 @@ class Game
     line(game.border, 0, game.border, height);
   } 
 
+  void blockGen()
+  {
+    for (int i = 0; i < 7; i++)
+    {
+      Block b = new Block((int)random(game.border + 20, 1000), 100 + (50 * i), color(random(255), random(255), random(255)));
+      sprites.add(b);
+    }
+    
+  }
+
   void randomPower()
   {
     if (frameCount % 120 == 0)
