@@ -55,13 +55,7 @@ class Ball extends Sprite implements Power
     }
   }
   
-  //void scoreAdd(Game game)
-  //{
-  //  game.score += 1;
-  //}
-  
-  //void ammoAdd(Paddle paddle){}
-  
+
   void add1(Sprite sprite)
   {
     for(int i = 0; i < sprites.size(); i++)

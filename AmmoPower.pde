@@ -37,16 +37,6 @@ class AmmoPower extends Sprite implements Power
     triangle(0, 10, 10, 10, 5, 0);
     popMatrix();
   }
-
-
-  //void scoreAdd(Game game) {
-  //}
-
-
-  //void ammoAdd(Paddle paddle)
-  //{
-  //  paddle.ammo++;
-  //}
   
   void add1(Sprite sprite)
   {

@@ -6,7 +6,7 @@ class ScorePower extends Sprite implements Power
     this.pos = new PVector(x, 20);
     this.colour = color(255, 255, 255);
     size = 7;
-    speed = 5;
+    speed =2;
   }
 
   void update()
@@ -25,22 +25,6 @@ class ScorePower extends Sprite implements Power
       sprites.remove(this);
     }
     
-    //put this in collisions
-    for (int i = 0; i < sprites.size(); i++)
-    {
-      Sprite paddle = sprites.get(i);
-
-      if (paddle instanceof Paddle)
-      {
-        if ((pos.y >= paddle.top) && (pos.x >= paddle.left) && (pos.x <= paddle.right))
-        {
-
-          //((Power) this).scoreAdd((Game) game);
-          ((Power) this).add1((Game) game);
-          sprites.remove(this);
-        }
-      }
-    }
   }
 
   void render()
@@ -57,14 +41,6 @@ class ScorePower extends Sprite implements Power
     popMatrix();
   }
 
-
-  //void ammoAdd(Paddle paddle) {
-  //}
-
-  //void scoreAdd(Game game)
-  //{
-  //  game.score += 5;
-  //}
   
   void add1(Sprite sprite)
   {
@@ -79,22 +55,5 @@ class ScorePower extends Sprite implements Power
     }
   }
   
-  //interface?
-  //void paddleCollision()
-  //{
-  //  for (int i = 0; i < sprites.size(); i++)
-  //  {
-  //    Sprite paddle = sprites.get(i);
-
-  //    if (paddle instanceof Paddle)
-  //    {
-  //      if ((pos.y >= paddle.top) && (pos.x >= paddle.left) && (pos.x <= paddle.right))
-  //      {
-
-  //        ((Power) this).scoreAdd((Game) game);
-  //        sprites.remove(this);
-  //      }
-  //    }
-  //  }
-  //}
+  
 }

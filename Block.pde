@@ -25,21 +25,14 @@ class Block extends Sprite implements Power
     hit = false;
   }
 
-  //void scoreAdd(Game game)
-  //{
-  //  game.score += 5;
-  //}
 
-  //void ammoAdd(Paddle paddle) {
-  //}
-  
   void add1(Sprite sprite)
   {
-    for(int i = 0; i < sprites.size(); i++)
+    for (int i = 0; i < sprites.size(); i++)
     {
       Sprite game = sprites.get(i);
-      
-      if(game instanceof Game)
+
+      if (game instanceof Game)
       {
         ((Game) game).score += 5;
       }
@@ -74,7 +67,6 @@ class Block extends Sprite implements Power
     top = pos.y - halfHeight;
     bottom = pos.y + halfHeight;
 
-    //change this. move to collisions class
     if (this.right >= width || this.left <= game.border)
     {
       xspeed = -(xspeed);

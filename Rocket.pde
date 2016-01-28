@@ -1,6 +1,5 @@
 class Rocket extends Sprite
 {
-  float speed;
   Rocket(float x, float y, color colour)
   {
     this.pos = new PVector(x, y);
@@ -22,6 +21,7 @@ class Rocket extends Sprite
     line(0, 0, 0, -10);
     popMatrix();
   }
+  
   void update()
   {
     this.pos.y -= yspeed;

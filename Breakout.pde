@@ -22,6 +22,8 @@ void setup()
 {
   size(1366, 700);
   rectMode(CENTER);
+  textAlign(RIGHT);
+
 
   sprites = new ArrayList<Sprite>();
 
@@ -33,9 +35,6 @@ void setup()
   sprites.add(paddle);
   sprites.add(ball);
   sprites.add(game);
-  //game.blockGen();
-
-  
 }
 
 ArrayList<Block> blocks;
@@ -48,26 +47,33 @@ Ball ball;
 Game game;
 Collision collision;
 boolean allGone = false;
+int wait = 0;
 
 
 void draw() {
   background(0);
-  
-  if(game.noBlocks() == 0)
+  if (allGone == true && wait<200) {
+    
+   
+    wait++;
+    if (wait==200) {
+      wait =0;
+      game.blockGen();
+      allGone = false;
+      
+    }
+  }
+  //put in game class
+  if (game.noBlocks() == 0)
   {
     allGone = true;
-  }
-  else
-  {
-    allGone = false;
-  }
+    
+    
+    
+  } 
   
-  if(allGone == true)
-  {
-    game.blockGen();
-    allGone = false;
-  }
   
+
   game.drawSprites();
   collision.check();
   game.randomPower();
@@ -77,10 +83,11 @@ void draw() {
     "rocket ammo: " + paddle.ammo  + "\n" + 
     "blocks: " + game.noBlocks() + "\n" + 
     "Score powerups: " + game.noScorePowers() + "\n" + 
-    "Ammo powerups: " + game.noAmmoPowers(), 1200, 50);
-    
-    //put this in game class
+    "Ammo powerups: " + game.noAmmoPowers() +  "\n" + wait, game.border, 50);
+
+  //put this in game class
+
+  stroke(255);
+  fill(255);
   line(game.border, 0, game.border, height);
 }//end draw
-
-//testing stuff

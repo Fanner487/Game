@@ -2,14 +2,14 @@ class Collision
 {
   void check()
   {
-    checkPaddle();
-    rocketCollisions();
-    ballCollisions();
-    ammoPowerCollision();
-    scorePowerCollision();
+    paddle();
+    rocket();
+    ball();
+    ammoPower();
+    scorePower();
   }
 
-  void ammoPowerCollision()
+  void ammoPower()
   {
     for (int i = 0; i < sprites.size(); i++)
     {
@@ -20,10 +20,10 @@ class Collision
         {
           Sprite ammo = sprites.get(j);
           if (ammo instanceof AmmoPower)
-            if ((ammo.pos.y >= paddle.top) && (ammo.pos.x >= paddle.left) && (ammo.pos.x <= paddle.right))
+            if ((ammo.pos.y >= paddle.top) && (ammo.pos.x >= paddle.left) && (ammo.pos.x <= paddle.right) && (ammo.pos.y < paddle.pos.y))
             {
-              //((Power) ammo).ammoAdd((Paddle) paddle);
-              ((Power) ammo).add1((Paddle) paddle); //this might need changing
+     
+              ((Power) ammo).add1((Paddle) paddle);
               sprites.remove(ammo);
             }
         }
@@ -31,7 +31,7 @@ class Collision
     }
   }
 
-  void scorePowerCollision()
+  void scorePower()
   {
     for (int i = 0; i < sprites.size(); i++)
     {
@@ -42,9 +42,9 @@ class Collision
         {
           Sprite score = sprites.get(j);
           if (score instanceof ScorePower)
-            if ((score.pos.y >= paddle.top) && (score.pos.x >= paddle.left) && (score.pos.x <= paddle.right))
+            if ((score.pos.y >= paddle.top) && (score.pos.x >= paddle.left) && (score.pos.x <= paddle.right) && (score.pos.y < paddle.pos.y))
             {
-              //((Power) score).scoreAdd((Game) game);
+  
               ((Power) score).add1((Game) game);
               sprites.remove(score);
             }
@@ -54,8 +54,7 @@ class Collision
   }
 
 
-  //paddle collision
-  void checkPaddle() 
+  void paddle() 
   {
     for (int i = 0; i < sprites.size(); i++)
     {
@@ -69,10 +68,10 @@ class Collision
 
           if (paddle instanceof Paddle)
           {
-            if ((ball.pos.x >= paddle.left) && (ball.pos.x <= paddle.right) && (ball.bottom >= paddle.top))
+            if ((ball.pos.x >= paddle.left) && (ball.pos.x <= paddle.right) && (ball.bottom >= paddle.top) && (ball.pos.y < paddle.pos.y))
             {
               ball.yspeed = -(ball.yspeed);
-              //((Power) ball).scoreAdd((Game) game);
+ 
               ((Power) ball).add1((Game) game);
             }
           }
@@ -82,7 +81,7 @@ class Collision
   }
 
 
-  void ballCollisions()
+  void ball()
   {
 
     for (int i = 0; i < sprites.size(); i++)
@@ -95,7 +94,7 @@ class Collision
         if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
         {
           ball.yspeed = -(ball.yspeed);
-          //((Power) block).scoreAdd((Game) game);
+ 
           ((Power) block).add1((Game) game);
           sprites.remove(block);
           println("bottom");
@@ -104,7 +103,7 @@ class Collision
         if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
         {
           ball.yspeed = -(ball.yspeed);  
-          //((Power) block).scoreAdd((Game) game);
+
           ((Power) block).add1((Game) game);
           sprites.remove(block);
           println("top");
@@ -113,7 +112,7 @@ class Collision
         if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
         {
           ball.xspeed = -(ball.xspeed);   
-          //((Power) block).scoreAdd((Game) game);
+          
           ((Power) block).add1((Game) game);
           sprites.remove(block);
           println("left");
@@ -122,7 +121,6 @@ class Collision
         if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
         {
           ball.xspeed = -(ball.xspeed); 
-          //((Power) block).scoreAdd((Game) game);
           ((Power) block).add1((Game) game);
           sprites.remove(block);
           println("right");
@@ -132,7 +130,7 @@ class Collision
   }
 
 
-  void rocketCollisions()
+  void rocket()
   {
     for (int i = 0; i < sprites.size(); i++)
     {
