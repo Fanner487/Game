@@ -25,12 +25,25 @@ class Block extends Sprite implements Power
     hit = false;
   }
 
-  void scoreAdd(Game game)
-  {
-    game.score += 5;
-  }
+  //void scoreAdd(Game game)
+  //{
+  //  game.score += 5;
+  //}
 
-  void ammoAdd(Paddle paddle) {
+  //void ammoAdd(Paddle paddle) {
+  //}
+  
+  void add1(Sprite sprite)
+  {
+    for(int i = 0; i < sprites.size(); i++)
+    {
+      Sprite game = sprites.get(i);
+      
+      if(game instanceof Game)
+      {
+        ((Game) game).score += 5;
+      }
+    }
   }
 
   void render() {

@@ -24,7 +24,8 @@ class ScorePower extends Sprite implements Power
     {
       sprites.remove(this);
     }
-
+    
+    //put this in collisions
     for (int i = 0; i < sprites.size(); i++)
     {
       Sprite paddle = sprites.get(i);
@@ -34,7 +35,8 @@ class ScorePower extends Sprite implements Power
         if ((pos.y >= paddle.top) && (pos.x >= paddle.left) && (pos.x <= paddle.right))
         {
 
-          ((Power) this).scoreAdd((Game) game);
+          //((Power) this).scoreAdd((Game) game);
+          ((Power) this).add1((Game) game);
           sprites.remove(this);
         }
       }
@@ -56,30 +58,43 @@ class ScorePower extends Sprite implements Power
   }
 
 
-  void ammoAdd(Paddle paddle) {
-  }
+  //void ammoAdd(Paddle paddle) {
+  //}
 
-  void scoreAdd(Game game)
+  //void scoreAdd(Game game)
+  //{
+  //  game.score += 5;
+  //}
+  
+  void add1(Sprite sprite)
   {
-    game.score += 5;
-  }
-
-  //interface?
-  void paddleCollision()
-  {
-    for (int i = 0; i < sprites.size(); i++)
+    for(int i = 0; i < sprites.size(); i++)
     {
-      Sprite paddle = sprites.get(i);
-
-      if (paddle instanceof Paddle)
+      Sprite game = sprites.get(i);
+      
+      if(game instanceof Game)
       {
-        if ((pos.y >= paddle.top) && (pos.x >= paddle.left) && (pos.x <= paddle.right))
-        {
-
-          ((Power) this).scoreAdd((Game) game);
-          sprites.remove(this);
-        }
+        ((Game) game).score += 5;
       }
     }
   }
+  
+  //interface?
+  //void paddleCollision()
+  //{
+  //  for (int i = 0; i < sprites.size(); i++)
+  //  {
+  //    Sprite paddle = sprites.get(i);
+
+  //    if (paddle instanceof Paddle)
+  //    {
+  //      if ((pos.y >= paddle.top) && (pos.x >= paddle.left) && (pos.x <= paddle.right))
+  //      {
+
+  //        ((Power) this).scoreAdd((Game) game);
+  //        sprites.remove(this);
+  //      }
+  //    }
+  //  }
+  //}
 }

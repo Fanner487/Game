@@ -32,7 +32,8 @@ void setup()
   ball = new Ball(250, 400, color(random(255), random(255), random(255)));
   sprites.add(paddle);
   sprites.add(ball);
-  game.blockGen();
+  sprites.add(game);
+  //game.blockGen();
 
   
 }
@@ -66,6 +67,7 @@ void draw() {
     game.blockGen();
     allGone = false;
   }
+  
   game.drawSprites();
   collision.check();
   game.randomPower();

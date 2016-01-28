@@ -1,11 +1,12 @@
-class Game
+class Game extends Sprite
 {
   //Have borders in here
   int score;
   float border;
   float leftBorder;
   float rightBorder;
-
+  void render(){}
+  void update(){}
   Game()
   {
     score = 0;
