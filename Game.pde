@@ -5,13 +5,20 @@ class Game extends Sprite
   float border;
   float leftBorder;
   float rightBorder;
-  void render(){}
-  void update(){}
+  boolean allGone;
+  int wait;
+  void render() {
+  }
+  void update() {
+  }
   Game()
   {
     score = 0;
     border = width * 0.1f;
+    allGone = true;
+    wait = 199;
   }
+
 
   void drawSprites()
   {
@@ -29,12 +36,28 @@ class Game extends Sprite
 
   void blockGen()
   {
-    for (int i = 0; i < 7; i++)
-    {
-      Block b = new Block((int)random(game.border + 20, 1000), 100 + (50 * i), color(random(255), random(255), random(255)));
-      sprites.add(b);
-    }
     
+    
+    if (allGone == true && wait<200) {
+
+      wait++;
+      if (this.wait==200) {
+        wait =0;
+        
+        //generate blocks
+        for (int i = 0; i < 7; i++)
+        {
+          Block b = new Block((int)random(game.border + 20, 1000), 100 + (50 * i), color(random(255), random(255), random(255)));
+          sprites.add(b);
+        }
+        allGone = false;
+      }
+    }
+    //put in game class
+    if (game.noBlocks() == 0)
+    {
+      allGone = true;
+    }
   }
 
   void randomPower()

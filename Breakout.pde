@@ -3,17 +3,14 @@ IDEAS: explosion with the rockets. Have a new class for that
  Power ups can be random. E.g. 2 bullets or 10 score power
  Maybe change collisions? Paddle collisions. Don't let ball bounce from bottom
  Merging blocks that make more. Make blocks bounce off each other too
- Create the borders. Info displaying on left/right/both
  Background changes during moments?
  Ball speed ups.
- Stick border to one side
+ 
  
  Put border on left only. Put score and shit in there
  
  special block or spritemore points if hit
  Add levels. Level int add to speed of ball or ++
- 
- Do some casting. Change interface
  
  Set random distance
  */
@@ -46,44 +43,21 @@ Paddle paddle;
 Ball ball;
 Game game;
 Collision collision;
-boolean allGone = false;
-int wait = 0;
-
 
 void draw() {
   background(0);
-  if (allGone == true && wait<200) {
-    
-   
-    wait++;
-    if (wait==200) {
-      wait =0;
-      game.blockGen();
-      allGone = false;
-      
-    }
-  }
-  //put in game class
-  if (game.noBlocks() == 0)
-  {
-    allGone = true;
-    
-    
-    
-  } 
-  
-  
 
   game.drawSprites();
   collision.check();
   game.randomPower();
+  game.blockGen();
 
   fill(255);
   text("Score: " + game.score +  "\n" + 
     "rocket ammo: " + paddle.ammo  + "\n" + 
     "blocks: " + game.noBlocks() + "\n" + 
     "Score powerups: " + game.noScorePowers() + "\n" + 
-    "Ammo powerups: " + game.noAmmoPowers() +  "\n" + wait, game.border, 50);
+    "Ammo powerups: " + game.noAmmoPowers() +  "\n" + game.wait, game.border, 50);
 
   //put this in game class
 
