@@ -9,7 +9,7 @@ IDEAS: explosion with the rockets. Have a new class for that
  
  Put border on left only. Put score and shit in there
  
- special block or spritemore points if hit
+ special block or sprite. more points if hit
  Add levels. Level int add to speed of ball or ++
  
  Set random distance

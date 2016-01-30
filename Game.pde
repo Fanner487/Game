@@ -7,6 +7,7 @@ class Game extends Sprite
   float rightBorder;
   boolean allGone;
   int wait;
+
   void render() {
   }
   void update() {
@@ -17,6 +18,8 @@ class Game extends Sprite
     border = width * 0.1f;
     allGone = true;
     wait = 199;
+    
+    
   }
 
 
@@ -36,21 +39,42 @@ class Game extends Sprite
 
   void blockGen()
   {
+
+    //float tempX = 0.0f;
+    //float tempY = 0.0f;
     
-    
+    //for (int i = 0; i < sprites.size(); i++)
+    //{
+    //  Sprite ball = sprites.get(i);
+
+    //  if (ball instanceof Ball)
+    //  {
+    //    tempX = ball.xspeed;
+    //    tempY = ball.yspeed;
+    //    break;
+    //  }
+    //}
+
     if (allGone == true && wait<200) {
 
       wait++;
+      ball.pos.x = width /2;
+      ball.pos.y = 500;
+      ball.xspeed = 0;
+      ball.yspeed = 0;
       if (this.wait==200) {
         wait =0;
-        
+
         //generate blocks
         for (int i = 0; i < 7; i++)
         {
           Block b = new Block((int)random(game.border + 20, 1000), 100 + (50 * i), color(random(255), random(255), random(255)));
           sprites.add(b);
         }
+
         allGone = false;
+        ball.xspeed = 5;
+        ball.yspeed = 5;
       }
     }
     //put in game class
