@@ -1,12 +1,14 @@
 class Game extends Sprite
 {
   //Have borders in here
+  int level;
   int score;
   float border;
   float leftBorder;
   float rightBorder;
-  boolean allGone;
+  boolean allBlocksGone;
   int wait;
+  boolean levelFinished;
 
   void render() {
   }
@@ -16,8 +18,10 @@ class Game extends Sprite
   {
     score = 0;
     border = width * 0.1f;
-    allGone = true;
+    allBlocksGone = true;
     wait = 199;
+    levelFinished = false;
+    level = 0;
     
     
   }
@@ -25,7 +29,6 @@ class Game extends Sprite
 
   void drawSprites()
   {
-
     for (int i = 0; i < sprites.size(); i++)
     {
       Sprite s = sprites.get(i);
@@ -39,54 +42,59 @@ class Game extends Sprite
 
   void blockGen()
   {
-
-    //float tempX = 0.0f;
-    //float tempY = 0.0f;
     
-    //for (int i = 0; i < sprites.size(); i++)
-    //{
-    //  Sprite ball = sprites.get(i);
+    if (game.noBlocks() == 0)
+    {
+     allBlocksGone = true;
+     
+    }
 
-    //  if (ball instanceof Ball)
-    //  {
-    //    tempX = ball.xspeed;
-    //    tempY = ball.yspeed;
-    //    break;
-    //  }
-    //}
-
-    if (allGone == true && wait<200) {
-
+    if (allBlocksGone == true && wait<200) {
+    
       wait++;
-      ball.pos.x = width /2;
-      ball.pos.y = 500;
-      ball.xspeed = 0;
-      ball.yspeed = 0;
+      
+      
+           
+      ball.stopBall();
+      removePower();
       if (this.wait==200) {
         wait =0;
 
         //generate blocks
         for (int i = 0; i < 7; i++)
         {
-          Block b = new Block((int)random(game.border + 20, 1000), 100 + (50 * i), color(random(255), random(255), random(255)));
+          //change this
+          Block b = new Block((int)random(game.border + 30, 1000), 100 + (50 * i), color(random(255), random(255), random(255)));
           sprites.add(b);
         }
-
-        allGone = false;
-        ball.xspeed = 5;
-        ball.yspeed = 5;
+        
+        this.level ++;
+        ball.speedUp();
+        randomPower();
+        
+        allBlocksGone = false;
+        randomPower();
+        
       }
     }
-    //put in game class
-    if (game.noBlocks() == 0)
+    
+  }
+  void removePower()
+  {
+    for(int i = 0; i < sprites.size(); i++)
     {
-      allGone = true;
+      Sprite power = sprites.get(i);
+      
+      if(power instanceof AmmoPower || power instanceof ScorePower)
+      {
+        sprites.remove(power);
+      }
     }
   }
-
+  
   void randomPower()
   {
-    if (frameCount % 120 == 0)
+    if (frameCount % 180 == 0)
     {
       Sprite powerup = null;
       int num = (int) random(0, 2);

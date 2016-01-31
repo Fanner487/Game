@@ -13,6 +13,8 @@ IDEAS: explosion with the rockets. Have a new class for that
  Add levels. Level int add to speed of ball or ++
  
  Set random distance
+ 
+ stop shooting rockets. 
  */
 
 void setup()
@@ -51,13 +53,20 @@ void draw() {
   collision.check();
   game.randomPower();
   game.blockGen();
+  
 
   fill(255);
   text("Score: " + game.score +  "\n" + 
     "rocket ammo: " + paddle.ammo  + "\n" + 
     "blocks: " + game.noBlocks() + "\n" + 
     "Score powerups: " + game.noScorePowers() + "\n" + 
-    "Ammo powerups: " + game.noAmmoPowers() +  "\n" + game.wait, game.border, 50);
+    "Ammo powerups: " + game.noAmmoPowers() +  "\n" + 
+    game.wait + "\n" +
+    "x: " + ball.xspeed +
+    "\ny: " + ball.yspeed + 
+    "\n tempX: " + ball.tempSpeedX + 
+    "\n tempY: " + ball.tempSpeedY +
+    "\n Level: " + game.level, game.border, 50);
 
   //put this in game class
 
