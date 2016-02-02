@@ -6,15 +6,14 @@ IDEAS: explosion with the rockets. Have a new class for that
  Background changes during moments?
  Ball speed ups.
  
- 
- Put border on left only. Put score and shit in there
- 
  special block or sprite. more points if hit
- Add levels. Level int add to speed of ball or ++
- 
- Set random distance
- 
+ Set random distance 
  stop shooting rockets. 
+ 
+ Make a menu
+ 
+ Change speed thingies
+ Create buttons in main. Do display and stuff in class
  */
 
 void setup()
@@ -23,8 +22,9 @@ void setup()
   rectMode(CENTER);
   textAlign(RIGHT);
 
-
+  cp5 = new ControlP5(this);
   sprites = new ArrayList<Sprite>();
+  menu = new Menu();
 
   game = new Game();
   collision = new Collision();
@@ -34,6 +34,8 @@ void setup()
   sprites.add(paddle);
   sprites.add(ball);
   sprites.add(game);
+  x =0;
+  menushow = true;
 }
 
 ArrayList<Block> blocks;
@@ -44,33 +46,38 @@ ArrayList<Sprite> sprites;
 Paddle paddle;
 Ball ball;
 Game game;
+Menu menu;
 Collision collision;
+import controlP5.*;
+ControlP5 cp5;
+int x;
+boolean menushow;
 
 void draw() {
   background(0);
 
-  game.drawSprites();
-  collision.check();
-  game.randomPower();
-  game.blockGen();
+
   
-
-  fill(255);
-  text("Score: " + game.score +  "\n" + 
-    "rocket ammo: " + paddle.ammo  + "\n" + 
-    "blocks: " + game.noBlocks() + "\n" + 
-    "Score powerups: " + game.noScorePowers() + "\n" + 
-    "Ammo powerups: " + game.noAmmoPowers() +  "\n" + 
-    game.wait + "\n" +
-    "x: " + ball.xspeed +
-    "\ny: " + ball.yspeed + 
-    "\n tempX: " + ball.tempSpeedX + 
-    "\n tempY: " + ball.tempSpeedY +
-    "\n Level: " + game.level, game.border, 50);
-
-  //put this in game class
-
-  stroke(255);
-  fill(255);
-  line(game.border, 0, game.border, height);
+  if (menushow == true)
+  {
+    menu.menushow();
+  } else {
+    menu.backshow();
+    game.drawSprites();
+    collision.check();
+    game.randomPower();
+    game.blockGen();
+    game.render();
+  }
+  
 }//end draw
+
+void controlEvent(ControlEvent theEvent)
+{
+  if (theEvent.getName().equals("Play")) {
+    menushow = false;
+  }
+  if (theEvent.getName().equals("Back")) {
+    menushow = true;
+  }
+}

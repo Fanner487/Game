@@ -2,8 +2,6 @@ class Ball extends Sprite implements Power
 {
   float ballWidth;
   float ballHeight; 
-  float tempSpeedX;
-  float tempSpeedY;
 
   Ball(float x, float y, color colour)
   {
@@ -16,29 +14,30 @@ class Ball extends Sprite implements Power
     speed = 3;
     xspeed = speed;
     yspeed = speed;
-    tempSpeedX = 0;
-    tempSpeedY = 0;
+    
   }
+  
+  
   void speedUp()
   {
     if(xspeed < 0)
     {
       xspeed = -(xspeed);
-      xspeed ++;
+      xspeed += 0.5f;
       
-      yspeed ++;
+      yspeed += 0.5f;
     }
     else if(yspeed < 0)
     {
       yspeed = -(yspeed);
-      yspeed++;
+      yspeed += 0.5f;
       
-      xspeed ++;
+      xspeed += 0.5f;
     }
     else
     {
-      xspeed++;
-      yspeed ++;
+      xspeed += 0.5f;
+      yspeed += 0.5f;
     }
   }
   void stopBall()
@@ -47,16 +46,13 @@ class Ball extends Sprite implements Power
     ball.pos.x = width /2;
     ball.pos.y = 500;
     
+    //makes sure ball pointing upwards
     if(ball.yspeed < 0)
     {
       ball.yspeed = -(ball.yspeed);
     }
   }
-  void startBall()
-  {
-    this.xspeed = tempSpeedX;
-    this.yspeed = tempSpeedY;
-  }
+  
   void render()
   {
     stroke(255);

@@ -8,7 +8,7 @@ class Block extends Sprite implements Power
   boolean set = false;
   int x = 0;
 
-  Block(int x, int y, color colour)
+  Block(int x, int y, color colour, float speed)
   {
     this.pos = new PVector(x, y);
     this.colour = colour;
@@ -18,7 +18,7 @@ class Block extends Sprite implements Power
     halfWidth = blockWidth * 0.5f;
     halfHeight = blockHeight * 0.5f;
 
-    speed = 3;
+    //speed = 3;
     xspeed = speed;
 
     //mybe take this out

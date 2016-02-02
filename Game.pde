@@ -8,24 +8,33 @@ class Game extends Sprite
   float rightBorder;
   boolean allBlocksGone;
   int wait;
-  boolean levelFinished;
 
-  void render() {
-  }
-  void update() {
-  }
+
   Game()
   {
     score = 0;
     border = width * 0.1f;
     allBlocksGone = true;
     wait = 199;
-    levelFinished = false;
     level = 0;
-    
-    
   }
 
+  void render() {
+    fill(255);
+    text("Score: " + game.score +  "\n" + 
+      "rocket ammo: " + paddle.ammo  + "\n" + 
+      "blocks: " + game.noBlocks() + "\n" + 
+      "Score powerups: " + game.noScorePowers() + "\n" + 
+      "Ammo powerups: " + game.noAmmoPowers() +  "\n" + 
+      game.wait + "\n" +
+      "x: " + ball.xspeed +
+      "\ny: " + ball.yspeed + 
+      "\n Level: " + game.level, game.border, 50
+    );
+  }
+
+  void update() {
+  }
 
   void drawSprites()
   {
@@ -42,56 +51,51 @@ class Game extends Sprite
 
   void blockGen()
   {
-    
+
     if (game.noBlocks() == 0)
     {
-     allBlocksGone = true;
-     
+      allBlocksGone = true;
     }
 
     if (allBlocksGone == true && wait<200) {
-    
+
       wait++;
-      
-      
-           
+
       ball.stopBall();
       removePower();
       if (this.wait==200) {
         wait =0;
 
         //generate blocks
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < level; i++)
         {
           //change this
-          Block b = new Block((int)random(game.border + 30, 1000), 100 + (50 * i), color(random(255), random(255), random(255)));
+          Block b = new Block((int)random(game.border + 30, 1000), 100 + (50 * i), color(random(255), random(255), random(255)), 3 + (0.5 * level));
           sprites.add(b);
         }
-        
+
         this.level ++;
         ball.speedUp();
         randomPower();
-        
+
         allBlocksGone = false;
         randomPower();
-        
       }
     }
-    
   }
   void removePower()
   {
-    for(int i = 0; i < sprites.size(); i++)
+    for (int i = 0; i < sprites.size(); i++)
     {
       Sprite power = sprites.get(i);
-      
-      if(power instanceof AmmoPower || power instanceof ScorePower)
+
+      if (power instanceof AmmoPower || power instanceof ScorePower)
       {
         sprites.remove(power);
       }
     }
   }
-  
+
   void randomPower()
   {
     if (frameCount % 180 == 0)

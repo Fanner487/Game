@@ -100,7 +100,7 @@ class Collision
           println("bottom");
         }
         //top side of block
-        if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
+        else if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
         {
           ball.yspeed = -(ball.yspeed);  
 
@@ -109,7 +109,7 @@ class Collision
           println("top");
         }
         //left side of block
-        if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
+        else if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
         {
           ball.xspeed = -(ball.xspeed);   
           
@@ -118,7 +118,7 @@ class Collision
           println("left");
         }
         //right side
-        if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
+        else if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
         {
           ball.xspeed = -(ball.xspeed); 
           ((Power) block).add1((Game) game);
