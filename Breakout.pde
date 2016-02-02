@@ -9,11 +9,10 @@ IDEAS: explosion with the rockets. Have a new class for that
  special block or sprite. more points if hit
  Set random distance 
  stop shooting rockets. 
- 
- Make a menu
- 
+ Choose paddle/ball colour?
  Change speed thingies
  Create buttons in main. Do display and stuff in class
+ Remove blocks when back pressed
  */
 
 void setup()
