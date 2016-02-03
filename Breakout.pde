@@ -1,3 +1,12 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+Minim minim;
+
+
 /*
 IDEAS: explosion with the rockets. Have a new class for that
  Power ups can be random. E.g. 2 bullets or 10 score power
@@ -20,7 +29,7 @@ void setup()
   size(1366, 700);
   rectMode(CENTER);
   textAlign(RIGHT);
-
+  minim = new Minim(this);
   cp5 = new ControlP5(this);
   sprites = new ArrayList<Sprite>();
   menu = new Menu();
@@ -29,12 +38,13 @@ void setup()
   collision = new Collision();
 
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
-  ball = new Ball(250, 400, color(random(255), random(255), random(255)));
+  ball = new Ball(250, 500, color(random(255), random(255), random(255)));
   sprites.add(paddle);
   sprites.add(ball);
   sprites.add(game);
   x =0;
   menushow = true;
+  //file = new SoundFile(this, "sample.mp3");
 }
 
 ArrayList<Block> blocks;
@@ -48,9 +58,11 @@ Game game;
 Menu menu;
 Collision collision;
 import controlP5.*;
+
 ControlP5 cp5;
 int x;
 boolean menushow;
+
 
 void draw() {
   background(0);
@@ -60,6 +72,8 @@ void draw() {
   if (menushow == true)
   {
     menu.menushow();
+    
+    
   } else {
     menu.backshow();
     game.drawSprites();
