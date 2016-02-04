@@ -1,10 +1,7 @@
 class Block extends Sprite implements Power
 {
-  float blockWidth;
-  float blockHeight;
-  float halfBlockWidth;
-  float halfBlockHeight;
-  boolean hit;
+ 
+ 
   boolean set = false;
   int x = 0;
 
@@ -13,16 +10,15 @@ class Block extends Sprite implements Power
     this.pos = new PVector(x, y);
     this.colour = colour;
 
-    blockWidth = 60;
-    blockHeight = 20;
-    halfWidth = blockWidth * 0.5f;
-    halfHeight = blockHeight * 0.5f;
+    w = 60;
+    h = 20;
+    halfWidth = w * 0.5f;
+    halfHeight = h * 0.5f;
 
     //speed = 3;
     xspeed = speed;
 
-    //mybe take this out
-    hit = false;
+    
   }
 
 
@@ -42,7 +38,7 @@ class Block extends Sprite implements Power
   void render() {
     stroke(255);
     fill(this.colour);
-    rect(pos.x, pos.y, blockWidth, blockHeight);
+    rect(pos.x, pos.y, w, h);
   }
   void update() {
 
@@ -51,7 +47,7 @@ class Block extends Sprite implements Power
     {
       //put in function?
       x = (int) random(0, 2);
-      this.set = true;
+      set = true;
     }
 
     if (x == 0)

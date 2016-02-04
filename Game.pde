@@ -46,7 +46,10 @@ class Game extends Sprite
       s.update();
       s.render();
     }
-
+    paddle.render();
+    paddle.update();
+    ball.update();
+    ball.render();
     //draw left border
     line(game.border, 0, game.border, height);
   } 

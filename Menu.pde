@@ -19,7 +19,7 @@ class Menu
     play.show();
     back.hide();
     
-    menuSong.rewind();
+    
     menuSong.play();
   }
   
@@ -28,6 +28,7 @@ class Menu
     play.hide();
     back.show();
     menuSong.pause();
+    menuSong.rewind();
     
   }
   

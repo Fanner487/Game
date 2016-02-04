@@ -41,8 +41,8 @@ void setup()
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 500, color(random(255), random(255), random(255)));
   
-  sprites.add(paddle);
-  sprites.add(ball);
+  //sprites.add(paddle);
+  //sprites.add(ball);
   sprites.add(game);
   menushow = true;
 }

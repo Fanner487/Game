@@ -10,6 +10,8 @@ abstract class Sprite
   float yspeed;
   float halfWidth;
   float halfHeight; 
+  float w;
+  float h;
   float theta = 0.0f;
   PVector pos; 
   color colour;

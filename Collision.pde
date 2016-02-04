@@ -2,12 +2,14 @@ class Collision
 {
   AudioPlayer rocketCol;
   AudioPlayer paddleBall;
+  AudioPlayer scoreSound;
   Collision()
   {
     rocketCol = minim.loadFile("rocket.mp3");
     paddleBall = minim.loadFile("paddle.mp3");
+    scoreSound = minim.loadFile("scorepower.mp3");
   }
-  
+
 
   void check()
   {
@@ -16,81 +18,53 @@ class Collision
     ball();
     ammoPower();
     scorePower();
-    
   }
 
   void ammoPower()
   {
-    for (int i = 0; i < sprites.size(); i++)
-    {
-      Sprite paddle = sprites.get(i);
-      if (paddle instanceof Paddle)
-      {
-        for (int j = 0; j < sprites.size(); j++)
-        {
-          Sprite ammo = sprites.get(j);
-          if (ammo instanceof AmmoPower)
-            if ((ammo.pos.y >= paddle.top) && (ammo.pos.x >= paddle.left) && (ammo.pos.x <= paddle.right) && (ammo.pos.y < paddle.pos.y))
-            {
 
-              ((Power) ammo).add1((Paddle) paddle);
-              sprites.remove(ammo);
-            }
+    for (int j = 0; j < sprites.size(); j++)
+    {
+      Sprite ammo = sprites.get(j);
+      if (ammo instanceof AmmoPower)
+        if ((ammo.pos.y >= paddle.top) && (ammo.pos.x >= paddle.left) && (ammo.pos.x <= paddle.right) && (ammo.pos.y < paddle.pos.y))
+        {
+
+          ((Power) ammo).add1((Paddle) paddle);
+          play(scoreSound);
+          sprites.remove(ammo);
         }
-      }
     }
   }
 
   void scorePower()
   {
-    for (int i = 0; i < sprites.size(); i++)
-    {
-      Sprite paddle = sprites.get(i);
-      if (paddle instanceof Paddle)
-      {
-        for (int j = 0; j < sprites.size(); j++)
-        {
-          Sprite score = sprites.get(j);
-          if (score instanceof ScorePower)
-            if ((score.pos.y >= paddle.top) && (score.pos.x >= paddle.left) && (score.pos.x <= paddle.right) && (score.pos.y < paddle.pos.y))
-            {
 
-              ((Power) score).add1((Game) game);
-              sprites.remove(score);
-            }
+    for (int j = 0; j < sprites.size(); j++)
+    {
+      Sprite score = sprites.get(j);
+      if (score instanceof ScorePower)
+        if ((score.pos.y >= paddle.top) && (score.pos.x >= paddle.left) && (score.pos.x <= paddle.right) && (score.pos.y < paddle.pos.y))
+        {
+
+          ((Power) score).add1((Game) game);
+          play(scoreSound);
+          sprites.remove(score);
         }
-      }
     }
   }
-
 
   void paddle() 
   {
-    for (int i = 0; i < sprites.size(); i++)
+    if ((ball.pos.x >= paddle.left) && (ball.pos.x <= paddle.right) && (ball.bottom >= paddle.top) && (ball.pos.y < paddle.pos.y))
     {
-      Sprite ball = sprites.get(i);
-
-      if (ball instanceof Ball)
-      {
-        for (int j = 0; j < sprites.size(); j++)
-        {
-          Sprite paddle = sprites.get(j);
-
-          if (paddle instanceof Paddle)
-          {
-            if ((ball.pos.x >= paddle.left) && (ball.pos.x <= paddle.right) && (ball.bottom >= paddle.top) && (ball.pos.y < paddle.pos.y))
-            {
-              ball.yspeed = -(ball.yspeed);
-              play(paddleBall);
-              ((Power) ball).add1((Game) game);
-            }
-          }
-        }
-      }
+      ball.yspeed = -(ball.yspeed);
+      play(paddleBall);
+      ((Power) ball).add1((Game) game);
     }
   }
 
-
+  
   void ball()
   {
 

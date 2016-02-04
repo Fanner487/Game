@@ -1,7 +1,6 @@
 class Paddle extends Sprite
 {
-  float paddleWidth;
-  float paddleHeight;
+  
   AudioPlayer shoot;
 
   int ammo;
@@ -10,10 +9,10 @@ class Paddle extends Sprite
   {
     this.pos = new PVector(x, y);
     this.colour = colour;
-    paddleWidth = 100;
-    paddleHeight = 10;
-    halfWidth = paddleWidth * 0.5f;
-    halfHeight = paddleHeight * 0.5f;
+    w = 100;
+    h = 10;
+    halfWidth = w * 0.5f;
+    halfHeight = h * 0.5f;
 
     ammo = 10;
     shoot = minim.loadFile("shootRocket.mp3");
@@ -25,7 +24,7 @@ class Paddle extends Sprite
     stroke(255);
     fill(colour);
     rotate(theta);
-    rect(0, 0, paddleWidth, paddleHeight);
+    rect(0, 0, w, h);
     popMatrix();
   }
 
@@ -53,7 +52,7 @@ class Paddle extends Sprite
 
 
     //problem is here
-    if (mousePressed && (mouseButton == LEFT) && elapsed > 30 && ammo > 0) {
+    if (mousePressed && (mouseButton == LEFT) && elapsed > 30 && ammo > 0 && game.noBlocks() != 0) {
       Rocket rocket = new Rocket(this.pos.x, this.pos.y, this.colour);
       rocket.pos.x = pos.x;
       rocket.pos.y = pos.y;

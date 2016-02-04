@@ -1,15 +1,13 @@
 class Ball extends Sprite implements Power
 {
-  float ballWidth;
-  float ballHeight; 
   AudioPlayer border;
   Ball(float x, float y, color colour)
   {
     this.pos = new PVector(x, y);
     this.colour = colour;
-    ballWidth = 20;
-    ballHeight = ballWidth;
-    halfWidth = ballWidth * 0.5f;
+    w = 20;
+    h = w;
+    halfWidth = w * 0.5f;
 
     speed = 3;
     xspeed = speed;
@@ -59,7 +57,7 @@ class Ball extends Sprite implements Power
   {
     stroke(255);
     fill(this.colour);
-    ellipse(pos.x, pos.y, ballWidth, ballHeight);
+    ellipse(pos.x, pos.y, w, h);
   }
   
   void borderSound()
