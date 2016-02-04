@@ -1,6 +1,13 @@
 class Collision
 {
   AudioPlayer rocketCol;
+  AudioPlayer paddleBall;
+  Collision()
+  {
+    rocketCol = minim.loadFile("rocket.mp3");
+    paddleBall = minim.loadFile("paddle.mp3");
+  }
+  
 
   void check()
   {
@@ -9,7 +16,7 @@ class Collision
     ball();
     ammoPower();
     scorePower();
-    //rocketCol = minim.loadFile("rocket.mp3");
+    
   }
 
   void ammoPower()
@@ -74,7 +81,7 @@ class Collision
             if ((ball.pos.x >= paddle.left) && (ball.pos.x <= paddle.right) && (ball.bottom >= paddle.top) && (ball.pos.y < paddle.pos.y))
             {
               ball.yspeed = -(ball.yspeed);
-
+              play(paddleBall);
               ((Power) ball).add1((Game) game);
             }
           }
@@ -97,7 +104,7 @@ class Collision
         if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
         {
           ball.yspeed = -(ball.yspeed);
-
+          play(paddleBall);
           ((Power) block).add1((Game) game);
           sprites.remove(block);
           println("bottom");
@@ -106,7 +113,7 @@ class Collision
         else if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
         {
           ball.yspeed = -(ball.yspeed);  
-
+          play(paddleBall);
           ((Power) block).add1((Game) game);
           sprites.remove(block);
           println("top");
@@ -115,7 +122,7 @@ class Collision
         else if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
         {
           ball.xspeed = -(ball.xspeed);   
-
+          play(paddleBall);
           ((Power) block).add1((Game) game);
           sprites.remove(block);
           println("left");
@@ -124,6 +131,7 @@ class Collision
         else if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
         {
           ball.xspeed = -(ball.xspeed); 
+          play(paddleBall);
           ((Power) block).add1((Game) game);
           sprites.remove(block);
           println("right");
@@ -150,7 +158,7 @@ class Collision
             {
 
               ((Power) block).add1((Game) game);
-              //playRocket();
+              play(rocketCol);
               sprites.remove(rocket);
               sprites.remove(block);
             }
@@ -160,9 +168,9 @@ class Collision
     }//end for
   }//end rocketCol
 
-  void playRocket()
+  void play(AudioPlayer sound)
   {
-    rocketCol.rewind();
-    rocketCol.play();
+    sound.rewind();
+    sound.play();
   }
 }

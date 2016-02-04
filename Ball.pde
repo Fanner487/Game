@@ -2,7 +2,7 @@ class Ball extends Sprite implements Power
 {
   float ballWidth;
   float ballHeight; 
-
+  AudioPlayer border;
   Ball(float x, float y, color colour)
   {
     this.pos = new PVector(x, y);
@@ -14,6 +14,8 @@ class Ball extends Sprite implements Power
     speed = 3;
     xspeed = speed;
     yspeed = speed;
+    
+    border = minim.loadFile("border.mp3");
     
   }
   
@@ -59,7 +61,12 @@ class Ball extends Sprite implements Power
     fill(this.colour);
     ellipse(pos.x, pos.y, ballWidth, ballHeight);
   }
-
+  
+  void borderSound()
+  {
+    border.rewind();
+    border.play();
+  }
   void update()
   {
     this.pos.x -= xspeed;
@@ -74,20 +81,24 @@ class Ball extends Sprite implements Power
     {
       //right
       this.xspeed = -(xspeed);
+      borderSound();
     }
     if (this.left < game.border) {
       //left
       this.xspeed = -(xspeed);
+      borderSound();
     }
     if (this.top < 0)
     {
       //top
       this.yspeed = -(yspeed);
+      borderSound();
     }
     if (this.bottom > height)
     { 
       //bottom
       this.yspeed = -(yspeed);
+      borderSound();
     }
   }
 
