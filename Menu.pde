@@ -13,23 +13,22 @@ class Menu
     back.hide();
     
   }
-  
-  
-  
+    
   void menushow()
   {
     play.show();
     back.hide();
     
+    menuSong.rewind();
     menuSong.play();
   }
+  
   void backshow()
   {
     play.hide();
     back.show();
     menuSong.pause();
-    menuSong.rewind();
+    
   }
-  
   
 }

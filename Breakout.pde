@@ -6,22 +6,23 @@ import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
 Minim minim;
 
-
+import controlP5.*;
+ControlP5 cp5;
 /*
 IDEAS: explosion with the rockets. Have a new class for that
  Power ups can be random. E.g. 2 bullets or 10 score power
  Maybe change collisions? Paddle collisions. Don't let ball bounce from bottom
  Merging blocks that make more. Make blocks bounce off each other too
  Background changes during moments?
- Ball speed ups.
+ 
  
  special block or sprite. more points if hit
  Set random distance 
  stop shooting rockets. 
  Choose paddle/ball colour?
  Change speed thingies
- Create buttons in main. Do display and stuff in class
- Remove blocks when back pressed
+ 
+ Remove blocks when back pressed. Only pauses them
  */
 
 void setup()
@@ -29,22 +30,21 @@ void setup()
   size(1366, 700);
   rectMode(CENTER);
   textAlign(RIGHT);
+  
   minim = new Minim(this);
   cp5 = new ControlP5(this);
   sprites = new ArrayList<Sprite>();
+  
   menu = new Menu();
-
   game = new Game();
   collision = new Collision();
-
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 500, color(random(255), random(255), random(255)));
+  
   sprites.add(paddle);
   sprites.add(ball);
   sprites.add(game);
-  x =0;
   menushow = true;
-  //file = new SoundFile(this, "sample.mp3");
 }
 
 ArrayList<Block> blocks;
@@ -57,17 +57,12 @@ Ball ball;
 Game game;
 Menu menu;
 Collision collision;
-import controlP5.*;
 
-ControlP5 cp5;
-int x;
 boolean menushow;
 
 
 void draw() {
   background(0);
-
-
   
   if (menushow == true)
   {
