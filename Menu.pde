@@ -19,8 +19,8 @@ class Menu
     play.show();
     back.hide();
     
-    
-    menuSong.play();
+    playflag = false;
+    //menuSong.play();
   }
   
   void backshow()
@@ -29,7 +29,20 @@ class Menu
     back.show();
     menuSong.pause();
     menuSong.rewind();
+    gameover = false;
     
+    
+  }
+  
+  void gameover()
+  {
+    //play.show();
+    back.hide();
+    ball.stopBall(); //make a reset thingy
+    
+   // menushow = true;
+    
+    text("Game Over!\nScore: " + game.score, 750, 350);
   }
   
 }

@@ -53,7 +53,7 @@ class Game extends Sprite
     //draw left border
     line(game.border, 0, game.border, height);
   } 
-
+  
   void blockGen()
   {
 
@@ -72,8 +72,8 @@ class Game extends Sprite
       
       if(wait == 1)
       {
-        levelup.rewind();
-        levelup.play();
+        //levelup.rewind();
+        //levelup.play();
       }
       
       if (this.wait==200) {
@@ -180,6 +180,7 @@ class Game extends Sprite
   
   void levelUpText()
   {
+    fill(255);
     if(level == 1)
     {
       text("Get Ready", 750, 350);

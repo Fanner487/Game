@@ -3,6 +3,7 @@ class Collision
   AudioPlayer rocketCol;
   AudioPlayer paddleBall;
   AudioPlayer scoreSound;
+  
   Collision()
   {
     rocketCol = minim.loadFile("rocket.mp3");

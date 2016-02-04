@@ -45,6 +45,8 @@ void setup()
   //sprites.add(ball);
   sprites.add(game);
   menushow = true;
+  gameover = false;
+  playflag = false;
 }
 
 ArrayList<Block> blocks;
@@ -59,6 +61,8 @@ Menu menu;
 Collision collision;
 
 boolean menushow;
+boolean gameover;
+boolean playflag;
 
 
 void draw() {
@@ -67,9 +71,14 @@ void draw() {
   if (menushow == true)
   {
     menu.menushow();
-    
-    
-  } else {
+        
+  }
+  println("Menushow: " + menushow);
+  println("Gameover: " + gameover);
+  println("Playflag: " +playflag);
+
+  if(playflag == true)
+  {
     menu.backshow();
     game.drawSprites();
     collision.check();
@@ -78,14 +87,25 @@ void draw() {
     game.render();
   }
   
+  if(gameover == true)
+  {
+    menu.gameover();
+    menu.menushow();
+  }
+  
 }//end draw
 
 void controlEvent(ControlEvent theEvent)
 {
   if (theEvent.getName().equals("Play")) {
     menushow = false;
+    playflag = true;
+    gameover = false;
   }
   if (theEvent.getName().equals("Back")) {
     menushow = true;
+    playflag = false;
+    gameover = false;
+    
   }
 }

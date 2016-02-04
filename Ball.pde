@@ -5,7 +5,7 @@ class Ball extends Sprite implements Power
   {
     this.pos = new PVector(x, y);
     this.colour = colour;
-    w = 20;
+    w = 15;
     h = w;
     halfWidth = w * 0.5f;
 
@@ -40,6 +40,7 @@ class Ball extends Sprite implements Power
       yspeed += 0.5f;
     }
   }
+  
   void stopBall()
   {
 
@@ -95,8 +96,9 @@ class Ball extends Sprite implements Power
     if (this.bottom > height)
     { 
       //bottom
-      this.yspeed = -(yspeed);
-      borderSound();
+      //this.yspeed = -(yspeed);
+      //borderSound();
+      gameover = true;
     }
   }
 
