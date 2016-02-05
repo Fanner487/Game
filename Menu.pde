@@ -2,6 +2,7 @@ class Menu
 {
   Button play;
   Button back;
+  boolean resetScore;
   AudioPlayer menuSong;
   Menu()
   {
@@ -39,6 +40,7 @@ class Menu
     //play.show();
     back.hide();
     ball.stopBall(); //make a reset thingy
+    resetScore = true;
     
    // menushow = true;
     

@@ -37,33 +37,26 @@ void setup()
   
   menu = new Menu();
   game = new Game();
+  sprites.add(game);
   collision = new Collision();
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
   ball = new Ball(250, 500, color(random(255), random(255), random(255)));
   
-  //sprites.add(paddle);
-  //sprites.add(ball);
-  sprites.add(game);
   menushow = true;
   gameover = false;
   playflag = false;
 }
 
-ArrayList<Block> blocks;
-ArrayList<Rocket> rockets;
-ArrayList<ScorePower> scores;
-ArrayList<AmmoPower> ammos;
 ArrayList<Sprite> sprites;
+boolean menushow;
+boolean gameover;
+boolean playflag;
+
 Paddle paddle;
 Ball ball;
 Game game;
 Menu menu;
 Collision collision;
-
-boolean menushow;
-boolean gameover;
-boolean playflag;
-
 
 void draw() {
   background(0);
@@ -79,6 +72,12 @@ void draw() {
 
   if(playflag == true)
   {
+    if(menu.resetScore == true)
+    {
+      game.score = 0;
+      menu.resetScore = false;
+    }
+    
     menu.backshow();
     game.drawSprites();
     collision.check();
@@ -89,6 +88,7 @@ void draw() {
   
   if(gameover == true)
   {
+    game.reset();
     menu.gameover();
     menu.menushow();
   }

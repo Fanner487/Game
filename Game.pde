@@ -1,12 +1,14 @@
 class Game extends Sprite
 {
-  //Have borders in here
+  //Put sound and ball collision in different function
+  
+  
+  
   int level;
   int score;
   float border;
-  float leftBorder;
-  float rightBorder;
   boolean allBlocksGone;
+  
   int wait;
   AudioPlayer levelup;
 
@@ -19,6 +21,7 @@ class Game extends Sprite
     wait = 199;
     level = 0;
     levelup = minim.loadFile("levelup.mp3");
+    
   }
 
   void render() {
@@ -36,6 +39,23 @@ class Game extends Sprite
   }
 
   void update() {
+  }
+  
+  void reset()
+  {
+    for(int i = 0; i < sprites.size(); i++)
+    {
+      Sprite block = sprites.get(i);
+      
+      if(block instanceof Block)
+      {
+        sprites.remove(block);
+      }
+      
+    }
+    
+    //game.score = 0;
+    level = 1;
   }
 
   void drawSprites()

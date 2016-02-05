@@ -24,11 +24,11 @@ class Block extends Sprite implements Power
 
   void add1(Sprite sprite)
   {
-    for (int i = 0; i < sprites.size(); i++)
+    for(int i = 0; i < sprites.size(); i++)
     {
       Sprite game = sprites.get(i);
-
-      if (game instanceof Game)
+      
+      if(game instanceof Game)
       {
         ((Game) game).score += 5;
       }

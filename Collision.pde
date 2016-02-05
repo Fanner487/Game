@@ -78,44 +78,47 @@ class Collision
         //bottom of block
         if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
         {
-          ball.yspeed = -(ball.yspeed);
-          play(paddleBall);
-          ((Power) block).add1((Game) game);
-          sprites.remove(block);
+
+          bounce("top", block);
           println("bottom");
         }
         //top side of block
         else if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
         {
-          ball.yspeed = -(ball.yspeed);  
-          play(paddleBall);
-          ((Power) block).add1((Game) game);
-          sprites.remove(block);
+          bounce("top", block);
           println("top");
         }
         //left side of block
         else if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
         {
-          ball.xspeed = -(ball.xspeed);   
-          play(paddleBall);
-          ((Power) block).add1((Game) game);
-          sprites.remove(block);
+          bounce("side", block);
           println("left");
         }
         //right side
         else if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
         {
-          ball.xspeed = -(ball.xspeed); 
-          play(paddleBall);
-          ((Power) block).add1((Game) game);
-          sprites.remove(block);
+          bounce("side", block);
           println("right");
         }
       }
     }
   }
 
-
+  void bounce(String side, Sprite block)
+  {
+    if(side == "side"){
+      ball.xspeed = -(ball.xspeed);
+    }
+    else if(side == "top"){
+      ball.yspeed = -(ball.yspeed);
+    }
+    
+    play(paddleBall);
+    ((Power) block).add1((Game) game);
+    sprites.remove(block);
+       
+  }
+  
   void rocket()
   {
     for (int i = 0; i < sprites.size(); i++)

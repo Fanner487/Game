@@ -40,15 +40,7 @@ class AmmoPower extends Sprite implements Power
   
   void add1(Sprite sprite)
   {
-    for(int i = 0; i < sprites.size(); i++)
-    {
-      Sprite paddle = sprites.get(i);
-      
-      if(paddle instanceof Paddle)
-      {
-        ((Paddle) paddle).ammo++;
-      }
-    }
+    paddle.ammo ++;
   }
 
 }

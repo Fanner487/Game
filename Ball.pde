@@ -115,4 +115,5 @@ class Ball extends Sprite implements Power
       }
     }
   }
+   
 }
