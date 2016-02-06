@@ -51,6 +51,8 @@ ArrayList<Sprite> sprites;
 boolean menushow;
 boolean gameover;
 boolean playflag;
+boolean pauseflag;
+boolean unpauseflag;
 
 Paddle paddle;
 Ball ball;
@@ -93,6 +95,19 @@ void draw() {
     menu.menushow();
   }
   
+  if(pauseflag == true)
+  {
+    game.pauseGame();
+    menu.unpauseshow();
+    
+  }
+  
+  if(unpauseflag == true)
+  {
+    playflag = true;
+    unpauseflag = false;
+  }
+  
 }//end draw
 
 void controlEvent(ControlEvent theEvent)
@@ -101,11 +116,30 @@ void controlEvent(ControlEvent theEvent)
     menushow = false;
     playflag = true;
     gameover = false;
+    pauseflag = false;
+    unpauseflag = false;
   }
   if (theEvent.getName().equals("Back")) {
     menushow = true;
     playflag = false;
     gameover = false;
+    pauseflag = false;
+    unpauseflag = false;
     
+  }
+  
+  if(theEvent.getName().equals("Pause")){
+    unpauseflag = false;
+    pauseflag = true;
+    menushow = false;
+    playflag = false;
+    gameover = false;
+  }
+  if(theEvent.getName().equals("Continue")){
+    unpauseflag = true;
+    pauseflag = false;
+    menushow = false;
+    playflag = false;
+    gameover = false;
   }
 }

@@ -1,15 +1,18 @@
 class Game extends Sprite
 {
   //Put sound and ball collision in different function
-  
-  
-  
+
+
+
   int level;
   int score;
   float border;
   boolean allBlocksGone;
   int second;
   int wait;
+  float gameSpace;
+  float halfGameSpace;
+
   AudioPlayer levelup;
 
 
@@ -22,7 +25,9 @@ class Game extends Sprite
     level = 0;
     levelup = minim.loadFile("levelup.mp3");
     second = 3;
-    
+    gameSpace = width - border;
+    halfWidth = gameSpace / 2;
+    halfGameSpace = width - halfWidth;
   }
 
   void render() {
@@ -36,30 +41,32 @@ class Game extends Sprite
       "x: " + ball.xspeed +
       "\ny: " + ball.yspeed + 
       "\n Level: " + game.level, game.border, 50
-    );
+      );
+      
+      //draw left border
+    line(game.border, 0, game.border, height);
   }
 
   void update() {
   }
-  
+
   void reset()
   {
-    for(int i = 0; i < sprites.size(); i++)
+    for (int i = 0; i < sprites.size(); i++)
     {
       Sprite block = sprites.get(i);
-      
-      if(block instanceof Block)
+
+      if (block instanceof Block)
       {
         sprites.remove(block);
       }
-      
     }
-    
+
     //game.score = 0;
     level = 1;
     ball.xspeed = 3;
     ball.yspeed = 3;
-    
+
     paddle.ammo = 3;
   }
 
@@ -75,10 +82,9 @@ class Game extends Sprite
     paddle.update();
     ball.update();
     ball.render();
-    //draw left border
-    line(game.border, 0, game.border, height);
+    
   } 
-  
+
   void blockGen()
   {
 
@@ -90,22 +96,22 @@ class Game extends Sprite
     if (allBlocksGone == true && wait < 180) {
 
       wait++;
-      if(wait % 60 == 0)
+      if (wait % 60 == 0)
       {
         second --;
       }
 
       ball.stopBall();
       removePower();
-      
+
       levelUpText(second);
-      
-      if(wait == 1)
+
+      if (wait == 1)
       {
         //levelup.rewind();
         //levelup.play();
       }
-      
+
       if (this.wait==180) {
         wait =0;
         second = 3;
@@ -119,7 +125,7 @@ class Game extends Sprite
         }
 
         this.level ++;
-        
+
         ball.speedUp();
         randomPower();
 
@@ -208,18 +214,44 @@ class Game extends Sprite
 
     return n;
   }
-  
+
+  void pauseGame() {
+    //ball.pauseBall(ball.pos.x, ball.pos.y);
+    ////paddle.pos.x = paddle.pos.x;
+    //paddle.pausePaddle(paddle.pos.x);
+
+    ////stop rockets/ blocks
+    //for (int i = 0; i < sprites.size(); i++)
+    //{
+    //  Sprite s = sprites.get(i);
+
+    //  if (s instanceof Rocket || s instanceof Block)
+    //  {
+    //    s.pos.x = s.pos.x;
+    //    s.pos.y = s.pos.y;
+    //  }
+    //}
+    
+    
+    for(int i = 0; i < sprites.size(); i++){
+      Sprite s = sprites.get(i);
+      s.render();
+      ball.render();
+      paddle.render();
+    }
+    menu.pause.hide();
+  }
+
+
   void levelUpText(int second)
   {
     fill(255);
-    if(level == 1)
+    if (level == 1)
     {
       text("Get Ready", 750, 350);
-    }
-    else
+    } else
     {
       text("Level " + (level - 1) + " Complete\n Preparing next level\n" + second + "...", 750, 350);
     }
-    
   }
 }//end class

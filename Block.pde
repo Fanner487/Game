@@ -56,10 +56,7 @@ class Block extends Sprite implements Power
       pos.x += -(xspeed);
     }
 
-    left = pos.x - halfWidth;
-    right = pos.x + halfWidth;
-    top = pos.y - halfHeight;
-    bottom = pos.y + halfHeight;
+    pointUpdate();
 
     if (this.right >= width || this.left <= game.border)
     {

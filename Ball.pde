@@ -1,44 +1,53 @@
 class Ball extends Sprite implements Power
 {
   AudioPlayer border;
+  int change;
+  
   Ball(float x, float y, color colour)
   {
     super(x, y, colour);
     w = 15;
     h = w;
     halfWidth = w * 0.5f;
-
-    speed = 3;
-    xspeed = speed;
-    yspeed = speed;
+    halfHeight = halfWidth;
+    
+    xspeed = 3;
+    yspeed = 3;
     
     border = minim.loadFile("border.mp3");
-    
+    change = 0;
   }
-    
+  
+  
   void speedUp()
   {
     if(xspeed < 0)
     {
       xspeed = -(xspeed);
-      xspeed += 0.5f;
-      
-      yspeed += 0.5f;
+      ballSpeedIncrement();
     }
     else if(yspeed < 0)
     {
       yspeed = -(yspeed);
-      yspeed += 0.5f;
-      
-      xspeed += 0.5f;
+      ballSpeedIncrement();
     }
     else
     {
-      xspeed += 0.5f;
-      yspeed += 0.5f;
+      ballSpeedIncrement();
     }
   }
   
+  void ballSpeedIncrement()
+  {
+    xspeed += 0.5f;
+    yspeed += 0.5f;
+  }
+  
+  void pauseBall(float x, float y)
+  {
+    ball.pos.x = x;
+    ball.pos.y = y;
+  }
   void stopBall()
   {
 
@@ -46,9 +55,10 @@ class Ball extends Sprite implements Power
     ball.pos.y = 500;
     
     //makes sure ball pointing upwards
-    if(ball.yspeed < 0)
+    if(yspeed < 0)
     {
-      ball.yspeed = -(ball.yspeed);
+      yspeed = -(yspeed);
+      
     }
   }
   
@@ -66,13 +76,15 @@ class Ball extends Sprite implements Power
   }
   void update()
   {
-    this.pos.x -= xspeed;
-    this.pos.y -= yspeed;
-
-    left = pos.x - halfWidth;
-    right = pos.x + halfWidth;
-    top = pos.y - halfWidth;
-    bottom = pos.y + halfWidth;
+    
+    pos.x -= xspeed;
+    pos.y -= yspeed;
+    
+    change = (int)map(pos.y, 0, height, 200, 255);
+    colour = color(change, 0, 0);
+    
+    
+    pointUpdate();
 
     if (this.right > width)
     {
@@ -93,9 +105,7 @@ class Ball extends Sprite implements Power
     }
     if (this.bottom > height)
     { 
-      //bottom
-      //this.yspeed = -(yspeed);
-      //borderSound();
+
       gameover = true;
     }
   }

@@ -28,4 +28,12 @@ abstract class Sprite
   
   abstract void update();
   abstract void render();
+  
+  void pointUpdate()
+  {
+    left = pos.x - halfWidth;
+    right = pos.x + halfWidth;
+    top = pos.y - halfHeight;
+    bottom = pos.y + halfHeight;
+  }
 }

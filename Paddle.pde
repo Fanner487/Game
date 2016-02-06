@@ -1,9 +1,10 @@
 class Paddle extends Sprite
 {
-  
+
   AudioPlayer shoot;
 
   int ammo;
+  int change;
 
   Paddle(float x, float y, color colour)
   {  
@@ -16,7 +17,13 @@ class Paddle extends Sprite
     ammo = 10;
     shoot = minim.loadFile("shootRocket.mp3");
   }
-
+  
+  void pausePaddle(float x)
+  {
+    ball.pos.x = x;
+    
+  }
+  
   void render() {
     pushMatrix();
     translate(pos.x, pos.y);
@@ -36,6 +43,19 @@ class Paddle extends Sprite
   }
   void update() {
     pos.x = mouseX;
+    
+    if (pos.x < game.halfGameSpace)
+    {
+      change = (int)map(pos.x, game.border, game.halfGameSpace, 80, 255);
+      colour = color(change, 0, change);
+    }
+    else{
+      int temp = (int)map(pos.x, width, game.halfGameSpace, game.border, game.halfGameSpace );
+      change = (int)map(temp, game.border, game.halfGameSpace, 80, 255);
+      colour = color(change, 0, change);
+    }
+    
+    //can put this in abstract
     left = pos.x - halfWidth;
     right = pos.x + halfWidth;
     top = pos.y - halfHeight;
@@ -51,7 +71,7 @@ class Paddle extends Sprite
 
 
     //problem is here
-    if (mousePressed && (mouseButton == LEFT) && elapsed > 30 && ammo > 0 && game.noBlocks() != 0) {
+    if (mousePressed && (mouseButton == RIGHT) && elapsed > 30 && ammo > 0 && game.noBlocks() != 0) {
       Rocket rocket = new Rocket(this.pos.x, this.pos.y, this.colour);
       rocket.pos.x = pos.x;
       rocket.pos.y = pos.y;
