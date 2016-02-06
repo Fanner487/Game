@@ -3,8 +3,7 @@ class Ball extends Sprite implements Power
   AudioPlayer border;
   Ball(float x, float y, color colour)
   {
-    this.pos = new PVector(x, y);
-    this.colour = colour;
+    super(x, y, colour);
     w = 15;
     h = w;
     halfWidth = w * 0.5f;
@@ -16,8 +15,7 @@ class Ball extends Sprite implements Power
     border = minim.loadFile("border.mp3");
     
   }
-  
-  
+    
   void speedUp()
   {
     if(xspeed < 0)

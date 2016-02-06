@@ -7,9 +7,7 @@ class Block extends Sprite implements Power
 
   Block(int x, int y, color colour, float speed)
   {
-    this.pos = new PVector(x, y);
-    this.colour = colour;
-
+    super(x, y, colour);
     w = 60;
     h = 20;
     halfWidth = w * 0.5f;

@@ -40,7 +40,7 @@ void setup()
   sprites.add(game);
   collision = new Collision();
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
-  ball = new Ball(250, 500, color(random(255), random(255), random(255)));
+  ball = new Ball(width / 2, 500, color(random(255), random(255), random(255)));
   
   menushow = true;
   gameover = false;

@@ -2,8 +2,7 @@ class Rocket extends Sprite
 {
   Rocket(float x, float y, color colour)
   {
-    this.pos = new PVector(x, y);
-    this.colour = colour;
+    super(x, y, colour);
     speed = 10;
     yspeed = speed;
   }

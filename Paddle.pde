@@ -6,9 +6,8 @@ class Paddle extends Sprite
   int ammo;
 
   Paddle(float x, float y, color colour)
-  {
-    this.pos = new PVector(x, y);
-    this.colour = colour;
+  {  
+    super(x, y, colour);
     w = 100;
     h = 10;
     halfWidth = w * 0.5f;

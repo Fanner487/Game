@@ -8,19 +8,20 @@ class Game extends Sprite
   int score;
   float border;
   boolean allBlocksGone;
-  
+  int second;
   int wait;
   AudioPlayer levelup;
 
 
   Game()
-  {
+  {  
     score = 0;
     border = width * 0.1f;
     allBlocksGone = true;
-    wait = 199;
+    wait = 179;
     level = 0;
     levelup = minim.loadFile("levelup.mp3");
+    second = 3;
     
   }
 
@@ -56,6 +57,10 @@ class Game extends Sprite
     
     //game.score = 0;
     level = 1;
+    ball.xspeed = 3;
+    ball.yspeed = 3;
+    
+    paddle.ammo = 3;
   }
 
   void drawSprites()
@@ -82,13 +87,18 @@ class Game extends Sprite
       allBlocksGone = true;
     }
 
-    if (allBlocksGone == true && wait<200) {
+    if (allBlocksGone == true && wait < 180) {
 
       wait++;
+      if(wait % 60 == 0)
+      {
+        second --;
+      }
 
       ball.stopBall();
       removePower();
-      levelUpText();
+      
+      levelUpText(second);
       
       if(wait == 1)
       {
@@ -96,8 +106,9 @@ class Game extends Sprite
         //levelup.play();
       }
       
-      if (this.wait==200) {
+      if (this.wait==180) {
         wait =0;
+        second = 3;
 
         //generate blocks
         for (int i = 0; i < level; i++)
@@ -198,7 +209,7 @@ class Game extends Sprite
     return n;
   }
   
-  void levelUpText()
+  void levelUpText(int second)
   {
     fill(255);
     if(level == 1)
@@ -207,7 +218,7 @@ class Game extends Sprite
     }
     else
     {
-      text("Level " + (level - 1) + " Complete\n Preparing next level", 750, 350);
+      text("Level " + (level - 1) + " Complete\n Preparing next level\n" + second + "...", 750, 350);
     }
     
   }

@@ -16,6 +16,12 @@ abstract class Sprite
   PVector pos; 
   color colour;
   
+  Sprite(float x, float y, color colour)
+  {
+    pos = new PVector(x, y);
+    this.colour = colour;
+  }
+  
   Sprite()
   {
   }

@@ -3,8 +3,7 @@ class ScorePower extends Sprite implements Power
 
   ScorePower(int x)
   {
-    this.pos = new PVector(x, 20);
-    this.colour = color(255, 255, 255);
+    super(x, 10, color(255,255,255));
     size = 7;
     speed = 2;
   }

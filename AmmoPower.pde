@@ -3,8 +3,8 @@ class AmmoPower extends Sprite implements Power
 
   AmmoPower(int x)
   {
-    this.pos = new PVector(x, 20);
-    this.colour = color(0, 255, 0);
+    
+    super(x, 10, color(0, 255, 0));
     size = 10;
     speed = 5;
   }
