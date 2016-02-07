@@ -16,8 +16,8 @@ class Rocket extends Sprite
     pushMatrix();
     translate(pos.x, pos.y);
     stroke(255);
-    fill(this.colour);
-    line(0, 0, 0, -10);
+    fill(colour);
+    line(0, 0, 0, 10);
     popMatrix();
   }
   
@@ -25,6 +25,7 @@ class Rocket extends Sprite
   {
     this.pos.y -= yspeed;
     
+    //border control
     if(pos.x < 0 || pos.y < 0 || pos.x > width || pos.y > height)
     {
       sprites.remove(this);

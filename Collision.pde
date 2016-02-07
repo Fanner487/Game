@@ -20,10 +20,10 @@ class Collision
     ammoPower();
     scorePower();
   }
-
+  
+  //collisions between paddle and ammo powerup
   void ammoPower()
   {
-
     for (int j = 0; j < sprites.size(); j++)
     {
       Sprite ammo = sprites.get(j);
@@ -37,7 +37,8 @@ class Collision
         }
     }
   }
-
+  
+  //collisions between paddle and score powerup
   void scorePower()
   {
 
@@ -54,7 +55,8 @@ class Collision
         }
     }
   }
-
+  
+  //paddle and ball collisions
   void paddle() 
   {
     if ((ball.pos.x >= paddle.left) && (ball.pos.x <= paddle.right) && (ball.bottom >= paddle.top) && (ball.pos.y < paddle.pos.y))
@@ -65,7 +67,7 @@ class Collision
     }
   }
 
-  
+  //collisions between ball and block
   void ball()
   {
 
@@ -78,7 +80,7 @@ class Collision
         //bottom of block
         if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.top <= block.bottom) && (ball.pos.y > block.pos.y))
         {
-
+          //passes into bounce method below with which side as parameter
           bounce("top", block);
           println("bottom");
         }
@@ -106,6 +108,7 @@ class Collision
 
   void bounce(String side, Sprite block)
   {
+    //inverts speed value depending on side
     if(side == "side"){
       ball.xspeed = -(ball.xspeed);
     }
@@ -119,6 +122,7 @@ class Collision
        
   }
   
+  //between rocket and block
   void rocket()
   {
     for (int i = 0; i < sprites.size(); i++)

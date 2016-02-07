@@ -4,7 +4,7 @@ abstract class Sprite
   float right;
   float top;
   float bottom;
-  int speed;
+  float speed;
   int size;
   float xspeed;
   float yspeed;
@@ -29,6 +29,7 @@ abstract class Sprite
   abstract void update();
   abstract void render();
   
+  //updates respective end points of sprites e.g blocks/paddle etc in update methods
   void pointUpdate()
   {
     left = pos.x - halfWidth;

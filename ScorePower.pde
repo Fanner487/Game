@@ -40,7 +40,7 @@ class ScorePower extends Sprite implements Power
     popMatrix();
   }
 
-  
+  //adds to score
   void add1(Sprite sprite)
   {
     for(int i = 0; i < sprites.size(); i++)

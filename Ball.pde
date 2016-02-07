@@ -21,6 +21,7 @@ class Ball extends Sprite implements Power
   
   void speedUp()
   {
+    //makes sure xspeed and yspeed are positive, then increment speed
     if(xspeed < 0)
     {
       xspeed = -(xspeed);
@@ -43,11 +44,7 @@ class Ball extends Sprite implements Power
     yspeed += 0.5f;
   }
   
-  void pauseBall(float x, float y)
-  {
-    ball.pos.x = x;
-    ball.pos.y = y;
-  }
+  //makes ball stationary at start point
   void stopBall()
   {
 
@@ -69,11 +66,13 @@ class Ball extends Sprite implements Power
     ellipse(pos.x, pos.y, w, h);
   }
   
+  //put in interface
   void borderSound()
   {
     border.rewind();
     border.play();
   }
+  
   void update()
   {
     
@@ -83,9 +82,10 @@ class Ball extends Sprite implements Power
     change = (int)map(pos.y, 0, height, 200, 255);
     colour = color(change, 0, 0);
     
-    
+    //abstract method in Sprite class
     pointUpdate();
-
+    
+    //border collisions
     if (this.right > width)
     {
       //right
@@ -105,7 +105,6 @@ class Ball extends Sprite implements Power
     }
     if (this.bottom > height)
     { 
-
       gameover = true;
     }
   }

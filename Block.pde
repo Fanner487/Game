@@ -1,9 +1,7 @@
 class Block extends Sprite implements Power
 {
- 
- 
-  boolean set = false;
   int x = 0;
+  boolean set = false;
 
   Block(int x, int y, color colour, float speed)
   {
@@ -13,20 +11,31 @@ class Block extends Sprite implements Power
     halfWidth = w * 0.5f;
     halfHeight = h * 0.5f;
 
-    //speed = 3;
-    xspeed = speed;
+    x = (int) random(0, 2);
+    switch(x)
+    {
+    case 0:
+      this.speed = speed;
+      break;
+    case 1:
+      this.speed = -(speed);
+      break;
+    }
+    //set = true;
 
-    
+
+
+    //set = false;
   }
 
 
   void add1(Sprite sprite)
   {
-    for(int i = 0; i < sprites.size(); i++)
+    for (int i = 0; i < sprites.size(); i++)
     {
       Sprite game = sprites.get(i);
-      
-      if(game instanceof Game)
+
+      if (game instanceof Game)
       {
         ((Game) game).score += 5;
       }
@@ -35,32 +44,20 @@ class Block extends Sprite implements Power
 
   void render() {
     stroke(255);
-    fill(this.colour);
+    fill(colour);
     rect(pos.x, pos.y, w, h);
   }
+
   void update() {
 
-    //sets direction for block. May change
-    if (set == false)
-    {
-      //put in function?
-      x = (int) random(0, 2);
-      set = true;
-    }
-
-    if (x == 0)
-    {
-      pos.x += xspeed;
-    } else if (x == 1)
-    {
-      pos.x += -(xspeed);
-    }
+    pos.x += speed;
 
     pointUpdate();
 
+    //border collisions
     if (this.right >= width || this.left <= game.border)
     {
-      xspeed = -(xspeed);
+      speed = -(speed);
     }
   }
 }

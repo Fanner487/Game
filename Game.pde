@@ -2,8 +2,6 @@ class Game extends Sprite
 {
   //Put sound and ball collision in different function
 
-
-
   int level;
   int score;
   float border;
@@ -12,6 +10,8 @@ class Game extends Sprite
   int wait;
   float gameSpace;
   float halfGameSpace;
+  int timer;
+  int blockLimit;
 
   AudioPlayer levelup;
 
@@ -24,10 +24,12 @@ class Game extends Sprite
     wait = 179;
     level = 0;
     levelup = minim.loadFile("levelup.mp3");
-    second = 3;
+    second = 4;
     gameSpace = width - border;
     halfWidth = gameSpace / 2;
     halfGameSpace = width - halfWidth;
+    timer = 179;
+    blockLimit = 0;
   }
 
   void render() {
@@ -42,14 +44,15 @@ class Game extends Sprite
       "\ny: " + ball.yspeed + 
       "\n Level: " + game.level, game.border, 50
       );
-      
-      //draw left border
+
+    //draw left border
     line(game.border, 0, game.border, height);
   }
 
   void update() {
   }
 
+  //removes blocks and resets ball speed after gameover
   void reset()
   {
     for (int i = 0; i < sprites.size(); i++)
@@ -62,7 +65,6 @@ class Game extends Sprite
       }
     }
 
-    //game.score = 0;
     level = 1;
     ball.xspeed = 3;
     ball.yspeed = 3;
@@ -82,7 +84,6 @@ class Game extends Sprite
     paddle.update();
     ball.update();
     ball.render();
-    
   } 
 
   void blockGen()
@@ -96,44 +97,54 @@ class Game extends Sprite
     if (allBlocksGone == true && wait < 180) {
 
       wait++;
+
       if (wait % 60 == 0)
       {
         second --;
       }
 
-      ball.stopBall();
-      removePower();
-
       levelUpText(second);
 
-      if (wait == 1)
+      ball.stopBall();      //
+      removePower();        //remove score/ammo powerups
+
+      //only plays after level 1 completed
+      if (wait == 1 && level != 1)
       {
-        //levelup.rewind();
-        //levelup.play();
+        levelup.rewind();
+        levelup.play();
       }
 
-      if (this.wait==180) {
+      if (wait==180) 
+      {
         wait =0;
         second = 3;
 
+        if (level >= 3)
+        {
+          blockLimit = 3;
+        } else
+        {
+          blockLimit = level;
+        }
         //generate blocks
-        for (int i = 0; i < level; i++)
+        for (int i = 0; i < blockLimit; i++)
         {
           //change this
           Block b = new Block((int)random(game.border + 30, 1000), 50 + (50 * i), color(random(255), random(255), random(255)), 3 + (0.5 * level));
           sprites.add(b);
         }
 
-        this.level ++;
+        level ++;
 
         ball.speedUp();
         randomPower();
 
         allBlocksGone = false;
-        randomPower();
       }
     }
   }
+
   void removePower()
   {
     for (int i = 0; i < sprites.size(); i++)
@@ -157,10 +168,10 @@ class Game extends Sprite
       switch(num)
       {
       case 0:
-        powerup = new ScorePower((int) random(game.border, 1300));
+        powerup = new ScorePower((int) random(game.border + 10, 1300));
         break;
       case 1:
-        powerup = new AmmoPower((int) random(game.border, 1300));
+        powerup = new AmmoPower((int) random(game.border + 10, 1300));
         break;
       }
       sprites.add(powerup);
@@ -214,26 +225,31 @@ class Game extends Sprite
 
     return n;
   }
+  int countdown()
+  {
+    if (timer == 0)
+    {
+      wait = 179;
+      second = 3;
+    }
+    if (timer >= 0)
+    {
+      if (timer % 60 == 0)
+      {
+        second --;
+      }
+
+      timer --;
+    }
+
+    fill(255);
+    text(second, 750, 350);
+    return timer;
+  }
+
 
   void pauseGame() {
-    //ball.pauseBall(ball.pos.x, ball.pos.y);
-    ////paddle.pos.x = paddle.pos.x;
-    //paddle.pausePaddle(paddle.pos.x);
-
-    ////stop rockets/ blocks
-    //for (int i = 0; i < sprites.size(); i++)
-    //{
-    //  Sprite s = sprites.get(i);
-
-    //  if (s instanceof Rocket || s instanceof Block)
-    //  {
-    //    s.pos.x = s.pos.x;
-    //    s.pos.y = s.pos.y;
-    //  }
-    //}
-    
-    
-    for(int i = 0; i < sprites.size(); i++){
+    for (int i = 0; i < sprites.size(); i++) {
       Sprite s = sprites.get(i);
       s.render();
       ball.render();

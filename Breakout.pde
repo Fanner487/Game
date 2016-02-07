@@ -19,7 +19,7 @@ IDEAS: explosion with the rockets. Have a new class for that
  special block or sprite. more points if hit
  Set random distance 
  stop shooting rockets. 
- Choose paddle/ball colour?
+
  Change speed thingies
  
  Remove blocks when back pressed. Only pauses them
@@ -68,9 +68,7 @@ void draw() {
     menu.menushow();
         
   }
-  println("Menushow: " + menushow);
-  println("Gameover: " + gameover);
-  println("Playflag: " +playflag);
+
 
   if(playflag == true)
   {
@@ -104,8 +102,15 @@ void draw() {
   
   if(unpauseflag == true)
   {
-    playflag = true;
-    unpauseflag = false;
+    if(game.countdown() == 0)
+    {
+      game.timer = 179;
+      game.second = 3;
+      playflag = true;
+      unpauseflag = false;
+    }
+    
+    
   }
   
 }//end draw
@@ -122,7 +127,7 @@ void controlEvent(ControlEvent theEvent)
   if (theEvent.getName().equals("Back")) {
     menushow = true;
     playflag = false;
-    gameover = false;
+    gameover = true;
     pauseflag = false;
     unpauseflag = false;
     
