@@ -50,13 +50,13 @@ class Paddle extends Sprite implements Sound
     if (pos.x < game.halfGameSpace)
     {
       change = (int)map(pos.x, game.border, game.halfGameSpace, 80, 255);
-      colour = color(change, 0, change);
+      colour = color(change, 50, change);
     }
     else{
       //temp maps pos.x past halfgameSpace length to inverse on left side of it
       int temp = (int)map(pos.x, width, game.halfGameSpace, game.border, game.halfGameSpace );
       change = (int)map(temp, game.border, game.halfGameSpace, 80, 255);
-      colour = color(change, 0, change);
+      colour = color(change, 50, change);
     }
     
     pointUpdate();
@@ -72,10 +72,7 @@ class Paddle extends Sprite implements Sound
 
     //creates rockets when right mouse button clicked and only every hald second
     if (mousePressed && (mouseButton == RIGHT) && elapsed > 30 && ammo > 0 && !game.noBlocksLeft()) {
-      Rocket rocket = new Rocket(this.pos.x, this.pos.y, this.colour);
-      rocket.pos.x = pos.x;
-      rocket.pos.y = pos.y;
-      rocket.colour = colour;
+      Rocket rocket = new Rocket(pos.x, pos.y, colour);
       sprites.add(rocket);
       play(shoot);
       ammo--;
