@@ -1,4 +1,4 @@
-class Paddle extends Sprite
+class Paddle extends Sprite implements Sound
 {
 
   AudioPlayer shoot;
@@ -36,33 +36,33 @@ class Paddle extends Sprite
 
   int elapsed = 60;
 
-  void shootSound()
+  void play(AudioPlayer sound)
   {
-    shoot.rewind();
-    shoot.play();
+    sound.rewind();
+    sound.play();
   }
+
   void update() {
     pos.x = mouseX;
     
+    //changes the brightness of paddle colour depending on x position
+    //gets darker as it moves towards borders
     if (pos.x < game.halfGameSpace)
     {
       change = (int)map(pos.x, game.border, game.halfGameSpace, 80, 255);
       colour = color(change, 0, change);
     }
     else{
+      //temp maps pos.x past halfgameSpace length to inverse on left side of it
       int temp = (int)map(pos.x, width, game.halfGameSpace, game.border, game.halfGameSpace );
       change = (int)map(temp, game.border, game.halfGameSpace, 80, 255);
       colour = color(change, 0, change);
     }
     
-    //can put this in abstract
-    left = pos.x - halfWidth;
-    right = pos.x + halfWidth;
-    top = pos.y - halfHeight;
-    bottom = pos.y + halfHeight;
-
+    pointUpdate();
+    
     //maybe change this
-    if (this.right >= width)
+    if (right >= width)
     {
       pos.x = width - halfWidth;
     } else if (this.left <= game.border) {
@@ -70,14 +70,14 @@ class Paddle extends Sprite
     }
 
 
-    //problem is here
-    if (mousePressed && (mouseButton == RIGHT) && elapsed > 30 && ammo > 0 && game.noBlocks() != 0) {
+    //creates rockets when right mouse button clicked and only every hald second
+    if (mousePressed && (mouseButton == RIGHT) && elapsed > 30 && ammo > 0 && !game.noBlocksLeft()) {
       Rocket rocket = new Rocket(this.pos.x, this.pos.y, this.colour);
       rocket.pos.x = pos.x;
       rocket.pos.y = pos.y;
       rocket.colour = colour;
       sprites.add(rocket);
-      shootSound();
+      play(shoot);
       ammo--;
 
       elapsed = 0;

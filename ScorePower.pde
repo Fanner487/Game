@@ -41,7 +41,7 @@ class ScorePower extends Sprite implements Power
   }
 
   //adds to score
-  void add1(Sprite sprite)
+  void addTo(Sprite sprite)
   {
     for(int i = 0; i < sprites.size(); i++)
     {

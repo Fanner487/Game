@@ -1,4 +1,4 @@
-class Collision
+class Collision implements Sound
 {
   AudioPlayer rocketCol;
   AudioPlayer paddleBall;
@@ -31,7 +31,7 @@ class Collision
         if ((ammo.pos.y >= paddle.top) && (ammo.pos.x >= paddle.left) && (ammo.pos.x <= paddle.right) && (ammo.pos.y < paddle.pos.y))
         {
 
-          ((Power) ammo).add1((Paddle) paddle);
+          ((Power) ammo).addTo((Paddle) paddle);
           play(scoreSound);
           sprites.remove(ammo);
         }
@@ -49,7 +49,7 @@ class Collision
         if ((score.pos.y >= paddle.top) && (score.pos.x >= paddle.left) && (score.pos.x <= paddle.right) && (score.pos.y < paddle.pos.y))
         {
 
-          ((Power) score).add1((Game) game);
+          ((Power) score).addTo((Game) game);
           play(scoreSound);
           sprites.remove(score);
         }
@@ -63,7 +63,7 @@ class Collision
     {
       ball.yspeed = -(ball.yspeed);
       play(paddleBall);
-      ((Power) ball).add1((Game) game);
+      ((Power) ball).addTo((Game) game);
     }
   }
 
@@ -117,7 +117,7 @@ class Collision
     }
     
     play(paddleBall);
-    ((Power) block).add1((Game) game);
+    ((Power) block).addTo((Game) game);
     sprites.remove(block);
        
   }
@@ -139,7 +139,7 @@ class Collision
             if (rocket.pos.x <= block.right && rocket.pos.x >= block.left && rocket.pos.y <= block.bottom && rocket.pos.y >= block.top)
             {
 
-              ((Power) block).add1((Game) game);
+              ((Power) block).addTo((Game) game);
               play(rocketCol);
               sprites.remove(rocket);
               sprites.remove(block);

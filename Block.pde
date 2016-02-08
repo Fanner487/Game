@@ -1,8 +1,10 @@
-class Block extends Sprite implements Power
+class Block extends Sprite implements Power, Sound
 {
   int x = 0;
-  boolean set = false;
-
+  
+  //can add sound when border hit
+  AudioPlayer border;
+  
   Block(int x, int y, color colour, float speed)
   {
     super(x, y, colour);
@@ -10,7 +12,7 @@ class Block extends Sprite implements Power
     h = 20;
     halfWidth = w * 0.5f;
     halfHeight = h * 0.5f;
-
+    border = minim.loadFile("border.mp3");
     x = (int) random(0, 2);
     switch(x)
     {
@@ -21,15 +23,11 @@ class Block extends Sprite implements Power
       this.speed = -(speed);
       break;
     }
-    //set = true;
-
-
-
-    //set = false;
+    
   }
 
 
-  void add1(Sprite sprite)
+  void addTo(Sprite sprite)
   {
     for (int i = 0; i < sprites.size(); i++)
     {
@@ -58,6 +56,13 @@ class Block extends Sprite implements Power
     if (this.right >= width || this.left <= game.border)
     {
       speed = -(speed);
+      play(border);
     }
+  }
+  
+  void play(AudioPlayer sound)
+  {
+    sound.rewind();
+    sound.play();
   }
 }

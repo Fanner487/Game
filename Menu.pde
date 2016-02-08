@@ -1,4 +1,4 @@
-class Menu
+class Menu implements Sound
 {
   Button play;
   Button back;
@@ -21,7 +21,11 @@ class Menu
     
   }
   
-  
+  void play(AudioPlayer sound)
+  {
+    sound.rewind();
+    sound.play();
+  }
   void unpauseshow()
   {
     unpause.show();
@@ -37,7 +41,7 @@ class Menu
     
     playflag = false;
     unpause.hide();
-    //menuSong.play();
+    this.play(menuSong);
   }
   
   void backshow()
@@ -46,8 +50,13 @@ class Menu
     back.show();
     pause.show();
     unpause.hide();
+    
+    
+    //maybe change this
     menuSong.pause();
     menuSong.rewind();
+    
+    
     gameover = false;
     
     

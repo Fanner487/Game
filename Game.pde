@@ -1,11 +1,10 @@
-class Game extends Sprite
+class Game extends Sprite implements Sound
 {
   //Put sound and ball collision in different function
 
   int level;
   int score;
   float border;
-  boolean allBlocksGone;
   int second;
   int wait;
   float gameSpace;
@@ -14,16 +13,17 @@ class Game extends Sprite
   int blockLimit;
 
   AudioPlayer levelup;
+  AudioPlayer count;
 
 
   Game()
   {  
     score = 0;
     border = width * 0.1f;
-    allBlocksGone = true;
     wait = 179;
     level = 0;
     levelup = minim.loadFile("levelup.mp3");
+    count = minim.loadFile("count.mp3");
     second = 4;
     gameSpace = width - border;
     halfWidth = gameSpace / 2;
@@ -31,12 +31,18 @@ class Game extends Sprite
     timer = 179;
     blockLimit = 0;
   }
-
+  
+  void play(AudioPlayer sound)
+  {
+    sound.rewind();
+    sound.play();
+  }
+  
   void render() {
     fill(255);
     text("Score: " + game.score +  "\n" + 
       "rocket ammo: " + paddle.ammo  + "\n" + 
-      "blocks: " + game.noBlocks() + "\n" + 
+      //"blocks: " + game.noBlocks() + "\n" + 
       "Score powerups: " + game.noScorePowers() + "\n" + 
       "Ammo powerups: " + game.noAmmoPowers() +  "\n" + 
       game.wait + "\n" +
@@ -88,19 +94,14 @@ class Game extends Sprite
 
   void blockGen()
   {
-
-    if (game.noBlocks() == 0)
-    {
-      allBlocksGone = true;
-    }
-
-    if (allBlocksGone == true && wait < 180) {
-
+    
+    if (noBlocksLeft() && wait < 180) {
       wait++;
 
       if (wait % 60 == 0)
       {
         second --;
+        play(count);
       }
 
       levelUpText(second);
@@ -111,8 +112,8 @@ class Game extends Sprite
       //only plays after level 1 completed
       if (wait == 1 && level != 1)
       {
-        levelup.rewind();
-        levelup.play();
+        
+        this.play(levelup);
       }
 
       if (wait==180) 
@@ -120,9 +121,9 @@ class Game extends Sprite
         wait =0;
         second = 3;
 
-        if (level >= 3)
+        if (level >= 7)
         {
-          blockLimit = 3;
+          blockLimit = 7;
         } else
         {
           blockLimit = level;
@@ -140,7 +141,6 @@ class Game extends Sprite
         ball.speedUp();
         randomPower();
 
-        allBlocksGone = false;
       }
     }
   }
@@ -178,9 +178,11 @@ class Game extends Sprite
     }
   }
 
-  int noBlocks()
+  boolean noBlocksLeft()
   {
+    boolean isEmpty = false;
     int n = 0;
+    
     for (int i = 0; i < sprites.size(); i++)
     {
       Sprite b = sprites.get(i);
@@ -190,8 +192,11 @@ class Game extends Sprite
         n++;
       }
     }
-
-    return n;
+    
+    if(n == 0){  isEmpty = true;  }
+    else{        isEmpty = false; }
+    
+    return isEmpty;    
   }
 
   int noScorePowers()
@@ -227,6 +232,7 @@ class Game extends Sprite
   }
   int countdown()
   {
+    pauseGame();
     if (timer == 0)
     {
       wait = 179;
@@ -237,6 +243,7 @@ class Game extends Sprite
       if (timer % 60 == 0)
       {
         second --;
+        //play beep sound here
       }
 
       timer --;
@@ -247,7 +254,7 @@ class Game extends Sprite
     return timer;
   }
 
-
+  //stops all updating and only shows sprites at current position
   void pauseGame() {
     for (int i = 0; i < sprites.size(); i++) {
       Sprite s = sprites.get(i);
@@ -264,7 +271,7 @@ class Game extends Sprite
     fill(255);
     if (level == 1)
     {
-      text("Get Ready", 750, 350);
+      text("Get Ready\n" + second, 750, 350);
     } else
     {
       text("Level " + (level - 1) + " Complete\n Preparing next level\n" + second + "...", 750, 350);

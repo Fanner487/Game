@@ -1,4 +1,4 @@
 interface Power
 {
-  void add1(Sprite sprite);
+  void addTo(Sprite sprite);
 }

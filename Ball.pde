@@ -1,4 +1,4 @@
-class Ball extends Sprite implements Power
+class Ball extends Sprite implements Power, Sound
 {
   AudioPlayer border;
   int change;
@@ -66,13 +66,6 @@ class Ball extends Sprite implements Power
     ellipse(pos.x, pos.y, w, h);
   }
   
-  //put in interface
-  void borderSound()
-  {
-    border.rewind();
-    border.play();
-  }
-  
   void update()
   {
     
@@ -90,18 +83,18 @@ class Ball extends Sprite implements Power
     {
       //right
       this.xspeed = -(xspeed);
-      borderSound();
+      this.play(border);
     }
     if (this.left < game.border) {
       //left
       this.xspeed = -(xspeed);
-      borderSound();
+      this.play(border);
     }
     if (this.top < 0)
     {
       //top
       this.yspeed = -(yspeed);
-      borderSound();
+      this.play(border);
     }
     if (this.bottom > height)
     { 
@@ -109,8 +102,13 @@ class Ball extends Sprite implements Power
     }
   }
 
+  void play(AudioPlayer sound)
+  {
+    sound.rewind();
+    sound.play();
+  }
 
-  void add1(Sprite sprite)
+  void addTo(Sprite sprite)
   {
     for (int i = 0; i < sprites.size(); i++)
     {

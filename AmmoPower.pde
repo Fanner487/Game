@@ -37,7 +37,7 @@ class AmmoPower extends Sprite implements Power
     popMatrix();
   }
   
-  void add1(Sprite sprite)
+  void addTo(Sprite sprite)
   {
     paddle.ammo ++;
   }
