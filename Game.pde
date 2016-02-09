@@ -11,6 +11,7 @@ class Game extends Sprite implements Sound
   float halfGameSpace;
   int timer;
   int blockLimit;
+  
 
   AudioPlayer levelup;
   AudioPlayer count;
@@ -30,6 +31,7 @@ class Game extends Sprite implements Sound
     halfGameSpace = width - halfWidth;
     timer = 179;
     blockLimit = 0;
+    
   }
   
   void play(AudioPlayer sound)
@@ -38,22 +40,39 @@ class Game extends Sprite implements Sound
     sound.play();
   }
   
+  
+  
   void render() {
+    
+    stroke(255);
     fill(255);
-    text("Score: \n" + game.score +  "\n" + 
-      "Ammo: \n" + paddle.ammo  + "\n" + 
-      "x: " + ball.xspeed +
-      "\ny: " + ball.yspeed + 
-      "\n Level:\n" + game.level, game.border - 50, 50
-      );
-
+    drawBox(150, color(255), "Score", score);  
+    drawBox(250, color(0, 255, 0), "Ammo", paddle.ammo);  
+    drawBox(350, color(255), "Level", level - 1);
+    
     //draw left border
     line(game.border, 0, game.border, height);
   }
-
-  void update() {
+  
+  //taking parameters from render to display scores/ammo/level in boxes
+  void drawBox(int y, color c, String text, int value)
+  {
+    float x = border - 60;
+    float left = x - 50;
+    float right = x + 50;
+    float top = y - 40;
+    float bottom = y + 50;
+    
+    stroke(c);
+    fill(c);
+    line(left, bottom, right, bottom);
+    line(left, top, right, top);
+    line(left, top, left, bottom);
+    line(right, top, right, bottom);
+    text(text + ":\n" + value, x, y);
+    
   }
-
+  
   //removes blocks and resets ball speed after gameover
   void reset()
   {
@@ -246,7 +265,7 @@ class Game extends Sprite implements Sound
     }
 
     fill(255);
-    text(second, 750, 350);
+    text("Resuming in\n..." + second, halfGameSpace, 350);
     return timer;
   }
 
@@ -259,6 +278,16 @@ class Game extends Sprite implements Sound
       paddle.render();
     }
     menu.pause.hide();
+    
+    if(unpauseflag == false)
+    {
+      stroke(255);
+      fill(255);
+      text("Paused", halfGameSpace, height / 2);
+    }
+    
+    
+    
   }
 
 
@@ -270,7 +299,10 @@ class Game extends Sprite implements Sound
       text("Get Ready\n" + second, 750, 350);
     } else
     {
-      text("Level " + (level - 1) + " Complete\n Preparing next level\n" + second + "...", 750, 350);
+      text("Level " + (level - 1) + " Complete\n Preparing next level\n..." + second, halfGameSpace, 350);
     }
+  }
+  
+  void update() {
   }
 }//end class

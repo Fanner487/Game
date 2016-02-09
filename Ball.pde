@@ -54,15 +54,14 @@ class Ball extends Sprite implements Power, Sound
     //makes sure ball pointing upwards
     if(yspeed < 0)
     {
-      yspeed = -(yspeed);
-      
+      yspeed = -(yspeed);   
     }
   }
   
   void render()
   {
     stroke(255);
-    fill(this.colour);
+    fill(colour);
     ellipse(pos.x, pos.y, w, h);
   }
   
@@ -72,8 +71,8 @@ class Ball extends Sprite implements Power, Sound
     pos.x -= xspeed;
     pos.y -= yspeed;
     
-    change = (int)map(pos.y, 0, height, 200, 255);
-    colour = color(change, 0, 0);
+    change = (int)map(pos.y, 0, height, 0, 100);
+    colour = color(255, change, change);
     
     //abstract method in Sprite class
     pointUpdate();

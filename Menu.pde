@@ -9,16 +9,19 @@ class Menu implements Sound
   boolean resetScore;
   AudioPlayer menuSong;
   String[] lines;
+  int bHeight;
+  int bWidth;
   
   Menu()
   {
-    
-    play = cp5.addButton("Play").setPosition(500, 500).setSize(100, 50).setColorBackground( color( 255,0,0 ) );
-    quit = cp5.addButton("Quit").setPosition(10, 650).setSize(100, 50);
-    pause = cp5.addButton("Pause").setPosition(10, 600).setSize(100, 50);
-    unpause = cp5.addButton("Continue").setPosition(10, 600).setSize(100, 50);
-    backToMenu = cp5.addButton("Main Menu").setPosition(700, 500).setSize(100, 50).setColorBackground( color( 255,0,0 ) );
-    instructions = cp5.addButton("Instructions").setPosition(600, 500).setSize(100, 50).setColorBackground( color( 255,0,0 ) );
+    bWidth = 135;
+    bHeight = 50;
+    play = cp5.addButton("Play").setPosition(500, 500).setSize(bWidth, bHeight).setColorBackground( color( 255,0,0 )).setColorForeground(color(0,255,0)).setColorActive(color(0,0,255));
+    quit = cp5.addButton("Quit").setPosition(0, 600).setSize(bWidth, bHeight);
+    pause = cp5.addButton("Pause").setPosition(0, 600).setSize(bWidth, bHeight);
+    unpause = cp5.addButton("Continue").setPosition(10, 600).setSize(bWidth, bHeight);
+    backToMenu = cp5.addButton("Main Menu").setPosition(700, 500).setSize(bWidth, bHeight).setColorBackground( color( 255,0,0 ) );
+    instructions = cp5.addButton("Instructions").setPosition(600, 500).setSize(bWidth, bHeight).setColorBackground( color( 255,0,0 ) );
     menuSong = minim.loadFile("sample.mp3");
     play.hide();
     quit.hide();

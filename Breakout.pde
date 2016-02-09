@@ -11,8 +11,6 @@ ControlP5 cp5;
 /*
 IDEAS: explosion with the rockets. Have a new class for that
  Power ups can be random. E.g. 2 bullets or 10 score power
- 
- Merging blocks that make more. Make blocks bounce off each other too
  Background changes during moments?
  
  special block or sprite. more points if hit
@@ -130,6 +128,7 @@ void draw() {
 
 void controlEvent(ControlEvent theEvent)
 {
+  
   if (theEvent.getName().equals("Play")) {
     menushow = false;
     playflag = true;
@@ -138,6 +137,7 @@ void controlEvent(ControlEvent theEvent)
     unpauseflag = false;
     instructflag = false;
   }
+  
   if (theEvent.getName().equals("Quit")) {
     menushow = true;
     playflag = false;
@@ -156,6 +156,7 @@ void controlEvent(ControlEvent theEvent)
     gameover = false;
     instructflag = false;
   }
+  
   if(theEvent.getName().equals("Continue")){
     unpauseflag = true;
     pauseflag = false;
@@ -173,11 +174,12 @@ void controlEvent(ControlEvent theEvent)
     playflag = false;
     gameover = false;
   }
+  
   if(theEvent.getName().equals("Main Menu")){
+    menushow = true;
     instructflag = false;
     unpauseflag = false;
     pauseflag = false;
-    menushow = true;
     playflag = false;
     gameover = false;
   }
