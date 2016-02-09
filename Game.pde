@@ -40,15 +40,11 @@ class Game extends Sprite implements Sound
   
   void render() {
     fill(255);
-    text("Score: " + game.score +  "\n" + 
-      "rocket ammo: " + paddle.ammo  + "\n" + 
-      //"blocks: " + game.noBlocks() + "\n" + 
-      "Score powerups: " + game.noScorePowers() + "\n" + 
-      "Ammo powerups: " + game.noAmmoPowers() +  "\n" + 
-      game.wait + "\n" +
+    text("Score: \n" + game.score +  "\n" + 
+      "Ammo: \n" + paddle.ammo  + "\n" + 
       "x: " + ball.xspeed +
       "\ny: " + ball.yspeed + 
-      "\n Level: " + game.level, game.border, 50
+      "\n Level:\n" + game.level, game.border - 50, 50
       );
 
     //draw left border

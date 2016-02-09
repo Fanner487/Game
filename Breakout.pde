@@ -27,7 +27,7 @@ void setup()
 {
   size(1366, 700);
   rectMode(CENTER);
-  textAlign(RIGHT);
+  textAlign(CENTER);
   minim = new Minim(this);
   cp5 = new ControlP5(this);
   font = createFont("ARDESTINE-48.vlw", 20);
@@ -54,6 +54,8 @@ boolean gameover;
 boolean playflag;
 boolean pauseflag;
 boolean unpauseflag;
+boolean instructflag;
+boolean backMenu;
 
 Paddle paddle;
 Ball ball;
@@ -79,7 +81,7 @@ void draw() {
       menu.resetScore = false;
     }
     
-    menu.backshow();
+    menu.quitshow();
     game.drawSprites();
     collision.check();
     game.randomPower();
@@ -109,9 +111,19 @@ void draw() {
       game.second = 3;
       playflag = true;
       unpauseflag = false;
-    }
-    
-    
+    }    
+  }
+  
+  if(instructflag == true)
+  {
+    menu.showInstructions();
+    menu.instructionShow();
+  }
+  
+  if(backMenu == true)
+  {
+    menu.backToMainMenu();
+    backMenu = false;
   }
   
 }//end draw
@@ -124,13 +136,15 @@ void controlEvent(ControlEvent theEvent)
     gameover = false;
     pauseflag = false;
     unpauseflag = false;
+    instructflag = false;
   }
-  if (theEvent.getName().equals("Back")) {
+  if (theEvent.getName().equals("Quit")) {
     menushow = true;
     playflag = false;
     gameover = true;
     pauseflag = false;
     unpauseflag = false;
+    instructflag = false;
     
   }
   
@@ -140,6 +154,7 @@ void controlEvent(ControlEvent theEvent)
     menushow = false;
     playflag = false;
     gameover = false;
+    instructflag = false;
   }
   if(theEvent.getName().equals("Continue")){
     unpauseflag = true;
@@ -147,5 +162,25 @@ void controlEvent(ControlEvent theEvent)
     menushow = false;
     playflag = false;
     gameover = false;
+    instructflag = false;
   }
+  
+  if(theEvent.getName().equals("Instructions")){
+    instructflag = true;
+    unpauseflag = false;
+    pauseflag = false;
+    menushow = false;
+    playflag = false;
+    gameover = false;
+  }
+  if(theEvent.getName().equals("Main Menu")){
+    instructflag = false;
+    unpauseflag = false;
+    pauseflag = false;
+    menushow = true;
+    playflag = false;
+    gameover = false;
+  }
+  
+  
 }

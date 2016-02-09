@@ -141,6 +141,7 @@ class Collision implements Sound
 
               ((Power) block).addTo((Game) game);
               play(rocketCol);
+              //creates explosion where rocket hits block
               Explosion e = new Explosion(block.pos.x, block.pos.y, block.colour);
               sprites.add(e);
               sprites.remove(rocket);
