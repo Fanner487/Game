@@ -46,6 +46,9 @@ class Menu implements Sound
     unpause.hide();
 
     menuSong.play();
+    //for(int i = 0; i < 255; i ++)
+    stroke(255);
+    fill(255, 0, 0);
     text("Breakout", width / 2, 200);
   }
   
@@ -74,6 +77,8 @@ class Menu implements Sound
     textSize(30);
     for (int i = 0; i < lines.length; i++)
     {
+      stroke(255);
+      fill(255);
       text(lines[i], width / 2, 200 + (50 * i));
     }
     textSize(48);

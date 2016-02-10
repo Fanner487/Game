@@ -1,7 +1,7 @@
 /*
   Student: Eamon Tang
- Number: C14383761
- */
+  Number: C14383761
+*/
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
