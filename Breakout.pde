@@ -4,46 +4,44 @@ import ddf.minim.effects.*;
 import ddf.minim.signals.*;
 import ddf.minim.spi.*;
 import ddf.minim.ugens.*;
-Minim minim;
-
 import controlP5.*;
 ControlP5 cp5;
+Minim minim;
 /*
-IDEAS: explosion with the rockets. Have a new class for that
- Power ups can be random. E.g. 2 bullets or 10 score power
+IDEAS:
  Background changes during moments?
- 
  special block or sprite. more points if hit
- Set random distance 
- stop shooting rockets. 
-
- Change speed thingies
-
+ 
+ remember to set back ammo
+ 
  */
-PFont font;
+
 void setup()
 {
   size(1366, 700);
+  textSize(20);
   rectMode(CENTER);
   textAlign(CENTER);
   minim = new Minim(this);
   cp5 = new ControlP5(this);
-  font = createFont("ARDESTINE-48.vlw", 20);
-  textFont(font);
-  
   
   sprites = new ArrayList<Sprite>();
   
   menu = new Menu();
   game = new Game();
+  
   sprites.add(game);
   collision = new Collision();
+  
+  //change to no colour
   paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
-  ball = new Ball(width / 2, 500, color(random(255), random(255), random(255)));
+  ball = new Ball(width / 2, 600, color(random(255), random(255), random(255)));
   
   menushow = true;
   gameover = false;
   playflag = false;
+  
+  buttonPress = minim.loadFile("buttonpress.mp3");
 }
 
 ArrayList<Sprite> sprites;
@@ -54,7 +52,7 @@ boolean pauseflag;
 boolean unpauseflag;
 boolean instructflag;
 boolean backMenu;
-
+AudioPlayer buttonPress;
 Paddle paddle;
 Ball ball;
 Game game;
@@ -126,6 +124,13 @@ void draw() {
   
 }//end draw
 
+//can't inherit fron interface
+void p(AudioPlayer sound)
+{
+  sound.rewind();
+  sound.play();
+}
+
 void controlEvent(ControlEvent theEvent)
 {
   
@@ -136,6 +141,7 @@ void controlEvent(ControlEvent theEvent)
     pauseflag = false;
     unpauseflag = false;
     instructflag = false;
+    p(buttonPress);
   }
   
   if (theEvent.getName().equals("Quit")) {
@@ -145,7 +151,7 @@ void controlEvent(ControlEvent theEvent)
     pauseflag = false;
     unpauseflag = false;
     instructflag = false;
-    
+    p(buttonPress);
   }
   
   if(theEvent.getName().equals("Pause")){
@@ -155,6 +161,7 @@ void controlEvent(ControlEvent theEvent)
     playflag = false;
     gameover = false;
     instructflag = false;
+    p(buttonPress);
   }
   
   if(theEvent.getName().equals("Continue")){
@@ -164,6 +171,7 @@ void controlEvent(ControlEvent theEvent)
     playflag = false;
     gameover = false;
     instructflag = false;
+    p(buttonPress);
   }
   
   if(theEvent.getName().equals("Instructions")){
@@ -173,6 +181,7 @@ void controlEvent(ControlEvent theEvent)
     menushow = false;
     playflag = false;
     gameover = false;
+    p(buttonPress);
   }
   
   if(theEvent.getName().equals("Main Menu")){
@@ -182,6 +191,7 @@ void controlEvent(ControlEvent theEvent)
     pauseflag = false;
     playflag = false;
     gameover = false;
+    p(buttonPress);
   }
   
   

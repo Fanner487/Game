@@ -5,7 +5,7 @@ class ScorePower extends Sprite implements Power
   {
     super(x, 10, color(255,255,255));
     size = 7;
-    speed = 2;
+    speed = (int)random(3, 6);
   }
 
   void update()

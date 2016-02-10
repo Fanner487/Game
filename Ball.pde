@@ -11,8 +11,8 @@ class Ball extends Sprite implements Power, Sound
     halfWidth = w * 0.5f;
     halfHeight = halfWidth;
     
-    xspeed = 3;
-    yspeed = 3;
+    xspeed = 3.5f;
+    yspeed = 3.5f;
     
     border = minim.loadFile("border.mp3");
     change = 0;
@@ -49,7 +49,7 @@ class Ball extends Sprite implements Power, Sound
   {
 
     ball.pos.x = width /2;
-    ball.pos.y = 500;
+    ball.pos.y = 600;
     
     //makes sure ball pointing upwards
     if(yspeed < 0)
@@ -71,6 +71,7 @@ class Ball extends Sprite implements Power, Sound
     pos.x -= xspeed;
     pos.y -= yspeed;
     
+    //maps brightness of ball relative to pos.y
     change = (int)map(pos.y, 0, height, 0, 100);
     colour = color(255, change, change);
     

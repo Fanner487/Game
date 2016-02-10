@@ -5,7 +5,7 @@ class AmmoPower extends Sprite implements Power
   {
     super(x, 10, color(0, 255, 0));
     size = 10;
-    speed = 5;
+    speed = (int)random(3, 6);
   }
 
   void update()

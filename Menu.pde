@@ -17,11 +17,11 @@ class Menu implements Sound
     bWidth = 135;
     bHeight = 50;
     play = cp5.addButton("Play").setPosition(500, 500).setSize(bWidth, bHeight).setColorBackground( color( 255,0,0 )).setColorForeground(color(0,255,0)).setColorActive(color(0,0,255));
-    quit = cp5.addButton("Quit").setPosition(0, 600).setSize(bWidth, bHeight);
-    pause = cp5.addButton("Pause").setPosition(0, 600).setSize(bWidth, bHeight);
-    unpause = cp5.addButton("Continue").setPosition(10, 600).setSize(bWidth, bHeight);
+    quit = cp5.addButton("Quit").setPosition(0, 570).setSize(bWidth, bHeight);
+    pause = cp5.addButton("Pause").setPosition(0, 500).setSize(bWidth, bHeight);
+    unpause = cp5.addButton("Continue").setPosition(0, 500).setSize(bWidth, bHeight);
     backToMenu = cp5.addButton("Main Menu").setPosition(700, 500).setSize(bWidth, bHeight).setColorBackground( color( 255,0,0 ) );
-    instructions = cp5.addButton("Instructions").setPosition(600, 500).setSize(bWidth, bHeight).setColorBackground( color( 255,0,0 ) );
+    instructions = cp5.addButton("Instructions").setPosition(700, 500).setSize(bWidth, bHeight).setColorBackground( color( 255,0,0 ) );
     menuSong = minim.loadFile("sample.mp3");
     play.hide();
     quit.hide();
@@ -55,7 +55,7 @@ class Menu implements Sound
   {
     for(int i = 0; i < lines.length; i++)
     {
-      text(lines[i], width / 2, 50 + (50 * i));
+      text(lines[i], width / 2, 200 + (50 * i));
       
     }
   }
@@ -70,7 +70,11 @@ class Menu implements Sound
     
     playflag = false;
     unpause.hide();
-   play(menuSong);
+   
+   
+   menuSong.play();
+   
+   
   }
   
   void quitshow()
@@ -84,7 +88,7 @@ class Menu implements Sound
     backToMenu.hide();
     //maybe change this
     menuSong.pause();
-    menuSong.rewind();
+    //menuSong.rewind();
      
     gameover = false;
     
@@ -99,13 +103,13 @@ class Menu implements Sound
     unpause.hide();
     ball.stopBall();
     resetScore = true;
-
+    //menuSong.rewind();
     
-    text("Game Over!\nScore: " + game.score, 750, 350);
+    text("Game Over!\nScore: " + game.score, width / 2, height / 2);
   }
   void play(AudioPlayer sound)
   {
-    //sound.rewind();
+    sound.rewind();
     sound.play();
   }
 }
