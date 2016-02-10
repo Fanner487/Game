@@ -13,3 +13,8 @@ Throughout the game there will be power ups. The green triangle will be for ammo
 Controls:
 The paddle is controlled by the mouse
 RIGHT MOUSE to shoot rockets
+
+![alt tag]("https://github.com/Fanner487/Game/tree/master/data/menu.JPG")<br />
+![alt tag]("https://github.com/Fanner487/Game/tree/master/data/gameplay.JPG")<br />
+![alt tag]("https://github.com/Fanner487/Game/tree/master/data/pause.JPG")<br />
+![alt tag]("https://github.com/Fanner487/Game/tree/master/data/instructions.JPG")<br />
