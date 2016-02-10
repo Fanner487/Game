@@ -11,8 +11,8 @@ class Ball extends Sprite implements Power, Sound
     halfWidth = w * 0.5f;
     halfHeight = halfWidth;
     
-    xspeed = 3.5f;
-    yspeed = 3.5f;
+    xspeed = 3;
+    yspeed = 3;
     
     border = minim.loadFile("border.mp3");
     change = 0; // used to map pos.y to height to change colour of ball relative to position

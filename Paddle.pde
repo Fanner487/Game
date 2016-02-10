@@ -16,8 +16,7 @@ class Paddle extends Sprite implements Sound
     halfWidth = w * 0.5f;
     halfHeight = h * 0.5f;
     
-    //change this
-    ammo = 100;
+    ammo = 5;
     shoot = minim.loadFile("shootRocket.mp3");
     elapsed = 60;
   }

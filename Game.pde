@@ -81,10 +81,10 @@ class Game extends Sprite implements Sound
     }
 
     level = 1;
-    ball.xspeed = 3;
-    ball.yspeed = 3;
+    ball.xspeed = 3.5;
+    ball.yspeed = 3.5;
 
-    paddle.ammo = 3;
+    paddle.ammo = 5;
   }
 
   void drawSprites()
