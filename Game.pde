@@ -61,7 +61,9 @@ class Game extends Sprite implements Sound
     line(left, top, right, top);
     line(left, top, left, bottom);
     line(right, top, right, bottom);
+    textSize(25);
     text(text + ":\n" + value, x, y);
+    textSize(48);
     
   }
   
@@ -205,12 +207,17 @@ class Game extends Sprite implements Sound
       }
     }
     
-    if(n == 0){  isEmpty = true;  }
-    else{        isEmpty = false; }
+    if(n == 0){  
+      isEmpty = true;  
+    }
+    else{        
+      isEmpty = false; 
+    }
     
     return isEmpty;    
   }
-
+  
+  //counts down to resume after continue button pressed during pause
   int countdown()
   {
     pauseGame();

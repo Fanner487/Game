@@ -30,7 +30,7 @@ class Menu implements Sound
     unpause.hide();
     backToMenu.hide();
     instructions.hide();
-    lines = loadStrings("text.txt");
+    lines = loadStrings("text.txt"); //holds instructions in data folder
   }
   
   //shows the play and instructions button
@@ -61,25 +61,27 @@ class Menu implements Sound
   }
   
   //shows instruction button in menu
-  //change
+ 
   void flipInstructionButtons()
   {
     instructions.hide();
     backToMenu.show();
   }
   
-   void showInstructions()
+  //prints instructions using file text.txt
+  void showInstructions()
   {
+    textSize(30);
     for (int i = 0; i < lines.length; i++)
     {
       text(lines[i], width / 2, 200 + (50 * i));
     }
+    textSize(48);
   }
   
   //shows pause and quit buttons during gameplay
-  void quitshow()
+  void inGameButtons()
   {
-    
     quit.show();
     pause.show();
     
@@ -91,7 +93,8 @@ class Menu implements Sound
 
     gameover = false;
   }
-
+  
+  //shows gameover screen
   void gameover()
   {
     play.show();
@@ -101,7 +104,8 @@ class Menu implements Sound
     unpause.hide();
     ball.stopBall();
     resetScore = true;
-    play(menuSong);
+    
+    //menuSong.rewind();
     
     //Displays score when game over
     text("Game Over!\nScore: " + game.score, width / 2, height / 2);

@@ -18,7 +18,7 @@ Ball ball;
 Game game;
 Menu menu;
 Collision collision;
-
+PFont font;
 boolean menushow;
 boolean gameover;
 boolean playflag;
@@ -37,7 +37,8 @@ void setup()
   textAlign(CENTER);
   minim = new Minim(this);
   cp5 = new ControlP5(this);
-
+  font = loadFont("ARDESTINE-48.vlw");
+  textFont(font);
   sprites = new ArrayList<Sprite>();
 
   menu = new Menu();
@@ -75,7 +76,7 @@ void draw() {
       menu.resetScore = false;
     }
 
-    menu.quitshow();
+    menu.inGameButtons();
     game.drawSprites();
     collision.check();
     game.randomPower();

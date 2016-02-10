@@ -1,5 +1,5 @@
-The aim of the game is to keep the ball in the field and destroy all the blocks
-Use the mouse to control the paddle in the field
+The aim of the game is to keep the ball in the field and destroy all 
+the blocks. Use the mouse to control the paddle in the field
 and collect ammo power ups (green triangle) and score powerups (white spinning square)
 Rockets can be shot using RIGHT CLICK destroy blocks (remember to time them right)
 Each level up brings a speed up to the ball and blocks so be careful!
