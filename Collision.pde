@@ -11,18 +11,17 @@ class Collision implements Sound
     scoreSound = minim.loadFile("scorepower.mp3");
   }
 
-
   void check()
   {
-    paddle();
-    rocket();
-    ball();
-    ammoPower();
-    scorePower();
+    paddleBall();
+    rocketBlock();
+    ballBlock();
+    ammoPowerPaddle();
+    scorePowerPaddle();
   }
   
   //collisions between paddle and ammo powerup
-  void ammoPower()
+  void ammoPowerPaddle()
   {
     for (int j = 0; j < sprites.size(); j++)
     {
@@ -30,7 +29,6 @@ class Collision implements Sound
       if (ammo instanceof AmmoPower)
         if ((ammo.pos.y >= paddle.top) && (ammo.pos.x >= paddle.left) && (ammo.pos.x <= paddle.right) && (ammo.pos.y < paddle.pos.y))
         {
-
           ((Power) ammo).addTo((Paddle) paddle);
           play(scoreSound);
           sprites.remove(ammo);
@@ -39,7 +37,7 @@ class Collision implements Sound
   }
   
   //collisions between paddle and score powerup
-  void scorePower()
+  void scorePowerPaddle()
   {
 
     for (int j = 0; j < sprites.size(); j++)
@@ -48,7 +46,6 @@ class Collision implements Sound
       if (score instanceof ScorePower)
         if ((score.pos.y >= paddle.top) && (score.pos.x >= paddle.left) && (score.pos.x <= paddle.right) && (score.pos.y < paddle.pos.y))
         {
-
           ((Power) score).addTo((Game) game);
           play(scoreSound);
           sprites.remove(score);
@@ -57,7 +54,7 @@ class Collision implements Sound
   }
   
   //paddle and ball collisions
-  void paddle() 
+  void paddleBall() 
   {
     if ((ball.pos.x >= paddle.left) && (ball.pos.x <= paddle.right) && (ball.bottom >= paddle.top) && (ball.pos.y < paddle.pos.y))
     {
@@ -68,7 +65,7 @@ class Collision implements Sound
   }
 
   //collisions between ball and block
-  void ball()
+  void ballBlock()
   {
 
     for (int i = 0; i < sprites.size(); i++)
@@ -82,30 +79,27 @@ class Collision implements Sound
         {
           //passes into bounce method below with which side as parameter
           bounce("top", block);
-          println("bottom");
         }
         //top side of block
         else if ((ball.pos.x >= block.left) && (ball.pos.x <= block.right) && (ball.bottom >= block.top) && (ball.pos.y < block.pos.y))
         {
           bounce("top", block);
-          println("top");
         }
         //left side of block
         else if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.right >= block.left) && (ball.pos.x < block.pos.x))
         {
           bounce("side", block);
-          println("left");
         }
         //right side
         else if ((ball.pos.y >= block.top) && (ball.pos.y <= block.bottom) && (ball.left <= block.right) && (ball.pos.x > block.pos.x))
         {
           bounce("side", block);
-          println("right");
         }
       }
     }
   }
-
+  
+  //bounce sequence for ball()
   void bounce(String side, Sprite block)
   {
     //inverts speed value depending on side
@@ -123,7 +117,7 @@ class Collision implements Sound
   }
   
   //between rocket and block
-  void rocket()
+  void rocketBlock()
   {
     for (int i = 0; i < sprites.size(); i++)
     {

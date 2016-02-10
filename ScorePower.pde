@@ -14,7 +14,8 @@ class ScorePower extends Sprite implements Power
     
     theta += 0.1f;
     pos.y += speed;
-
+    
+    //resets rotate if does a full spin
     if (theta > TWO_PI)
     {
       theta = 0;

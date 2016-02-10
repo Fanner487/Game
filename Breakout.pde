@@ -1,3 +1,7 @@
+/*
+  Student: Eamon Tang
+  Number: C14383761
+*/
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -10,11 +14,26 @@ Minim minim;
 /*
 IDEAS:
  Background changes during moments?
- special block or sprite. more points if hit
  
- remember to set back ammo
- 
+ remember to set back ammo 
  */
+
+ArrayList<Sprite> sprites;
+Paddle paddle;
+Ball ball;
+Game game;
+Menu menu;
+Collision collision;
+
+boolean menushow;
+boolean gameover;
+boolean playflag;
+boolean pauseflag;
+boolean unpauseflag;
+boolean instructflag;
+boolean backMenu;
+
+AudioPlayer buttonPress;
 
 void setup()
 {
@@ -24,59 +43,44 @@ void setup()
   textAlign(CENTER);
   minim = new Minim(this);
   cp5 = new ControlP5(this);
-  
+
   sprites = new ArrayList<Sprite>();
-  
+
   menu = new Menu();
   game = new Game();
-  
+
   sprites.add(game);
   collision = new Collision();
-  
+
   //change to no colour
-  paddle = new Paddle((width/2), (height - 50), color(random(255), random(255), random(255)));
-  ball = new Ball(width / 2, 600, color(random(255), random(255), random(255)));
-  
+  paddle = new Paddle((width/2), (height - 50));
+  ball = new Ball(width / 2, 600);
+
   menushow = true;
   gameover = false;
   playflag = false;
-  
+
   buttonPress = minim.loadFile("buttonpress.mp3");
 }
-
-ArrayList<Sprite> sprites;
-boolean menushow;
-boolean gameover;
-boolean playflag;
-boolean pauseflag;
-boolean unpauseflag;
-boolean instructflag;
-boolean backMenu;
-AudioPlayer buttonPress;
-Paddle paddle;
-Ball ball;
-Game game;
-Menu menu;
-Collision collision;
 
 
 void draw() {
   background(0);
-  
+
   if (menushow == true)
   {
-    menu.menushow();       
+    menu.menushow();
   }
 
 
-  if(playflag == true)
+  if (playflag == true)
   {
-    if(menu.resetScore == true)
+    if (menu.resetScore == true)
     {
       game.score = 0;
       menu.resetScore = false;
     }
-    
+
     menu.quitshow();
     game.drawSprites();
     collision.check();
@@ -84,56 +88,48 @@ void draw() {
     game.blockGen();
     game.render();
   }
-  
-  if(gameover == true)
+
+  if (gameover == true)
   {
     game.reset();
     menu.gameover();
     menu.menushow();
   }
-  
-  if(pauseflag == true)
+
+  if (pauseflag == true)
   {
     game.pauseGame();
     menu.unpauseshow();
-    
   }
-  
-  if(unpauseflag == true)
+
+  if (unpauseflag == true)
   {
-    if(game.countdown() == 0)
+    if (game.countdown() == 0)
     {
       game.timer = 179;
       game.second = 3;
       playflag = true;
       unpauseflag = false;
-    }    
+    }
   }
-  
-  if(instructflag == true)
+
+  if (instructflag == true)
   {
     menu.showInstructions();
     menu.instructionShow();
   }
-  
-  if(backMenu == true)
+
+  if (backMenu == true)
   {
     menu.backToMainMenu();
     backMenu = false;
   }
-  
 }//end draw
 
-//can't inherit fron interface
-void p(AudioPlayer sound)
-{
-  sound.rewind();
-  sound.play();
-}
-
+//controls flags when buttons pressed
 void controlEvent(ControlEvent theEvent)
 {
-  
+
   if (theEvent.getName().equals("Play")) {
     menushow = false;
     playflag = true;
@@ -141,58 +137,60 @@ void controlEvent(ControlEvent theEvent)
     pauseflag = false;
     unpauseflag = false;
     instructflag = false;
-    p(buttonPress);
   }
-  
+
   if (theEvent.getName().equals("Quit")) {
     menushow = true;
-    playflag = false;
     gameover = true;
+    playflag = false;
     pauseflag = false;
     unpauseflag = false;
     instructflag = false;
-    p(buttonPress);
   }
-  
-  if(theEvent.getName().equals("Pause")){
+
+  if (theEvent.getName().equals("Pause")) {
     unpauseflag = false;
     pauseflag = true;
     menushow = false;
     playflag = false;
     gameover = false;
     instructflag = false;
-    p(buttonPress);
   }
-  
-  if(theEvent.getName().equals("Continue")){
+
+  if (theEvent.getName().equals("Continue")) {
     unpauseflag = true;
     pauseflag = false;
     menushow = false;
     playflag = false;
     gameover = false;
     instructflag = false;
-    p(buttonPress);
   }
-  
-  if(theEvent.getName().equals("Instructions")){
+
+  if (theEvent.getName().equals("Instructions")) {
     instructflag = true;
     unpauseflag = false;
     pauseflag = false;
     menushow = false;
     playflag = false;
-    gameover = false;
-    p(buttonPress);
+    gameover = false;  
   }
-  
-  if(theEvent.getName().equals("Main Menu")){
+
+  if (theEvent.getName().equals("Main Menu")) {
     menushow = true;
     instructflag = false;
     unpauseflag = false;
     pauseflag = false;
     playflag = false;
-    gameover = false;
-    p(buttonPress);
+    gameover = false;  
   }
   
-  
+  //plays button sound every time button pressed
+  p(buttonPress);
+}
+
+//can't inherit fron interface
+void p(AudioPlayer sound)
+{
+  sound.rewind();
+  sound.play();
 }

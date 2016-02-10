@@ -35,14 +35,6 @@ class Game extends Sprite implements Sound
     
   }
   
-  void play(AudioPlayer sound)
-  {
-    sound.rewind();
-    sound.play();
-  }
-  
-  
-  
   void render() {
     
     stroke(255);
@@ -236,6 +228,7 @@ class Game extends Sprite implements Sound
 
     fill(255);
     text("Resuming in\n..." + second, halfGameSpace, 350);
+    
     return timer;
   }
 
@@ -247,6 +240,7 @@ class Game extends Sprite implements Sound
       ball.render();
       paddle.render();
     }
+    
     menu.pause.hide();
     
     if(unpauseflag == false)
@@ -254,13 +248,10 @@ class Game extends Sprite implements Sound
       stroke(255);
       fill(255);
       text("Paused", halfGameSpace, height / 2);
-    }
-    
-    
-    
+    }    
   }
-
-
+  
+  //displays level up sequence
   void levelUpText(int second)
   {
     fill(255);
@@ -271,6 +262,13 @@ class Game extends Sprite implements Sound
     {
       text("Level " + (level - 1) + " Complete\n Preparing next level\n..." + second, halfGameSpace, 350);
     }
+  }
+  
+    
+  void play(AudioPlayer sound)
+  {
+    sound.rewind();
+    sound.play();
   }
   
   void update() {

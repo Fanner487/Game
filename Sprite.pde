@@ -1,6 +1,9 @@
 //abstract class for AmmoPower, Ball, Block, Explosion, Game, Paddle, Power, Rocket, Scorepower.
 abstract class Sprite
 {
+  
+  PVector pos; 
+  color colour;
   float left;
   float right;
   float top;
@@ -14,13 +17,17 @@ abstract class Sprite
   float w;
   float h;
   float theta = 0.0f;
-  PVector pos; 
-  color colour;
+  
   
   Sprite(float x, float y, color colour)
   {
     pos = new PVector(x, y);
     this.colour = colour;
+  }
+  
+  Sprite(float x, float y)
+  {
+    pos = new PVector(x, y);
   }
   
   Sprite()

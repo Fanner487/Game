@@ -11,7 +11,7 @@ class AmmoPower extends Sprite implements Power
 
   void update()
   {
-    //theta += 0.1f;
+    
     pos.y += speed;
 
 
@@ -31,10 +31,9 @@ class AmmoPower extends Sprite implements Power
   {
     pushMatrix();
     translate(pos.x, pos.y);
-    rotate(theta);
     stroke(255);
     fill(this.colour);
-    triangle(0, 10, 10, 10, 5, 0);
+    triangle(10, -10, 20, -10, 15, 0);
     popMatrix();
   }
   

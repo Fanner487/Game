@@ -6,13 +6,15 @@ class Block extends Sprite implements Power, Sound
   AudioPlayer border;
   
   Block(int x, int y, color colour, float speed)
-  {
+  {   
     super(x, y, colour);
     w = 60;
     h = 20;
     halfWidth = w * 0.5f;
     halfHeight = h * 0.5f;
     border = minim.loadFile("border.mp3");
+    
+    //sets the direction which the block moves
     x = (int) random(0, 2);
     switch(x)
     {

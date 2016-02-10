@@ -3,9 +3,9 @@ class Ball extends Sprite implements Power, Sound
   AudioPlayer border;
   int change;
   
-  Ball(float x, float y, color colour)
+  Ball(float x, float y)
   {
-    super(x, y, colour);
+    super(x, y);
     w = 15;
     h = w;
     halfWidth = w * 0.5f;
@@ -72,8 +72,8 @@ class Ball extends Sprite implements Power, Sound
     pos.y -= yspeed;
     
     //maps brightness of ball relative to pos.y
-    change = (int)map(pos.y, 0, height, 0, 100);
-    colour = color(255, change, change);
+    change = (int)map(pos.y, 0, height, 0, 128);
+    colour = color(255, change, 0);
     
     //abstract method in Sprite class
     pointUpdate();
