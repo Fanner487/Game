@@ -39,7 +39,6 @@ class Collision implements Sound
   //collisions between paddle and score powerup
   void scorePowerPaddle()
   {
-
     for (int j = 0; j < sprites.size(); j++)
     {
       Sprite score = sprites.get(j);
@@ -67,7 +66,6 @@ class Collision implements Sound
   //collisions between ball and block
   void ballBlock()
   {
-
     for (int i = 0; i < sprites.size(); i++)
     {
       Sprite block = sprites.get(i);

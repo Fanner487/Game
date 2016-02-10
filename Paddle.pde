@@ -5,8 +5,8 @@ class Paddle extends Sprite implements Sound
   int ammo;
   int change;
   int elapsed;
-  int w = 100;
-  int h = 10;
+  int w;
+  int h;
 
   Paddle(float x, float y)
   {  
@@ -15,7 +15,8 @@ class Paddle extends Sprite implements Sound
     h = 10;
     halfWidth = w * 0.5f;
     halfHeight = h * 0.5f;
-
+    
+    //change this
     ammo = 100;
     shoot = minim.loadFile("shootRocket.mp3");
     elapsed = 60;

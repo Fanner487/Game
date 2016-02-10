@@ -11,10 +11,8 @@ class AmmoPower extends Sprite implements Power
 
   void update()
   {
-    
     pos.y += speed;
-
-
+    
     if (theta > TWO_PI)
     {
       theta = 0;
@@ -23,8 +21,7 @@ class AmmoPower extends Sprite implements Power
     if (pos.y > height)
     {
       sprites.remove(this);
-    }
-    
+    }    
   }
 
   void render()
@@ -32,11 +29,12 @@ class AmmoPower extends Sprite implements Power
     pushMatrix();
     translate(pos.x, pos.y);
     stroke(255);
-    fill(this.colour);
+    fill(colour);
     triangle(10, -10, 20, -10, 15, 0);
     popMatrix();
   }
   
+  //adds to paddle ammo
   void addTo(Sprite sprite)
   {
     paddle.ammo ++;

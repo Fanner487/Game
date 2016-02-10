@@ -32,31 +32,8 @@ class Menu implements Sound
     instructions.hide();
     lines = loadStrings("text.txt");
   }
-
-  void backToMainMenu()
-  {
-    backToMenu.hide();
-  }
-  void unpauseshow()
-  {
-    unpause.show();
-    pause.hide();
-  }
-
-  void instructionShow()
-  {
-    instructions.hide();
-    backToMenu.show();
-  }
-
-  void showInstructions()
-  {
-    for (int i = 0; i < lines.length; i++)
-    {
-      text(lines[i], width / 2, 200 + (50 * i));
-    }
-  }
-
+  
+  //shows the play and instructions button
   void menushow()
   {
     play.show();
@@ -71,17 +48,45 @@ class Menu implements Sound
     menuSong.play();
     text("Breakout", width / 2, 200);
   }
-
+  
+  
+  void backToMainMenu()
+  {
+    backToMenu.hide();
+  }
+  void unpauseshow()
+  {
+    unpause.show();
+    pause.hide();
+  }
+  
+  //shows instruction button in menu
+  //change
+  void flipInstructionButtons()
+  {
+    instructions.hide();
+    backToMenu.show();
+  }
+  
+   void showInstructions()
+  {
+    for (int i = 0; i < lines.length; i++)
+    {
+      text(lines[i], width / 2, 200 + (50 * i));
+    }
+  }
+  
+  //shows pause and quit buttons during gameplay
   void quitshow()
   {
-    play.hide();
+    
     quit.show();
     pause.show();
+    
+    play.hide();
     unpause.hide();
-
     instructions.hide();
     backToMenu.hide();
-
     menuSong.pause();
 
     gameover = false;
@@ -90,13 +95,15 @@ class Menu implements Sound
   void gameover()
   {
     play.show();
+    
     quit.hide();
     pause.hide();
     unpause.hide();
     ball.stopBall();
     resetScore = true;
     play(menuSong);
-
+    
+    //Displays score when game over
     text("Game Over!\nScore: " + game.score, width / 2, height / 2);
   }
   void play(AudioPlayer sound)

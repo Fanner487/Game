@@ -1,7 +1,7 @@
 /*
   Student: Eamon Tang
-  Number: C14383761
-*/
+ Number: C14383761
+ */
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
@@ -11,12 +11,6 @@ import ddf.minim.ugens.*;
 import controlP5.*;
 ControlP5 cp5;
 Minim minim;
-/*
-IDEAS:
- Background changes during moments?
- 
- remember to set back ammo 
- */
 
 ArrayList<Sprite> sprites;
 Paddle paddle;
@@ -85,7 +79,7 @@ void draw() {
     game.drawSprites();
     collision.check();
     game.randomPower();
-    game.blockGen();
+    game.levelUpCheck();
     game.render();
   }
 
@@ -104,6 +98,7 @@ void draw() {
 
   if (unpauseflag == true)
   {
+    //when countdown is finished, resume game
     if (game.countdown() == 0)
     {
       game.timer = 179;
@@ -116,7 +111,7 @@ void draw() {
   if (instructflag == true)
   {
     menu.showInstructions();
-    menu.instructionShow();
+    menu.flipInstructionButtons();
   }
 
   if (backMenu == true)
@@ -137,6 +132,7 @@ void controlEvent(ControlEvent theEvent)
     pauseflag = false;
     unpauseflag = false;
     instructflag = false;
+   
   }
 
   if (theEvent.getName().equals("Quit")) {
@@ -172,7 +168,7 @@ void controlEvent(ControlEvent theEvent)
     pauseflag = false;
     menushow = false;
     playflag = false;
-    gameover = false;  
+    gameover = false;
   }
 
   if (theEvent.getName().equals("Main Menu")) {
@@ -181,16 +177,10 @@ void controlEvent(ControlEvent theEvent)
     unpauseflag = false;
     pauseflag = false;
     playflag = false;
-    gameover = false;  
+    gameover = false;
   }
-  
-  //plays button sound every time button pressed
-  p(buttonPress);
-}
 
-//can't inherit fron interface
-void p(AudioPlayer sound)
-{
-  sound.rewind();
-  sound.play();
+  //plays button sound every time button pressed
+  buttonPress.rewind();
+  buttonPress.play();
 }

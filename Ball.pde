@@ -15,7 +15,7 @@ class Ball extends Sprite implements Power, Sound
     yspeed = 3.5f;
     
     border = minim.loadFile("border.mp3");
-    change = 0;
+    change = 0; // used to map pos.y to height to change colour of ball relative to position
   }
   
   
@@ -60,9 +60,12 @@ class Ball extends Sprite implements Power, Sound
   
   void render()
   {
+    pushMatrix();
+    translate(pos.x, pos.y);
     stroke(255);
     fill(colour);
-    ellipse(pos.x, pos.y, w, h);
+    ellipse(0, 0, w, h);
+    popMatrix();
   }
   
   void update()

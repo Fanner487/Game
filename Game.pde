@@ -17,7 +17,6 @@ class Game extends Sprite implements Sound
   AudioPlayer levelup;
   AudioPlayer count;
 
-
   Game()
   {  
     score = 0;
@@ -26,7 +25,7 @@ class Game extends Sprite implements Sound
     level = 0;
     levelup = minim.loadFile("levelup.mp3");
     count = minim.loadFile("count.mp3");
-    second = 4;
+    second = 3;
     gameSpace = width - border;
     halfWidth = gameSpace / 2;
     halfGameSpace = width - halfWidth;
@@ -50,7 +49,7 @@ class Game extends Sprite implements Sound
   //taking parameters from render to display scores/ammo/level in boxes
   void drawBox(int y, color c, String text, int value)
   {
-    float x = border - 60;
+    float x = border - 70;
     float left = x - 50;
     float right = x + 50;
     float top = y - 40;
@@ -100,38 +99,43 @@ class Game extends Sprite implements Sound
     ball.render();
   } 
 
-  void blockGen()
-  {
-    
+  void levelUpCheck()
+  {   
     if (noBlocksLeft() && wait < 180) {
+      //increments as a timer
       wait++;
-
+      
+      //plays beep every second and decrements
       if (wait % 60 == 0)
       {
         second --;
         play(count);
       }
-
+      
+      //displays level complete
       levelUpText(second);
-
+      
+      //moves ball to first position and stays stationary and removes all powerups on screen
       ball.stopBall();      //
       removePower();        //remove score/ammo powerups
 
+      //plays level up sound
       //only plays after level 1 completed
       if (wait == 1 && level != 1)
       {
-        
-        this.play(levelup);
+        play(levelup);
       }
-
+       
+      //generate blocks after counting done
       if (wait==180) 
       {
-        wait =0;
+        wait = 0;
         second = 3;
-
-        if (level >= 7)
+         
+        //makes sure max # blocks generated
+        if (level >= 10)
         {
-          blockLimit = 7;
+          blockLimit = 10;
         } else
         {
           blockLimit = level;

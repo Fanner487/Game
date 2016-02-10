@@ -17,15 +17,17 @@ class Explosion extends Sprite
     else
     {
       size += 15;
-    }
-    
+    }  
     
   }
   
   void render()
   {
+    pushMatrix();
+    translate(pos.x, pos.y);
     stroke(255);
     fill(colour);
-    ellipse(pos.x, pos.y, size, size);
+    ellipse(0, 0, size, size);
+    popMatrix();
   }
 }
