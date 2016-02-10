@@ -1,3 +1,4 @@
+//menu controls for buttons
 class Menu implements Sound
 {
   Button play;

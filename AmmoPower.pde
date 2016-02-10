@@ -1,3 +1,4 @@
+//powerup for ammo
 class AmmoPower extends Sprite implements Power
 {
 

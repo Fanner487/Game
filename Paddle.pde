@@ -1,8 +1,7 @@
+//paddle class
 class Paddle extends Sprite implements Sound
 {
-
   AudioPlayer shoot;
-
   int ammo;
   int change;
 

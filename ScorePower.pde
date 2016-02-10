@@ -1,3 +1,4 @@
+//power ups for score
 class ScorePower extends Sprite implements Power
 {
 

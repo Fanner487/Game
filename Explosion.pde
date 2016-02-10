@@ -1,3 +1,4 @@
+//creates explosion when rocket hits block
 class Explosion extends Sprite
 {
   Explosion(float x, float y, color c)

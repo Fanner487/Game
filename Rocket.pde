@@ -1,3 +1,4 @@
+//rockets that can shoot blocks
 class Rocket extends Sprite
 {
   Rocket(float x, float y, color colour)

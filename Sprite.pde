@@ -1,3 +1,4 @@
+//abstract class for AmmoPower, Ball, Block, Explosion, Game, Paddle, Power, Rocket, Scorepower.
 abstract class Sprite
 {
   float left;

@@ -1,3 +1,4 @@
+//controls game field, scores and level ups
 class Game extends Sprite implements Sound
 {
   //Put sound and ball collision in different function
@@ -214,37 +215,6 @@ class Game extends Sprite implements Sound
     return isEmpty;    
   }
 
-  int noScorePowers()
-  {
-    int n = 0;
-    for (int i = 0; i < sprites.size(); i++)
-    {
-      Sprite b = sprites.get(i);
-
-      if (b instanceof ScorePower)
-      {
-        n++;
-      }
-    }
-
-    return n;
-  }
-
-  int noAmmoPowers()
-  {
-    int n = 0;
-    for (int i = 0; i < sprites.size(); i++)
-    {
-      Sprite b = sprites.get(i);
-
-      if (b instanceof AmmoPower)
-      {
-        n++;
-      }
-    }
-
-    return n;
-  }
   int countdown()
   {
     pauseGame();
@@ -258,7 +228,7 @@ class Game extends Sprite implements Sound
       if (timer % 60 == 0)
       {
         second --;
-        //play beep sound here
+        play(count);
       }
 
       timer --;
